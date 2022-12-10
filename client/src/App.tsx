@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom';
 
-function App() {
+// Components
+import Login from './Components/Login';
+import Register from './Components/Register';
+import AppMain from './Components/AppMain';
+import ResetPassword from './Components/ResetPassword';
+import NotFound404 from './Components/NotFound404';
+import Cart from './Components/Cart';
+import Products from './Components/Products';
+import TopSelling from './Components/TopSelling';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route element={<AppMain />} path="/" />
+      <Route element={<TopSelling />} path="/top-selling" />
+      <Route element={<Products />} path="/products" />
+      <Route element={<Cart />} path="/cart" />
+      <Route element={<Login />} path="/login" />
+      <Route element={<Register />} path="/register" />
+      <Route element={<ResetPassword />} path="/reset-password" />
+      <Route element={<NotFound404 />} path="*" />
+    </Routes>
+  )
 }
 
 export default App;
