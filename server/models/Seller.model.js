@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', true);
 
 const sellerSchema = new mongoose.Schema({
     username: {

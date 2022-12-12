@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const Orders = require('./Orders.model.js');
-const Reviews = require('./Reviews.model.js');
+const Order = require('./Order.model.js');
+const Review = require('./Review.model.js');
+mongoose.set('strictQuery', true);
 
 const addressSchema = new mongoose.Schema({
     addressLine1: {
@@ -70,14 +71,15 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true
     },
     password: {
         type: String,
         required: true,
     },
     profilePhoto: String,
-    orders: [Orders.Schema],
-    reviews: [Reviews.Schema],
+    orders: [Order.schema],
+    reviews: [Review.schema],
     address: [addressSchema],
     card: [cardSchema],
     cart: [cartSchema],

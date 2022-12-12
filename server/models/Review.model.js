@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', true);
 
 const reviewSchema = new mongoose.Schema({
     rating: {
