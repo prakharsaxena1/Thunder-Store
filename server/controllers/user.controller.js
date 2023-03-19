@@ -1,15 +1,12 @@
-const User = require('../models/User.model.js');
+const User = require('../models/user.model');
+const auth = require('../auth/auth');
 
 const userLogin = async (req, res) => {
     try {
         if (req.body.email !== undefined && req.body.password !== undefined) {
-            const user = await User.findOne({
-                email: req.body.email,
-            }, {
-                password: 1,
-                username: 1,
-            });
+            const user = await User.findOne({ email: req.body.email });
             if (user.password === req.body.password) {
+                res = auth.setAuthCookie(res, user);
                 return res.status(200).send(`${user.username} has logged in successfully`);
             }
         }
@@ -33,7 +30,10 @@ const userRegister = async (req, res) => {
 }
 
 const userLogout = (req, res) => {
-
+    res.clearCookie('authorization');
+    res.status(200).json({
+        message: 'Successful logout'
+    });
 }
 
 const deleteUser = (req, res) => {

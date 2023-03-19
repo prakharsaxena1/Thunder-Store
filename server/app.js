@@ -1,10 +1,17 @@
-require("./db/connection");
 const express = require("express");
-const app = express();
+require("./db/connection");
+const cookieParser = require('cookie-parser');
+const passport = require("passport");
 const cors = require("cors");
+
+const app = express();
 
 // Middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+require('./auth/passport')(passport);
+app.use(passport.initialize());
 app.use(cors({ origin: 'http://localhost:3000' }));
 
 // Routes
