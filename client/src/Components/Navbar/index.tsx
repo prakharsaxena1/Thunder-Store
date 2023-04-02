@@ -11,9 +11,6 @@ const Navbar = () => {
         <Toolbar disableGutters>
           <BrandText />
           <Box sx={{ ml: 'auto' }}>
-            <Button sx={{ mx: 1 }} variant="text" color="inherit" component={Link} to="/top-selling">Top selling</Button>
-            <Button sx={{ mx: 1 }} variant="text" color="inherit" component={Link} to="/products">Products</Button>
-            <Button sx={{ mx: 1 }} variant="text" color="inherit" component={Link} to="/cart">Cart</Button>
             <Button sx={{ mx: 1 }} variant="text" color="inherit" component={Link} to="/login">Login</Button>
           </Box>
         </Toolbar>

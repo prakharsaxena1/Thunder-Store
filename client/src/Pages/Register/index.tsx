@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, TextField, Typography, Button, Divider } from '@mui/material';
 import { Link } from 'react-router-dom';
-import AccountsBox from '../../Comtainers/AccountsBox';
+import AccountsBox from '../../Components/AccountsBox';
 const Register = () => {
   return (
     <AccountsBox>

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Box, Stack, Paper } from '@mui/material';
-import { BrandText, CopyrightText } from '../../Components/BrandText';
+import { BrandText, CopyrightText } from '../BrandText';
 
 type IAccounts = {
     children: JSX.Element | JSX.Element[],

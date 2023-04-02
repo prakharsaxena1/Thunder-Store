@@ -1,28 +1,32 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { Route, createRoutesFromElements, createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Components
-import Login from './Components/Login';
-import Register from './Components/Register';
-import AppMain from './Components/AppMain';
+import RootLayout from './Components/RootLayout';
+import Search from './Pages/Search';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 import ResetPassword from './Components/ResetPassword';
-import NotFound404 from './Components/NotFound404';
-import Cart from './Components/Cart';
-import Products from './Components/Products';
-import TopSelling from './Components/TopSelling';
+import NotFound404 from './Pages/NotFound404';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<Home />} />
+        <Route element={<Search />} path="search" />
+        <Route element={<NotFound404 />} path="*" />
+      </Route>
+      <Route element={<Login />} path="login" />
+      <Route element={<Register />} path="register" />
+      <Route element={<ResetPassword />} path="reset-password" />
+    </Route>
+));
 
 const App = () => {
   return (
-    <Routes>
-      <Route element={<AppMain />} path="/" />
-      <Route element={<TopSelling />} path="/top-selling" />
-      <Route element={<Products />} path="/products" />
-      <Route element={<Cart />} path="/cart" />
-      <Route element={<Login />} path="/login" />
-      <Route element={<Register />} path="/register" />
-      <Route element={<ResetPassword />} path="/reset-password" />
-      <Route element={<NotFound404 />} path="*" />
-    </Routes>
+    <RouterProvider router={router} />
   )
 }
 

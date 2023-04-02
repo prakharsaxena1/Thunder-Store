@@ -36,8 +36,16 @@ const userLogout = (req, res) => {
     });
 }
 
-const deleteUser = (req, res) => {
-
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.body;
+        if (id) {
+            await User.findByIdAndDelete(id);
+        }
+        return res.status(401).send("Account deleted");
+    } catch (err) {
+        res.status(500).send(`Account deletion failed: ${err.message}`);
+    }
 }
 
 module.exports = {

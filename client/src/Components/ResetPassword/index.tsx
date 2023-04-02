@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField, Typography, Button } from '@mui/material';
-import AccountsBox from '../../Comtainers/AccountsBox';
+import AccountsBox from '../AccountsBox';
 
 
 const ResetPassword = () => {
