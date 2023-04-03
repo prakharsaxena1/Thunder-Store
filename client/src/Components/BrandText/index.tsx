@@ -3,12 +3,12 @@ import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 type IText = {
-    styles?: Record<string, string | number>,
-    size?: number,
+  styles?: Record<string, string | number>,
+  size?: number,
 }
 
 const defaultStyles = {
-    fontFamily: "'Dancing Script', cursive",
+    fontFamily: '\'Dancing Script\', cursive',
     textDecoration: 'none',
     color: 'inherit',
 }
@@ -28,7 +28,7 @@ export const BrandText: FC<IText> = ({
                 fontSize: size,
             }}
         >
-            Thunder Store
+      Thunder Store
         </Typography>
     )
 }
@@ -46,7 +46,7 @@ export const CopyrightText: FC<IText> = ({
                 fontSize: size,
             }}
         >
-            Thunder Store &copy; 2022
+      Thunder Store &copy; 2022
         </Typography>
     )
 }

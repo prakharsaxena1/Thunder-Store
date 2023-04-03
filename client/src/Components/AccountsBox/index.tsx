@@ -3,20 +3,22 @@ import { Box, Stack, Paper } from '@mui/material';
 import { BrandText, CopyrightText } from '../BrandText';
 
 type IAccounts = {
-    children: JSX.Element | JSX.Element[],
+  children: JSX.Element | JSX.Element[],
 }
 
 const AccountsBox: FC<IAccounts> = ({
     children
 }) => {
     return (
-        <Box sx={{
-            position: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-        }}>
+        <Box
+            sx={{
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+            }}
+        >
             <BrandText
                 styles={{
                     position: 'absolute',
