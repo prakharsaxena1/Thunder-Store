@@ -1,10 +1,30 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import baseApi from './baseQuery';
+import { urls } from '../../Constants/constants';
 
-const baseApi = createApi({
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3000/',
+export const InsightsApis = baseApi.injectEndpoints({
+  endpoints: (build) => ({
+    login: build.query<any, any>({
+      query: (params) => ({
+        url: urls.login,
+        method: 'POST',
+        body: params,
+      }),
+    }),
+    register: build.query<any, any>({
+      query: (params) => ({
+        url: urls.register,
+        method: 'POST',
+        body: params,
+      }),
+    }),
+    deactivateAccount: build.query<any, any>({
+      query: (params) => ({
+        url: urls.register,
+        method: 'POST',
+        body: params,
+      }),
+    }),
   }),
-  endpoints: () => ({}),
 });
 
-export default baseApi;
+export default InsightsApis;

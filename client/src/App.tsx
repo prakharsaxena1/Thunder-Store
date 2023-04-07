@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route, createRoutesFromElements, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  Route, createRoutesFromElements, createBrowserRouter, RouterProvider,
+} from 'react-router-dom';
 
 // Components
 import RootLayout from './Components/RootLayout';
@@ -21,13 +23,12 @@ const router = createBrowserRouter(
       <Route element={<Login />} path="login" />
       <Route element={<Register />} path="register" />
       <Route element={<ResetPassword />} path="reset-password" />
-    </Route>
-  ));
+    </Route>,
+  ),
+);
 
-const App = () => {
-  return (
-    <RouterProvider router={router} />
-  )
-}
+const App = () => (
+  <RouterProvider router={router} />
+);
 
 export default App;

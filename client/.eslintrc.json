@@ -1,37 +1,51 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "globals": {
+    "JSX": true
+  },
+  "rules": {
+    "linebreak-style": "off",
+    "no-unused-vars": ["off", { "argsIgnorePattern": "^action" }],
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "no-plusplus": "off",
+    "react/require-default-props": "off",
+    "react/no-array-index-key": "off",
+    "no-param-reassign": ["error", { "props": false }],
+    "import/no-unresolved": "off",
+    "import/no-mutable-exports": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": [2, { "extensions": [".ts", ".tsx"] }],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+    "arrow-body-style": [2, "as-needed"],
+    "import/extensions": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
     },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "globals": {
-        "JSX": true
-    },
-    "rules": {
-        "indent": ["error", 2],
-        "quotes": ["warn", "single"]
-    },
-    "settings": {
-        "react": {
-            "version": "detect"
-        },
-        "import/resolver": {
-            "node": {
-                "extensions": [".ts", ".tsx"]
-            }
-        }
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx"]
+      }
     }
+  }
 }
