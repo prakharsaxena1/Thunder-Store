@@ -12,8 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 require('./auth/passport')(passport);
 app.use(passport.initialize());
-app.use(cors({ origin: 'http://localhost:3000' }));
-
+app.use(cors())
 // Routes
 app.use(require('./routes'));
 

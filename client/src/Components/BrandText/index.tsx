@@ -25,9 +25,11 @@ export const BrandText: FC<IText> = ({
       ...defaultStyles,
       ...styles,
       fontSize: size,
+      height: 'auto',
+      minWidth: '150px',
     }}
   >
-    Thunder Store
+    Thunder&nbsp;Store
   </Typography>
 );
 

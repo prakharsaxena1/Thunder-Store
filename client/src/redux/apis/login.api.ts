@@ -1,7 +1,7 @@
 import baseApi from './baseQuery';
 import { urls } from '../../Constants/constants';
 
-export const InsightsApis = baseApi.injectEndpoints({
+export const AccountApis = baseApi.injectEndpoints({
   endpoints: (build) => ({
     login: build.query<any, any>({
       query: (params) => ({
@@ -27,4 +27,4 @@ export const InsightsApis = baseApi.injectEndpoints({
   }),
 });
 
-export default InsightsApis;
+export default AccountApis;

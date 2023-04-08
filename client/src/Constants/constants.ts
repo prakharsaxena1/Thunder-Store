@@ -1,7 +1,7 @@
 // Request urls
 export const urls = {
-  login: '/login',
-  register: '/register',
+  login: '/user/login',
+  register: '/user/register',
   home: '/app',
   search: '/search',
   product: '/product',

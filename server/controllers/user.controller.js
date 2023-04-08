@@ -12,7 +12,7 @@ const userLogin = async (req, res) => {
         }
         return res.status(401).send("Login failed :( ");
     } catch (err) {
-        res.status(500).send(`Account login failed: ${err.message}`);
+        res.status(404).send(`Account login failed: ${err.message}`); 
     }
 }
 

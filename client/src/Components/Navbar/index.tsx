@@ -1,11 +1,32 @@
-import * as React from 'react';
+import React, { FC, useState } from 'react';
 import {
-  AppBar, Box, Toolbar, Container, Button,
+  AppBar, Stack, Toolbar, Container, Button, TextField, Typography, IconButton,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { BrandText } from '../BrandText';
 
-const Navbar = () => (
+const SearchBar: FC = () => {
+  const [text, setText] = useState('');
+  return (
+    <TextField
+      value={text}
+      onChange={(e) => setText(e.target.value)}
+      size="small"
+      variant="outlined"
+      InputProps={{
+        endAdornment: <SearchIcon />,
+      }}
+      sx={{
+        width: '70%',
+        backgroundColor: '#fff',
+      }}
+    />
+  );
+};
+
+const Navbar: FC = () => (
   <AppBar
     position="static"
     component="nav"
@@ -17,18 +38,42 @@ const Navbar = () => (
   >
     <Container maxWidth="xl">
       <Toolbar disableGutters>
-        <BrandText />
-        <Box sx={{ ml: 'auto' }}>
-          <Button
-            sx={{ mx: 1 }}
-            variant="text"
-            color="inherit"
-            component={Link}
-            to="/login"
-          >
+        <Stack
+          direction="row"
+          spacing={3}
+          justifyContent="space-evenly"
+          sx={{ width: '100%', alignItems: 'center' }}
+        >
+          <BrandText />
+          <SearchBar />
+          <Button variant="text" color="inherit" component={Link} to="/login">
             Login
           </Button>
-        </Box>
+          <IconButton>
+            <ShoppingCartIcon sx={{ width: '16px' }} />
+          </IconButton>
+        </Stack>
+      </Toolbar>
+      <Toolbar disableGutters>
+        <div
+          style={{
+            alignContent: 'center', minWidth: '60%', display: 'flex', margin: 'auto',
+          }}
+        >
+          <Typography variant="h6" gutterBottom sx={{ width: '210px' }}>Top&nbsp;sellers</Typography>
+          <Stack
+            direction="row"
+            spacing={3}
+            justifyContent="space-around"
+            sx={{ width: '100%', alignItems: 'center' }}
+          >
+            <Button variant="text" color="inherit">Books</Button>
+            <Button variant="text" color="inherit">Games</Button>
+            <Button variant="text" color="inherit">Electronics</Button>
+            <Button variant="text" color="inherit">Food</Button>
+            <Button variant="text" color="inherit">Clothes</Button>
+          </Stack>
+        </div>
       </Toolbar>
     </Container>
   </AppBar>
