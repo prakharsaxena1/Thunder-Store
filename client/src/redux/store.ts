@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import baseApi from './apis/baseQuery';
-// import userSlice from './slices/userSlice';
+import RootReducers from './RootReducers';
 
 const middleware: any[] = [];
 middleware.push(baseApi.middleware);
 
 export const store = configureStore({
-  reducer: {},
+  reducer: RootReducers,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(middleware),
 });
 

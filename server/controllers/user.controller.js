@@ -7,12 +7,27 @@ const userLogin = async (req, res) => {
             const user = await User.findOne({ email: req.body.email });
             if (user.password === req.body.password) {
                 res = auth.setAuthCookie(res, user);
-                return res.status(200).send(`${user.username} has logged in successfully`);
+                return res.status(200).json({
+                    status: 'success',
+                    message: 'Login successful',
+                    data: {
+                        username: user.username,
+                        email: user.email,
+                        id: user._id,
+                        cart: user.cart
+                    }
+                });
             }
         }
-        return res.status(401).send("Login failed :( ");
+        return res.status(401).json({
+            status: 'failed',
+            message: 'Invalid credentials',
+        });
     } catch (err) {
-        res.status(404).send(`Account login failed: ${err.message}`); 
+        res.status(401).json({
+            status: 'failed',
+            message: 'Invalid credentials',
+        }) 
     }
 }
 
@@ -23,9 +38,21 @@ const userRegister = async (req, res) => {
             email: req.body.email,
             password: req.body.password,
         });
-        res.status(201).send("Account registered successfully");
+        return res.status(201).json({
+            status: 'success',
+            message: 'Account registered successfully',
+            data: {
+                username: user.username,
+                email: user.email,
+                id: user._id,
+                cart: user.cart
+            }
+        });
     } catch (err) {
-        res.status(500).send(`Account registeration failed: ${err.message}`);
+        res.status(401).json({
+            status: 'failed',
+            message: 'Failed to register account',
+        })
     }
 }
 

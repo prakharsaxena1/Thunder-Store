@@ -1,5 +1,5 @@
-import baseApi from './baseQuery';
-import { urls } from '../../Constants/constants';
+import baseApi from '../baseQuery';
+import { urls } from '../../../Constants/constants';
 
 export const AccountApis = baseApi.injectEndpoints({
   endpoints: (build) => ({

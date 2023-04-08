@@ -45,6 +45,6 @@ export const CopyrightText: FC<IText> = ({
       fontSize: size,
     }}
   >
-    Thunder Store &copy; 2022
+    Thunder Store &copy; 2023
   </Typography>
 );

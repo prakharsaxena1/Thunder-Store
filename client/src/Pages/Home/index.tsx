@@ -1,8 +1,7 @@
 import React from 'react';
-import Loader from '../../Components/Loader';
 
 const Home = () => (
-  <Loader />
+  <div>Home</div>
 );
 
 export default Home;
