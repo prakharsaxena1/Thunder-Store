@@ -14,29 +14,26 @@ const Register: FC = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  const [registerTrigger, { isLoading, isFetching }] = AccountApis.useLazyRegisterQuery();
+  const [registerTrigger, { isLoading }] = AccountApis.useRegisterMutation();
   const attemptRegister = () => {
-    if (password === repeatPassword) {
+    if (username && email && password && password === repeatPassword) {
       registerTrigger({
         username: username.trim(),
         email: email.trim(),
         password: password.trim(),
       }).unwrap().then((res) => {
-        navigate('/');
-        enqueueSnackbar(res.message, {
-          variant: 'success',
-          preventDuplicate: true,
-        });
-      });
-    } else {
-      enqueueSnackbar("Password don't match", {
-        variant: 'error',
-        preventDuplicate: true,
+        if (res.status === 'success') {
+          enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
+          navigate('/', { replace: true });
+        }
+        enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
+      }).catch(() => {
+        enqueueSnackbar('Provided incomplete or wrong credentials', { variant: 'error', preventDuplicate: true });
       });
     }
   };
   return (
-    <AccountsBox isLoading={isLoading || isFetching}>
+    <AccountsBox isLoading={isLoading}>
       <Typography variant="h5" component="h5" align="center" sx={{ mb: 3 }}>Create an account</Typography>
       {/* Name */}
       <TextField

@@ -12,25 +12,27 @@ const Login: FC = () => {
   const [pass, setPass] = useState('');
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const [loginTrigger, { isLoading, isFetching }] = AccountApis.useLazyLoginQuery();
+
+  const [loginTrigger, { isLoading }] = AccountApis.useLoginMutation();
   const attemptLogin = () => {
-    loginTrigger({
-      email: email.trim(),
-      password: pass.trim(),
-    }).unwrap().then((res) => {
-      enqueueSnackbar(res.message, {
-        variant: 'success',
-        preventDuplicate: true,
+    if (email && pass) {
+      loginTrigger({
+        email: email.trim(),
+        password: pass.trim(),
+      }).unwrap().then((res) => {
+        if (res.status === 'success') {
+          enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
+          navigate('/', { replace: true });
+          // Set state of user
+        }
+        enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
+      }).catch(() => {
+        enqueueSnackbar('Provided wrong credentials', { variant: 'error', preventDuplicate: true });
       });
-      if (res.status === 'success') {
-        navigate('/');
-      } else if (res.status === 'failed') {
-        navigate('/login');
-      }
-    });
+    }
   };
   return (
-    <AccountsBox isLoading={isLoading || isFetching}>
+    <AccountsBox isLoading={isLoading}>
       <Typography variant="h5" component="h5" align="center" sx={{ mb: 3 }}>Sign-in to your account</Typography>
       {/* Email */}
       <TextField

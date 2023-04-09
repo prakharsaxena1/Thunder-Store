@@ -3,7 +3,7 @@ const auth = require('../auth/auth');
 
 const userLogin = async (req, res) => {
     try {
-        if (req.body.email !== undefined && req.body.password !== undefined) {
+        if (req.body.email && req.body.password) {
             const user = await User.findOne({ email: req.body.email });
             if (user.password === req.body.password) {
                 res = auth.setAuthCookie(res, user);
@@ -19,12 +19,12 @@ const userLogin = async (req, res) => {
                 });
             }
         }
-        return res.status(401).json({
+        return res.status(400).json({
             status: 'failed',
             message: 'Invalid credentials',
         });
     } catch (err) {
-        res.status(401).json({
+        res.status(400).json({
             status: 'failed',
             message: 'Invalid credentials',
         }) 
@@ -49,7 +49,7 @@ const userRegister = async (req, res) => {
             }
         });
     } catch (err) {
-        res.status(401).json({
+        res.status(400).json({
             status: 'failed',
             message: 'Failed to register account',
         })
@@ -69,9 +69,15 @@ const deleteUser = async (req, res) => {
         if (id) {
             await User.findByIdAndDelete(id);
         }
-        return res.status(401).send("Account deleted");
+        return res.status(200).json({
+            status: 'success',
+            message: 'Account deleted',
+        });
     } catch (err) {
-        res.status(500).send(`Account deletion failed: ${err.message}`);
+        res.status(400).json({
+            status: 'failed',
+            message: 'Unable to delete account'
+        });
     }
 }
 
