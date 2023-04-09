@@ -11,6 +11,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ResetPassword from './Components/ResetPassword';
 import NotFound404 from './Pages/NotFound404';
+import TopSelling from './Pages/TopSelling';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<RootLayout />}>
         <Route index element={<Home />} />
         <Route element={<Search />} path="search" />
+        <Route element={<TopSelling />} path="/top-sellers/:category" />
         <Route element={<NotFound404 />} path="*" />
       </Route>
       <Route element={<Login />} path="login" />

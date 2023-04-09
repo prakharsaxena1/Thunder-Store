@@ -10,6 +10,7 @@ router.route('/login').post(userController.userLogin);
 router.route('/register').post(userController.userRegister);
 router.route('/logout').get(authMiddleware, userController.userLogout);
 router.route('/delete-account').post(authMiddleware, userController.deleteUser);
+router.route('/isAuth').get(authMiddleware, userController.checkAuthUser);
 
 // Exports
 module.exports = router;

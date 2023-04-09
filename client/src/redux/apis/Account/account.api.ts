@@ -8,6 +8,7 @@ export const AccountApis = baseApi.injectEndpoints({
         url: urls.login,
         method: 'POST',
         body: params,
+        credentials: 'same-origin',
       }),
     }),
     register: build.mutation<any, any>({
@@ -15,13 +16,22 @@ export const AccountApis = baseApi.injectEndpoints({
         url: urls.register,
         method: 'POST',
         body: params,
+        credentials: 'include',
       }),
     }),
     deactivateAccount: build.mutation<any, any>({
       query: (params) => ({
-        url: urls.register,
+        url: urls.deleteAccount,
         method: 'POST',
         body: params,
+        credentials: 'include',
+      }),
+    }),
+    isAuthAccount: build.query<any, any>({
+      query: () => ({
+        url: '/user/isAuth',
+        method: 'GET',
+        credentials: 'same-origin',
       }),
     }),
   }),

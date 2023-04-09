@@ -24,7 +24,7 @@ const setAuthCookie = (res, user) => {
     const token = issueJWT(user);
     res.cookie('authorization', 'Bearer ' + token.token, {
         expires: new Date(Date.now() + 60 * 60 * 1000),
-        secure: true,
+        // secure: true,
         httpOnly: true,
     });
     return res;

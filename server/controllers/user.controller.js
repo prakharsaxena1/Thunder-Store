@@ -7,6 +7,7 @@ const userLogin = async (req, res) => {
             const user = await User.findOne({ email: req.body.email });
             if (user.password === req.body.password) {
                 res = auth.setAuthCookie(res, user);
+                console.log(res.cookie['authorization']);
                 return res.status(200).json({
                     status: 'success',
                     message: 'Login successful',
@@ -14,8 +15,9 @@ const userLogin = async (req, res) => {
                         username: user.username,
                         email: user.email,
                         id: user._id,
-                        cart: user.cart
-                    }
+                        cart: user.cart,
+                    },
+                    token: res.cookie['authorization'] || "bc",
                 });
             }
         }
@@ -38,6 +40,7 @@ const userRegister = async (req, res) => {
             email: req.body.email,
             password: req.body.password,
         });
+        res = auth.setAuthCookie(res, user);
         return res.status(201).json({
             status: 'success',
             message: 'Account registered successfully',
@@ -45,7 +48,8 @@ const userRegister = async (req, res) => {
                 username: user.username,
                 email: user.email,
                 id: user._id,
-                cart: user.cart
+                cart: user.cart,
+                token: res.cookie['authorization']
             }
         });
     } catch (err) {
@@ -81,9 +85,17 @@ const deleteUser = async (req, res) => {
     }
 }
 
+const checkAuthUser = async (req, res) => {
+    res.status(200).json({
+        status: 'success',
+        message: 'Authenticated'
+    });
+}
+
 module.exports = {
     userLogin,
     userRegister,
     userLogout,
-    deleteUser
+    deleteUser,
+    checkAuthUser
 }

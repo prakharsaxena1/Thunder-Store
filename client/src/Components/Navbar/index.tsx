@@ -1,82 +1,91 @@
 import React, { FC, useState } from 'react';
 import {
-  AppBar, Stack, Toolbar, Container, Button, TextField, Typography, IconButton,
+  AppBar, Stack, Toolbar, Container, TextField, IconButton,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { BrandText } from '../BrandText';
+import RouterBtn from '../RouterLink';
 
 const SearchBar: FC = () => {
   const [text, setText] = useState('');
   return (
-    <TextField
-      value={text}
-      onChange={(e) => setText(e.target.value)}
-      size="small"
-      variant="outlined"
-      InputProps={{
-        endAdornment: <SearchIcon />,
-      }}
-      sx={{
-        width: '70%',
-        backgroundColor: '#fff',
-      }}
-    />
+    <div style={{ position: 'relative', flexGrow: 1 }}>
+      <TextField
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        size="small"
+        variant="outlined"
+        sx={{
+          width: '100%',
+          backgroundColor: '#fff',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+        }}
+      >
+        <IconButton>
+          <SearchIcon />
+        </IconButton>
+      </div>
+    </div>
   );
 };
 
-const Navbar: FC = () => (
-  <AppBar
-    position="static"
-    component="nav"
-    style={{
-      background: 'rgb(241 241 241 / 34%)',
-      boxShadow: 'none',
-      color: '#000',
-    }}
-  >
-    <Container maxWidth="xl">
-      <Toolbar disableGutters>
-        <Stack
-          direction="row"
-          spacing={3}
-          justifyContent="space-evenly"
-          sx={{ width: '100%', alignItems: 'center' }}
-        >
-          <BrandText />
-          <SearchBar />
-          <Button variant="text" color="inherit" component={Link} to="/login">
-            Login
-          </Button>
-          <IconButton>
-            <ShoppingCartIcon sx={{ width: '16px' }} />
-          </IconButton>
-        </Stack>
-      </Toolbar>
-      <Toolbar disableGutters>
-        <div
-          style={{
-            alignContent: 'center', minWidth: '60%', display: 'flex', margin: 'auto',
-          }}
-        >
-          <Typography variant="h6" gutterBottom sx={{ width: '210px' }}>Top&nbsp;sellers</Typography>
+const Navbar: FC = () => {
+  const [showCart, setShowCart] = useState(false);
+  return (
+    <AppBar
+      position="static"
+      component="nav"
+      style={{
+        background: 'rgb(241 241 241 / 34%)',
+        boxShadow: 'none',
+        color: '#000',
+      }}
+    >
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Stack
+            direction="row"
+            spacing={3}
+            justifyContent="space-evenly"
+            sx={{ width: '100%', alignItems: 'center' }}
+          >
+            <BrandText />
+            <SearchBar />
+            <RouterBtn href="/login" title="Login" />
+            <IconButton
+              sx={{ width: '40px', height: '40px' }}
+              onClick={() => {
+                setShowCart(!showCart);
+              }}
+            >
+              <ShoppingCartIcon sx={{ width: '20px' }} />
+            </IconButton>
+          </Stack>
+        </Toolbar>
+        <Toolbar disableGutters>
           <Stack
             direction="row"
             spacing={3}
             justifyContent="space-around"
             sx={{ width: '100%', alignItems: 'center' }}
           >
-            <Button variant="text" color="inherit">Books</Button>
-            <Button variant="text" color="inherit">Games</Button>
-            <Button variant="text" color="inherit">Electronics</Button>
-            <Button variant="text" color="inherit">Food</Button>
-            <Button variant="text" color="inherit">Clothes</Button>
+            <RouterBtn href="/top-sellers/books" title="Books" />
+            <RouterBtn href="/top-sellers/games" title="Games" />
+            <RouterBtn href="/top-sellers/electronics" title="Electronics" />
+            <RouterBtn href="/top-sellers/food" title="Food" />
+            <RouterBtn href="/top-sellers/clothes" title="Clothes" />
           </Stack>
-        </div>
-      </Toolbar>
-    </Container>
-  </AppBar>
-);
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+};
 
 export default Navbar;

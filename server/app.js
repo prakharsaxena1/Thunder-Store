@@ -7,12 +7,12 @@ const cors = require("cors");
 const app = express();
 
 // Middlewares
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 require('./auth/passport')(passport);
 app.use(passport.initialize());
-app.use(cors())
 // Routes
 app.use(require('./routes'));
 
