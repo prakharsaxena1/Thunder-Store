@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import {
-  Box, TextField, Typography, Button, Divider,
+  Box, TextField, Typography, Button, Divider, Stack,
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
@@ -34,36 +34,14 @@ const Login: FC = () => {
   return (
     <AccountsBox isLoading={isLoading}>
       <Typography variant="h5" component="h5" align="center" sx={{ mb: 3 }}>Sign-in to your account</Typography>
-      {/* Email */}
-      <TextField
-        sx={{ m: 1 }}
-        required
-        id="email"
-        type="email"
-        label="Email"
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      {/* Password */}
-      <TextField
-        sx={{ m: 1 }}
-        required
-        id="password"
-        type="password"
-        label="Password"
-        value={pass}
-        onChange={(e) => {
-          setPass(e.target.value);
-        }}
-      />
+      <Stack spacing={2}>
+        {/* Email */}
+        <TextField required type="email" label="Email" value={email} onChange={(e) => { setEmail(e.target.value); }} />
+        {/* Password */}
+        <TextField required type="password" label="Password" value={pass} onChange={(e) => { setPass(e.target.value); }} />
+      </Stack>
       {/* Button */}
-      <Button
-        variant="contained"
-        sx={{ width: '200px', mx: 'auto', my: 3 }}
-        onClick={attemptLogin}
-      >
+      <Button variant="contained" sx={{ width: '200px', mx: 'auto', my: 3 }} onClick={attemptLogin}>
         Login
       </Button>
       {/* Others */}
