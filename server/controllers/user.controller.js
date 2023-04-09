@@ -5,9 +5,9 @@ const userLogin = async (req, res) => {
     try {
         if (req.body.email && req.body.password) {
             const user = await User.findOne({ email: req.body.email });
+            console.log(user);
             if (user.password === req.body.password) {
                 res = auth.setAuthCookie(res, user);
-                console.log(res.cookie['authorization']);
                 return res.status(200).json({
                     status: 'success',
                     message: 'Login successful',
@@ -17,7 +17,7 @@ const userLogin = async (req, res) => {
                         id: user._id,
                         cart: user.cart,
                     },
-                    token: res.cookie['authorization'] || "bc",
+                    token: res.token,
                 });
             }
         }
@@ -49,8 +49,8 @@ const userRegister = async (req, res) => {
                 email: user.email,
                 id: user._id,
                 cart: user.cart,
-                token: res.cookie['authorization']
-            }
+            },
+            token: res.token,
         });
     } catch (err) {
         res.status(400).json({

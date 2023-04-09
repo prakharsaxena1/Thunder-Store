@@ -22,6 +22,7 @@ const issueJWT = (user) => {
 const setAuthCookie = (res, user) => {
     createKeysIfNotExist();
     const token = issueJWT(user);
+    res.token = token;
     res.cookie('authorization', 'Bearer ' + token.token, {
         expires: new Date(Date.now() + 60 * 60 * 1000),
         // secure: true,
