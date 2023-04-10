@@ -11,6 +11,7 @@ const baseApi = createApi({
     //   }
     //   return headers;
     // },
+    credentials: 'include',
   }),
   endpoints: () => ({}),
 });

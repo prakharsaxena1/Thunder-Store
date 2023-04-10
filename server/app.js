@@ -10,7 +10,9 @@ const app = express();
 app.use(cors({
     origin: 'http://127.0.0.1:3000', // Allow requests from this origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
-    credentials: true // Pass credentials (only for HTTP methods that need them)
+    credentials: true,// Pass credentials (only for HTTP methods that need them)
+    allowedHeaders: ['Content-Type', 'Set-Cookie', 'authorization'],
+    exposedHeaders: ['Set-Cookie', 'authorization'],
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

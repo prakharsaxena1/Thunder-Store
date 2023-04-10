@@ -5,7 +5,6 @@ const userLogin = async (req, res) => {
     try {
         if (req.body.email && req.body.password) {
             const user = await User.findOne({ email: req.body.email });
-            console.log(user);
             if (user.password === req.body.password) {
                 res = auth.setAuthCookie(res, user);
                 return res.status(200).json({
