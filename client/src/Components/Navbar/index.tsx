@@ -79,7 +79,6 @@ const Navbar: FC = () => {
             <RouterBtn href="/top-sellers/books" title="Books" />
             <RouterBtn href="/top-sellers/games" title="Games" />
             <RouterBtn href="/top-sellers/electronics" title="Electronics" />
-            <RouterBtn href="/top-sellers/food" title="Food" />
             <RouterBtn href="/top-sellers/clothes" title="Clothes" />
           </Stack>
         </Toolbar>
