@@ -1,25 +1,37 @@
-import React, { FC, useState, useEffect } from 'react';
-import AccountApis from '../../redux/apis/Account/account.api';
+/* eslint-disable arrow-body-style */
+import React, { FC } from 'react';
+import { Typography } from '@mui/material';
+import ImageSwiper from '../../Components/ImageSwiper';
 
-const Check: FC = () => {
-  const [isAuth, setIsAuth] = useState(false);
-  const [authTrigger] = AccountApis.useLazyIsAuthAccountQuery();
-  useEffect(() => {
-    authTrigger({})
-      .unwrap().then(() => setIsAuth(true));
-  }, []);
+const items = [
+  {
+    image: '/imgs/gadgetGames.svg',
+    text: 'Gadgets, games, and more!',
+    imgAlign: 'left',
+  },
+  {
+    image: '/imgs/books.svg',
+    text: 'Tech, games, books - all here!',
+    imgAlign: 'right',
+  },
+  {
+    image: '/imgs/endless.svg',
+    text: 'Endless possibilities, just a click away!',
+    imgAlign: 'left',
+  },
+  {
+    image: '/imgs/window.svg',
+    text: 'Embrace the future of online shopping!',
+    imgAlign: 'right',
+  },
+];
+const Home: FC = () => {
   return (
-    <h1>
-      Are you authorized?
-      {isAuth ? 'YES' : 'NO'}
-    </h1>
+    <div>
+      <ImageSwiper items={items} />
+      <Typography>How we work</Typography>
+    </div>
   );
 };
 
-const Home: FC = () => (
-  <>
-    <div>Home</div>
-    <Check />
-  </>
-);
 export default Home;
