@@ -15,3 +15,7 @@ export const urls = {
     instagram: 'https://www.instagram.com/_thunder_cs/',
   },
 };
+
+export const colors = {
+  primary: 'rgb(241 241 241 / 34%)',
+};

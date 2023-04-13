@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { BrandText } from '../BrandText';
 import RouterBtn from '../RouterLink';
+import { colors } from '../../Constants/constants';
 
 const SearchBar: FC = () => {
   const [text, setText] = useState('');
@@ -43,7 +44,7 @@ const Navbar: FC = () => {
       position="static"
       component="nav"
       style={{
-        background: 'rgb(241 241 241 / 34%)',
+        background: colors.primary,
         boxShadow: 'none',
         color: '#000',
       }}

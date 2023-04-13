@@ -6,7 +6,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Navbar from '../Navbar';
-import { urls } from '../../Constants/constants';
+import { colors, urls } from '../../Constants/constants';
+import { CopyrightText } from '../BrandText';
 
 const newTabOpenUrl = (url: string) => {
   window.open(url, '_blank');
@@ -28,7 +29,7 @@ const RootLayout = () => (
       <Outlet />
     </main>
     <footer>
-      <div style={{ padding: '1rem' }}>
+      <div style={{ padding: '2rem', backgroundColor: colors.primary }}>
         <Typography component="h2" align="center" variant="h6">Let&apos;s connect</Typography>
         <div
           style={{
@@ -57,6 +58,13 @@ const RootLayout = () => (
             <InstagramIcon />
           </IconButton>
         </div>
+        <CopyrightText
+          styles={{
+            marginTop: '1rem',
+            width: '100%',
+            textAlign: 'center',
+          }}
+        />
       </div>
     </footer>
   </div>
