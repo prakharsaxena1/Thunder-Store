@@ -1,12 +1,13 @@
 import React, { FC, useState } from 'react';
 import {
-  AppBar, Stack, Toolbar, Container, TextField, IconButton,
+  AppBar, Grid, Stack, Toolbar, Container, TextField, IconButton,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { BrandText } from '../BrandText';
 import RouterBtn from '../RouterLink';
 import { colors } from '../../Constants/constants';
+import CartModal from './CartModal';
 
 const SearchBar: FC = () => {
   const [text, setText] = useState('');
@@ -41,7 +42,7 @@ const Navbar: FC = () => {
   const [showCart, setShowCart] = useState(false);
   return (
     <AppBar
-      position="static"
+      position="relative"
       component="nav"
       style={{
         background: colors.primary,
@@ -51,24 +52,32 @@ const Navbar: FC = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Stack
+          <Grid
+            container
             direction="row"
-            spacing={3}
-            justifyContent="space-evenly"
-            sx={{ width: '100%', alignItems: 'center' }}
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
           >
-            <BrandText />
-            <SearchBar />
-            <RouterBtn href="/login" title="Login" />
-            <IconButton
-              sx={{ width: '40px', height: '40px' }}
-              onClick={() => {
-                setShowCart(!showCart);
-              }}
-            >
-              <ShoppingCartIcon sx={{ width: '20px' }} />
-            </IconButton>
-          </Stack>
+            <Grid item xs={12} sm={12} lg={1.5} sx={{ textAlign: 'center' }}>
+              <BrandText />
+            </Grid>
+            <Grid item xs={12} sm={9} lg={8.5}>
+              <SearchBar />
+            </Grid>
+            <Grid item xs={12} sm={2} lg={2}>
+              <RouterBtn href="/login" title="Login" />
+              <IconButton
+                sx={{ width: '40px', height: '40px' }}
+                onClick={() => {
+                  setShowCart(!showCart);
+                }}
+              >
+                <ShoppingCartIcon sx={{ width: '20px' }} />
+              </IconButton>
+            </Grid>
+          </Grid>
+          {showCart && <CartModal setShowCart={setShowCart} />}
         </Toolbar>
         <Toolbar disableGutters>
           <Stack

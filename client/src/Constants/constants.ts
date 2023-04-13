@@ -1,9 +1,5 @@
 // Request urls
 export const urls = {
-  login: '/user/login',
-  register: '/user/register',
-  logout: '/user/logout',
-  deleteAccount: '/user/delete-account',
   home: '/app',
   search: '/search',
   product: '/product',
@@ -18,4 +14,23 @@ export const urls = {
 
 export const colors = {
   primary: 'rgb(241 241 241 / 34%)',
+};
+
+export const apiUrls = {
+  account: {
+    login: '/user/login',
+    register: '/user/register',
+    logout: '/user/logout',
+    deleteAccount: '/user/delete-account',
+  },
+  orders: {},
+  products: {},
+  reviews: {},
+};
+
+export const uiUrls = {
+  home: '/app',
+  search: '/search',
+  product: '/product',
+  orders: '/orders',
 };
