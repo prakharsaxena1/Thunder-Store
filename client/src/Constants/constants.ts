@@ -24,7 +24,10 @@ export const apiUrls = {
     deleteAccount: '/user/delete-account',
   },
   orders: {},
-  products: {},
+  products: {
+    product: '/product',
+    productByCategory: '/product/category/',
+  },
   reviews: {},
 };
 

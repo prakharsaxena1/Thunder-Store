@@ -7,7 +7,7 @@ const productController = require('../controllers/product.controller');
 // Routes
 router.route('/').get(productController.getProducts);
 router.route('/:id').get(productController.getProductWithID);
-router.route('/top-selling/:category').get(productController.getTopSellingFromCategory);
+router.route('/category/:category').get(productController.getTopSellingFromCategory);
 
 // Exports
 module.exports = router;
