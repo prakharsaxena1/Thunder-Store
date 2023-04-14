@@ -8,7 +8,6 @@ const productSchema = new mongoose.Schema({
     category: { type: String, required: true },
     images: { type: [String], required: true },
     stock: { type: Number, required: true },
-    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
     discount: { type: Number, default: 0 },
     rating: {
         rate: { type: Number, default: 0 },

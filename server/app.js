@@ -3,6 +3,7 @@ require("./db/connection");
 const cookieParser = require('cookie-parser');
 const passport = require("passport");
 const cors = require("cors");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 require('./auth/passport')(passport);
 app.use(passport.initialize());
 // Routes
+app.use(morgan('tiny'));
 app.use(require('./routes'));
 
 // Invalid request handler

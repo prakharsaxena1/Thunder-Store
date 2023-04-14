@@ -2,21 +2,21 @@ const Product = require('../models/Product.model');
 
 const getProducts = async (req, res) => {
   try {
-    const { searchQuery } = req.query();
+    const { search } = req.query;
     const productsArray = await Product.find({
-      title: { $regex: searchQuery, $options: 'i' },
+      title: { $regex: search, $options: 'i' },
     });
     res.status(200).json({
       products: productsArray,
       total: productsArray.length,
     });
   } catch (err) {
-    return res.status(403).json({ err });
+    return res.status(403).json({ err: err.message });
   }
 };
 
 const getProductWithID = async (req, res) => {
-  const { id } = req.query();
+  const { id } = req.params;
   try {
     const product = await Product.findById(id);
     res.status(200).json({
@@ -29,7 +29,7 @@ const getProductWithID = async (req, res) => {
 };
 
 const getTopSellingFromCategory = async (req, res) => {
-  const { category } = req.query();
+  const { category } = req.params;
   try {
     const productsArray = await Product.find({ category: category });
     res.status(200).json({

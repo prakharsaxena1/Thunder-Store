@@ -1,39 +1,36 @@
 [
     {
-      "title": "To Kill a Mockingbird [Harper Lee]",
+      "title": "To Kill a Mockingbird [Harper Lee] :books",
       "price": 899,
       "description": "Compassionate, dramatic, and deeply moving, To Kill A Mockingbird takes readers to the roots of human behavior - to innocence and experience, kindness and cruelty, love and hatred, humor and pathos. Now with over 18 million copies in print and translated into forty languages, this regional story by a young Alabama woman claims universal appeal. Harper Lee always considered her book to be a simple love story. Today it is regarded as a masterpiece of American literature.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/71FxgtFKcQL.jpg"],
       "stock": 5,
-      "reviews": [],
       "discount": 0,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "The Great Gatsby [F. Scott Fitzgerald]",
+      "title": "The Great Gatsby [F. Scott Fitzgerald] :books",
       "price": 109,
       "description": "It's the Roaring Twenties and New York City is the place to be. Everything can be purchased, everyone can be bought. But, can you make money erase your past? As more and more people lose themselves to the lure of money, ironically the only person who remains unaffected is Jay Gatsby, the enigmatic host of the most extravagant parties. In this definitive tale on American culture, Fitzgerald pits a chaste dream against the corrupting influences of wealth and comes up with an epic story that can only be defined as 'a Great American novel'.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/817+192hZyS.jpg"],
       "stock": 12,
-      "reviews": [],
       "discount": 3,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "Harry Potter and the Philosopher's Stone [J.K. Rowling]",
+      "title": "Harry Potter and the Philosopher's Stone [J.K. Rowling] :books",
       "price": 249,
       "description": "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/81m1s4wIPML.jpg"],
       "stock": 19,
-      "reviews": [],
       "discount": 0,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "Ikigai: The Japanese secret to a long and happy life [Héctor García, Francesc Miralles]",
+      "title": "Ikigai: The Japanese secret to a long and happy life [Héctor García, Francesc Miralles] :books",
       "price": 499,
       "description": "THE INTERNATIONAL BESTSELLER We all have an ikigai. It's the Japanese word for 'a reason to live' or 'a reason to jump out of bed in the morning'. It's the place where your needs, desires, ambitions, and satisfaction meet. A place of balance. Small wonder that finding your ikigai is closely linked to living longer. Finding your ikigai is easier than you might think. This book will help you work out what your own ikigai really is, and equip you to change your life. You have a purpose in this world: your skills, your interests, your desires and your history have made you the perfect candidate for something. All you have to do is find it. Do that, and you can make every single day of your life joyful and meaningful. ‘I read it and it's bewitched me ever since. I'm spellbound.' Chris Evans 'Ikigai gently unlocks simple secrets we can all use to live long, meaningful, happy lives. Science-based studies weave beautifully into honest, straight-talking conversation you won't be able to put down. Warm, patient, and kind, this book pulls you gently along your own journey rather than pushing you from behind.' Neil Pasricha, bestselling author of The Happiness Equation",
       "category": "books",
@@ -42,45 +39,41 @@
         "https://m.media-amazon.com/images/I/71YPkVyl+DL.jpg"
       ],
       "stock": 15,
-      "reviews": [],
       "discount": 4,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "Rich Dad Poor Dad",
+      "title": "Rich Dad Poor Dad [Robert Kiyosaki] :books",
       "price": 300,
       "description": "April of 2022 marks a 25-year milestone for the personal finance classic Rich Dad Poor Dad that still ranks as the #1 Personal Finance book of all time. And although 25 years have passed since Rich Dad Poor Dad was first published,readers will find that very little in the book itself has changed ― and for good reason. While so much in our world is changing a high speed, the lessons about money and the principles of Rich Dad Poor Dad haven't changed. Today, as money continues to play a key role in our daily lives, the messages in Robert Kiyosaki's international bestseller are more timely and more important than ever.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/81BE7eeKzAL.jpg"],
       "stock": 20,
-      "reviews": [],
       "discount": 7,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "Pride and Prejudice [Jane Austen]",
+      "title": "Pride and Prejudice [Jane Austen] :books",
       "price": 699,
       "description": "A beloved novel by Jane Austen that follows the romantic entanglements of the Bennet sisters in 19th-century England.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/61J8NJB9dTL.jpg"],
       "stock": 18,
-      "reviews": [],
       "discount": 1,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "Dopamine Detox [Thibaut Meurisse]",
+      "title": "Dopamine Detox [Thibaut Meurisse] :books",
       "price": 349,
       "description": "When the time comes to work, we suddenly find an excess of other things to do. Instead of working toward our goals, we go for a walk, grab a coffee, or check our emails. Everything seems like a great idea—everything except the very things we should be doing. Do you recognize yourself in the above situation? If so, don't worry. You're simply overstimulated. Dopamine Detox will help you lower your level of stimulation and regain focus in 48 hours or less,so that you can tackle your key tasks.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/413tVFk--xS._SX260_.jpg"],
       "stock": 35,
-      "reviews": [],
       "discount": 10,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "The Hobbit",
+      "title": "The Hobbit [J.R.R. Tolkien] :books",
       "price": "399",
       "description": "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.Written for J.R.R. Tolkien's own children, The Hobbit met with instant critical acclaim when it was first published in 1937. Now recognized as a timeless classic, this introduction to the hobbit Bilbo Baggins, the wizard Gandalf, Gollum, and the spectacular world of Middle-earth recounts of the adventures of a reluctant hero, a powerful and dangerous ring, and the cruel dragon Smaug the Magnificent. The text in this 372-page paperback edition is based on that first published in Great Britain by Collins Modern Classics (1998), and includes a note on the text by Douglas A. Anderson (2001).",
       "category": "books",
@@ -88,12 +81,11 @@
         "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546071216i/5907.jpg"
       ],
       "stock": 31,
-      "reviews": [],
       "discount": 5,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "Wolfish: Wolf, Self, and the Stories We Tell About Fear [Erica Berry]",
+      "title": "Wolfish: Wolf, Self, and the Stories We Tell About Fear [Erica Berry] :books",
       "price": 899,
       "description": "An original and probing debut work of nonfiction by a brilliant new writer, rooted in her years-long quest to study the cultural legacy of the wolf.\nIn this enthralling, kaleidoscopic exploration of wolves both real and symbolic, Erica Berry weaves historic and scientific findings alongside criticism, journalism, and memoir to illuminate the strands of our cultural constructions of predator and prey, and what it means to navigate a world in which we can be both.\nFrom 17th-century Europeans referring to mysterious bodily sores as wolves, to contemporary xenophobia about wolves crossing national borders, wolves have long been made to carry our most entrenched sociopolitical, environmental, and bodily fears. Intimate and thought-provoking, Wolfish is a lyrical inquiry into the relationship between humans and wolves, anchored in the dual stories of one legendary tagged wolf, OR-7, and the author.",
       "category": "books",
@@ -101,12 +93,11 @@
         "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1673870622i/60784365.jpg"
       ],
       "stock": 15,
-      "reviews": [],
       "discount": 0,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones [James Clear]",
+      "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones [James Clear] :books",
       "price": 399,
       "description": "No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.",
       "category": "books",
@@ -114,23 +105,21 @@
         "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
       ],
       "stock": 20,
-      "reviews": [],
       "discount": 5,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "Psych: The Story of the Human Mind [Paul Bloom]",
+      "title": "Psych: The Story of the Human Mind [Paul Bloom] :books",
       "price": 999,
       "description": "How does the brain—a three-pound wrinkly mass—give rise to intelligence and conscious experience? Was Freud right that we are all plagued by forbidden sexual desires? What is the function of emotions such as disgust, gratitude, and shame? Renowned psychologist Paul Bloom answers these questions and many more in Psych, his riveting new book about the science of the mind.\n Psych is an expert and passionate guide to the most intimate aspects of our nature, serving up the equivalent of a serious university course while being funny, engaging, and full of memorable anecdotes. But Psych is much more than a comprehensive overview of the field of psychology. Bloom reveals what psychology can tell us about the most pressing moral and political issues of our time—including belief in conspiracy theories, the role of genes in explaining human differences, and the nature of prejudice and hatred.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/81QNkeOJobL.jpg"],
       "stock": 20,
-      "reviews": [],
       "discount": 5,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "The Psychology of Money [Morgan Housel]",
+      "title": "The Psychology of Money [Morgan Housel] :books",
       "price": 299,
       "description": "Doing well with money isn't necessarily about what you know. It's about how you behave. And behavior is hard to teach, even to really smart people. Money--investing, personal finance, and business decisions--is typically taught as a math-based field, where data and formulas tell us exactly what to do. But in the real world people don't make financial decisions on a spreadsheet. They make them at the dinner table, or in a meeting room, where personal history, your own unique view of the world, ego, pride, marketing, and odd incentives are scrambled together. In The Psychology of Money, award-winning author Morgan Housel shares 19 short stories exploring the strange ways people think about money and teaches you how to make better sense of one of life's most important topics.",
       "category": "books",
@@ -138,12 +127,11 @@
         "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
       ],
       "stock": 11,
-      "reviews": [],
       "discount": 0,
       "rating": { "rate": 0, "count": 0 }
     },
     {
-      "title": "Red Dead Redemption 2 [ROCKSTAR GAMES] [PC, XBOX, Playstation]",
+      "title": "Red Dead Redemption 2 [ROCKSTAR GAMES] [PC, XBOX, Playstation] :books",
       "price": 2599,
       "description": "An epic open-world action-adventure game by Rockstar Games, set in the Wild West era of America.",
       "category": "games",
@@ -153,7 +141,6 @@
         "https://m.media-amazon.com/images/I/91jEoDViWTL._SX679_.jpg"
       ],
       "stock": 20,
-      "reviews": [],
       "discount": 5,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -468,7 +455,6 @@
         "https://m.media-amazon.com/images/I/61VOduu1U2L._UX679_.jpg"
       ],
       "stock": 9,
-      "reviews": [],
       "discount": 0,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -482,7 +468,6 @@
         "https://m.media-amazon.com/images/I/61cJkdJQscL._UY741_.jpg"
       ],
       "stock": 11,
-      "reviews": [],
       "discount": 0,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -493,7 +478,6 @@
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/61QwMfrVbaL._UY741_.jpg"],
       "stock": 14,
-      "reviews": [],
       "discount": 10,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -504,7 +488,6 @@
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/51v8UlSQfBL._UX679_.jpg"],
       "stock": 17,
-      "reviews": [],
       "discount": 5,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -515,7 +498,6 @@
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/61qoz5T51VL._UX569_.jpg"],
       "stock": 11,
-      "reviews": [],
       "discount": 8,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -526,7 +508,6 @@
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/414E+szoKKL.jpg"],
       "stock": 11,
-      "reviews": [],
       "discount": 0,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -537,7 +518,6 @@
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/81hRsnzkpLL._UX569_.jpg"],
       "stock": 11,
-      "reviews": [],
       "discount": 10,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -548,7 +528,6 @@
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/819lFYghn+L._UX569_.jpg"],
       "stock": 11,
-      "reviews": [],
       "discount": 25,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -559,7 +538,6 @@
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/61EPxK6Pf-L._UX679_.jpg"],
       "stock": 11,
-      "reviews": [],
       "discount": 6,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -573,7 +551,6 @@
         "https://m.media-amazon.com/images/I/81CUuILN0KL._SX679_.jpg"
       ],
       "stock": 11,
-      "reviews": [],
       "discount": 10,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -587,7 +564,6 @@
         "https://m.media-amazon.com/images/I/412UqKZnMTL.jpg"
       ],
       "stock": 11,
-      "reviews": [],
       "discount": 8,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -598,7 +574,6 @@
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/61zRflRqKBS._UX695_.jpg"],
       "stock": 11,
-      "reviews": [],
       "discount": 10,
       "rating": { "rate": 0, "count": 0 }
     },
@@ -612,7 +587,6 @@
         "https://m.media-amazon.com/images/I/91QKQ8WaC2L._UY695_.jpg"
       ],
       "stock": 11,
-      "reviews": [],
       "discount": 5,
       "rating": { "rate": 0, "count": 0 }
     }
