@@ -6,10 +6,19 @@ import { Button } from '@mui/material';
 interface RouterLinkProps {
   href: string;
   title: string;
+  icon?: any;
 }
 
-const RouterBtn: FC<RouterLinkProps> = (props) => {
-  const { href, title } = props;
+const RouterBtn: FC<RouterLinkProps> = ({ href, title, icon }) => {
+  if (icon) {
+    return (
+      <Button variant="text" color="inherit" component={Link} to={href}>
+        {title}
+        &nbsp;
+        {icon}
+      </Button>
+    );
+  }
   return <Button variant="text" color="inherit" component={Link} to={href}>{title}</Button>;
 };
 

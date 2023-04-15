@@ -36,7 +36,7 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "arrow-body-style": [2, "as-needed"],
+    "arrow-body-style": "off",
     "import/extensions": "off"
   },
   "settings": {

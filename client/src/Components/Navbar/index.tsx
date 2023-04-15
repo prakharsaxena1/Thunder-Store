@@ -1,45 +1,55 @@
+/* eslint-disable max-len */
 import React, { FC, useState } from 'react';
 import {
-  AppBar, Grid, Stack, Toolbar, Container, TextField, IconButton,
+  AppBar, Toolbar, TextField, Menu, Button, MenuItem, Grid, InputAdornment,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useNavigate } from 'react-router-dom';
 import { BrandText } from '../BrandText';
 import RouterBtn from '../RouterLink';
 import { colors } from '../../Constants/constants';
-import CartModal from './CartModal';
 
 const SearchBar: FC = () => {
   const [text, setText] = useState('');
+  // const navigate = useNavigate();
   return (
-    <div style={{ position: 'relative', flexGrow: 1 }}>
+    <div style={{ flexGrow: 1 }}>
       <TextField
         value={text}
         onChange={(e) => setText(e.target.value)}
         size="small"
         variant="outlined"
+        placeholder="Search"
+        onKeyPress={(e: any) => {
+          if (e.key === 'Enter') {
+            // navigate(`/search/${search}`);
+            // write your functionality here
+          }
+        }}
         sx={{
           width: '100%',
           backgroundColor: '#fff',
         }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <SearchIcon />
+            </InputAdornment>
+          ),
         }}
-      >
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
-      </div>
+      />
     </div>
   );
 };
 
 const Navbar: FC = () => {
-  const [showCart, setShowCart] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
+  const navigateTo = (link: string) => {
+    navigate(link);
+    setAnchorEl(null);
+  };
   return (
     <AppBar
       position="relative"
@@ -50,49 +60,47 @@ const Navbar: FC = () => {
         color: '#000',
       }}
     >
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Grid
-            container
-            direction="row"
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Grid item xs={12} sm={12} lg={1.5} sx={{ textAlign: 'center' }}>
-              <BrandText />
-            </Grid>
-            <Grid item xs={12} sm={9} lg={8.5}>
-              <SearchBar />
-            </Grid>
-            <Grid item xs={12} sm={2} lg={2}>
-              <RouterBtn href="/login" title="Login" />
-              <IconButton
-                sx={{ width: '40px', height: '40px' }}
-                onClick={() => {
-                  setShowCart(!showCart);
-                }}
-              >
-                <ShoppingCartIcon sx={{ width: '20px' }} />
-              </IconButton>
-            </Grid>
+      <Toolbar disableGutters>
+        <Grid
+          container
+          direction="row"
+          spacing={2}
+          justifyContent="space-evenly"
+          alignItems="center"
+        >
+          <Grid item xs={12} sm={12} md={3} lg={2} sx={{ textAlign: 'center' }}>
+            <BrandText styles={{ margin: '0 1.5rem' }} />
           </Grid>
-          {showCart && <CartModal setShowCart={setShowCart} />}
-        </Toolbar>
-        <Toolbar disableGutters>
-          <Stack
-            direction="row"
-            spacing={3}
-            justifyContent="space-around"
-            sx={{ width: '100%', alignItems: 'center' }}
-          >
-            <RouterBtn href="/top-sellers/books" title="Books" />
-            <RouterBtn href="/top-sellers/games" title="Games" />
-            <RouterBtn href="/top-sellers/electronics" title="Electronics" />
-            <RouterBtn href="/top-sellers/clothes" title="Clothes" />
-          </Stack>
-        </Toolbar>
-      </Container>
+          <Grid item xs={10} sm={10} md={5} lg={7}>
+            <SearchBar />
+          </Grid>
+          <Grid item xs={12} sm={12} md={4} lg={3} sx={{ justifyContent: 'space-around', display: 'flex' }}>
+            <RouterBtn href="/user" title="User" />
+            <RouterBtn href="/login" title="Login" />
+            <RouterBtn href="/cart" title="Cart" icon={<ShoppingCartIcon sx={{ fontSize: '1rem' }} />} />
+            <Button
+              variant="text"
+              color="inherit"
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget)}
+            >
+              Categories
+            </Button>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={() => setAnchorEl(null)}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem onClick={() => navigateTo('/top-sellers/books')}>Books</MenuItem>
+              <MenuItem onClick={() => navigateTo('/top-sellers/games')}>Games</MenuItem>
+              <MenuItem onClick={() => navigateTo('/top-sellers/electronics')}>Electronics</MenuItem>
+              <MenuItem onClick={() => navigateTo('/top-sellers/clothes')}>Clothes</MenuItem>
+            </Menu>
+          </Grid>
+        </Grid>
+      </Toolbar>
     </AppBar>
   );
 };

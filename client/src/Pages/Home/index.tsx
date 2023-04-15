@@ -1,4 +1,3 @@
-/* eslint-disable arrow-body-style */
 import React, { FC } from 'react';
 import {
   Box, Button, Grid, Paper, Step, StepContent, StepLabel, Stepper, Typography,

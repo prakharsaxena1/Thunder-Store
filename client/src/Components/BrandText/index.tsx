@@ -27,6 +27,7 @@ export const BrandText: FC<IText> = ({
       fontSize: size,
       height: 'auto',
       minWidth: '150px',
+      width: 'fit-content',
     }}
   >
     Thunder&nbsp;Store

@@ -62,7 +62,7 @@ const ImageSwiper: FC<any> = ({ items, swiperType }) => {
     return (
       <Carousel>
         {
-          items.map((item: any) => <CoverCarouselItem image={item.image} text={item.text} imgAlign={item.imgAlign} />)
+          items.map((item: any, i: number) => <CoverCarouselItem image={item.image} text={item.text} imgAlign={item.imgAlign} key={i} />)
         }
       </Carousel>
     );
