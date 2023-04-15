@@ -12,7 +12,7 @@ import { colors } from '../../Constants/constants';
 
 const SearchBar: FC = () => {
   const [text, setText] = useState('');
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div style={{ flexGrow: 1 }}>
       <TextField
@@ -23,8 +23,7 @@ const SearchBar: FC = () => {
         placeholder="Search"
         onKeyPress={(e: any) => {
           if (e.key === 'Enter') {
-            // navigate(`/search/${search}`);
-            // write your functionality here
+            navigate(`/search/${text}`);
           }
         }}
         sx={{

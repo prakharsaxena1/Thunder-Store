@@ -1,7 +1,7 @@
 import baseApi from '../baseQuery';
 import { apiUrls } from '../../../Constants/constants';
 
-export const AccountApis = baseApi.injectEndpoints({
+export const ProductApis = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getProducts: build.query<any, any>({
       query: (params) => ({
@@ -11,7 +11,7 @@ export const AccountApis = baseApi.injectEndpoints({
     }),
     getProductWithID: build.query<any, any>({
       query: (params) => ({
-        url: `${apiUrls.products}/${params.id}`,
+        url: `${apiUrls.products.product}/${params.id}`,
         method: 'GET',
       }),
     }),
@@ -24,4 +24,4 @@ export const AccountApis = baseApi.injectEndpoints({
   }),
 });
 
-export default AccountApis;
+export default ProductApis;

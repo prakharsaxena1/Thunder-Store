@@ -16,10 +16,9 @@ const newTabOpenUrl = (url: string) => {
 const RootLayout = () => (
   <div
     style={{
-      overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
-      width: '100%',
+      minHeight: '100vh',
     }}
   >
     <header>
@@ -28,7 +27,7 @@ const RootLayout = () => (
     <main>
       <Outlet />
     </main>
-    <footer>
+    <footer style={{ marginTop: 'auto' }}>
       <div style={{ padding: '2rem', backgroundColor: colors.primary }}>
         <Typography component="h2" align="center" variant="h6">Let&apos;s connect</Typography>
         <div
