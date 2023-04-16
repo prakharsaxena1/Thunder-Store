@@ -19,7 +19,7 @@ const Search = () => {
     }, true);
   }, [searchQuery]);
 
-  if (isLoading || isFetching) {
+  if (isLoading || isFetching || !data) {
     return <Loader />;
   }
 
@@ -40,7 +40,7 @@ const Search = () => {
           </Grid>
         ))
         : (
-          <Typography>Sorry, your search didn&apos;t return any results</Typography>
+          <Typography variant="h2" sx={{ margin: '5rem auto' }}>Sorry, your search didn&apos;t return any results</Typography>
         )}
     </Grid>
   );

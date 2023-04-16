@@ -43,7 +43,7 @@ const CoverCarouselItem: FC<any> = ({ image, text, imgAlign }) => (
 );
 
 const CarouselItem: FC<any> = ({ image }) => (
-  <div style={{ width: '100vw' }}>
+  <div style={{ minHeight: '320px' }}>
     <div style={{ height: '100%' }}>
       <img
         src={image}
@@ -68,9 +68,9 @@ const ImageSwiper: FC<any> = ({ items, swiperType }) => {
     );
   }
   return (
-    <Carousel>
+    <Carousel autoPlay={false}>
       {
-        items.map((item: any) => <CarouselItem image={item.image} />)
+        items.map((item: any) => <CarouselItem image={item} />)
       }
     </Carousel>
   );
