@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import {
-  Stack, Typography, Rating, Grid,
+  Stack, Typography, Grid,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PriceDisplay from './PriceDisplay';
+import RatingWrapper from '../RatingWrapper';
 
 const imgStyles = {
   maxHeight: '100%',
@@ -36,7 +37,10 @@ const ProductItem: FC<any> = ({ product }) => {
         <Grid item xs={9} sm={9} md={9} lg={10}>
           <Stack direction="column" spacing={1}>
             <Typography variant="body1">{product.title}</Typography>
-            <Rating value={product.rating.rate} readOnly />
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <RatingWrapper rateValue={product?.rating.rate} />
+              <Typography variant="body2">{`(${product?.rating.count})`}</Typography>
+            </Stack>
             <PriceDisplay price={product.price} discount={product.discount} />
           </Stack>
         </Grid>

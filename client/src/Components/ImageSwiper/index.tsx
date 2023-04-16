@@ -43,17 +43,16 @@ const CoverCarouselItem: FC<any> = ({ image, text, imgAlign }) => (
 );
 
 const CarouselItem: FC<any> = ({ image }) => (
-  <div style={{ minHeight: '320px' }}>
-    <div style={{ height: '100%' }}>
-      <img
-        src={image}
-        alt="cover"
-        style={{
-          maxWidth: '100%',
-          maxHeight: '100%',
-        }}
-      />
-    </div>
+  <div style={{ height: '550px', display: 'flex' }}>
+    <img
+      src={image}
+      alt="cover"
+      style={{
+        maxWidth: '100%',
+        maxHeight: '100%',
+        margin: 'auto',
+      }}
+    />
   </div>
 );
 
@@ -68,9 +67,9 @@ const ImageSwiper: FC<any> = ({ items, swiperType }) => {
     );
   }
   return (
-    <Carousel autoPlay={false}>
+    <Carousel autoPlay={false} navButtonsAlwaysVisible>
       {
-        items.map((item: any) => <CarouselItem image={item} />)
+        items.map((item: any, i: number) => <CarouselItem image={item} key={i} />)
       }
     </Carousel>
   );
