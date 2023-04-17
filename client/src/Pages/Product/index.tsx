@@ -1,15 +1,11 @@
 /* eslint-disable max-len */
 import React, { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  Stack, Grid, Typography, Button,
-} from '@mui/material';
+import { Stack } from '@mui/material';
 import ProductApis from '../../redux/apis/Product/product.api';
 import Loader from '../../Components/Loader';
-import ImageSwiper from '../../Components/ImageSwiper';
-import PriceDisplay from '../../Components/Product/PriceDisplay';
-import RatingWrapper from '../../Components/RatingWrapper';
-import Review from '../../Components/Review';
+import ProductDetails from './ProductDetails';
+import ReviewDetails from './ReviewDetails';
 
 const reviewData = [
   {
@@ -45,30 +41,10 @@ const Product: FC = () => {
   }
   return (
     <Stack spacing={3} sx={{ p: '1.5rem' }}>
-      <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={10} sm={6} md={5}>
-          <ImageSwiper items={data?.product?.images || []} />
-        </Grid>
-        <Grid item xs={10} sm={6} md={7}>
-          <Stack direction="column" spacing={1}>
-            <Typography variant="h5">{data?.product?.title}</Typography>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <RatingWrapper rateValue={data?.product?.rating.rate} />
-              <Typography variant="body2">{`(${data?.product?.rating.count})`}</Typography>
-            </Stack>
-            <Stack direction="row" spacing={2} justifyContent="flex-start" alignItems="center">
-              <PriceDisplay price={data?.product?.price} discount={data?.product?.discount} />
-              <Button variant="contained" color="secondary">Add to cart</Button>
-            </Stack>
-            <Typography variant="body1">{data?.product?.description}</Typography>
-          </Stack>
-        </Grid>
-      </Grid>
-      <Stack direction="column" spacing={1} alignItems="stretch">
-        {reviewData.map((review: any, i: number) => (
-          <Review data={review} key={i} />
-        ))}
-      </Stack>
+      {/* PRODUCT DETAILS */}
+      <ProductDetails product={data?.product} />
+      {/* REVIEWS */}
+      <ReviewDetails reviews={reviewData} />
     </Stack>
   );
 };
