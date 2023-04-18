@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { FC, useState } from 'react';
 import {
-  Stack, Typography, Button, Divider, Rating, TextField, TextareaAutosize,
+  Stack, Typography, Button, Divider, Rating, TextField,
 } from '@mui/material';
 import Review from '../../Components/Review';
 import PopupModal from '../../Components/PopupModal';
@@ -24,36 +24,22 @@ const ReviewDetails: FC<any> = ({ reviews }) => {
         ))}
       </Stack>
       {showModal && (
-        <PopupModal
-          showModal={showModal}
-          setShowModal={setShowModal}
-          title="Write a review"
-        >
-          <Stack direction="column" justifyContent="center">
-            <div>
-              <Typography variant="h5">Rating</Typography>
-              <Rating
-                value={rating}
-                onChange={(event, newValue) => {
-                  setRating(newValue || 0);
-                }}
-              />
-            </div>
-            <div>
-              <Typography variant="h5">Title</Typography>
-              <TextField label="Outlined" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)} />
-            </div>
-            <div>
-              <Typography variant="h5">Description</Typography>
-              <TextareaAutosize
-                maxRows={5}
-                placeholder="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                style={{ width: '100%' }}
-              />
-            </div>
-            <Button variant="contained">Submit</Button>
+        <PopupModal showModal={showModal} setShowModal={setShowModal} title="Write a review">
+          <Stack direction="column" justifyContent="space-around" spacing={3} sx={{ padding: '1rem' }}>
+            <Rating size="large" value={rating} onChange={(event, newValue) => setRating(newValue || 0)} precision={0.5} />
+            <TextField label="Title" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <TextField
+              multiline
+              minRows={5}
+              maxRows={10}
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              style={{ width: '100%' }}
+            />
+            <Stack justifyContent="space-around" gap={3} sx={{ padding: '0.5rem 1rem' }}>
+              <Button variant="contained" size="large" sx={{ width: '100px', margin: 'auto' }}>Submit</Button>
+            </Stack>
           </Stack>
         </PopupModal>
       )}
