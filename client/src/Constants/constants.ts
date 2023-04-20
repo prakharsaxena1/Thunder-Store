@@ -28,7 +28,9 @@ export const apiUrls = {
     product: '/product',
     productByCategory: '/product/category/',
   },
-  reviews: {},
+  reviews: {
+    review: '/review',
+  },
 };
 
 export const uiUrls = {

@@ -60,13 +60,7 @@ const Navbar: FC = () => {
       }}
     >
       <Toolbar disableGutters>
-        <Grid
-          container
-          direction="row"
-          spacing={2}
-          justifyContent="space-evenly"
-          alignItems="center"
-        >
+        <Grid container direction="row" spacing={2} justifyContent="space-evenly" alignItems="center">
           <Grid item xs={12} sm={12} md={3} lg={2} sx={{ textAlign: 'center' }}>
             <BrandText styles={{ margin: '0 1.5rem' }} />
           </Grid>
