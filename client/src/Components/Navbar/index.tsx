@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { FC, useState } from 'react';
 import {
-  AppBar, Toolbar, TextField, Menu, Button, MenuItem, Grid, InputAdornment,
+  AppBar, Toolbar, TextField, Menu, Button, MenuItem, Grid, InputAdornment, Box, Typography, Divider,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { BrandText } from '../BrandText';
 import RouterBtn from '../RouterLink';
 import { colors } from '../../Constants/constants';
+import PopupModal from '../PopupModal';
 
 const SearchBar: FC = () => {
   const [text, setText] = useState('');
@@ -43,8 +44,11 @@ const SearchBar: FC = () => {
 };
 
 const Navbar: FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [showCart, setShowCart] = useState<boolean>(false);
   const navigate = useNavigate();
+  const cartItems = Math.random();
+  const cartValue = 10;
   const navigateTo = (link: string) => {
     navigate(link);
     setAnchorEl(null);
@@ -70,7 +74,10 @@ const Navbar: FC = () => {
           <Grid item xs={12} sm={12} md={4} lg={3} sx={{ justifyContent: 'space-around', display: 'flex' }}>
             <RouterBtn href="/user" title="User" />
             <RouterBtn href="/login" title="Login" />
-            <RouterBtn href="/cart" title="Cart" icon={<ShoppingCartIcon sx={{ fontSize: '1rem' }} />} />
+            <Button variant="text" color="inherit" onClick={() => setShowCart(true)}>
+              Cart
+              <ShoppingCartIcon sx={{ fontSize: '1rem' }} />
+            </Button>
             <Button
               variant="text"
               color="inherit"
@@ -94,6 +101,27 @@ const Navbar: FC = () => {
           </Grid>
         </Grid>
       </Toolbar>
+      {showCart && (
+        <PopupModal showModal={showCart} setShowModal={setShowCart} title="Your cart">
+          <Box>
+            <Grid container spacing={2} alignItems="center" justifyContent="center" sx={{ padding: '0.5rem' }}>
+              <Grid item xs={8}>
+                <Typography variant="body1" component="h4">{`Cart items: ${cartItems}`}</Typography>
+                <Typography variant="body1" component="h4">{`Cart value: ${cartValue}`}</Typography>
+              </Grid>
+              <Grid item xs={3.4}>
+                <Button variant="contained" disabled={cartItems === 0}>Checkout</Button>
+              </Grid>
+            </Grid>
+            <Divider />
+            {
+              cartItems === 0
+                ? <Typography variant="h4" component="h4" align="center" sx={{ mt: 5 }}>Cart is empty</Typography>
+                : <Typography variant="h4" component="h4" align="center" sx={{ mt: 5 }}>Will add later</Typography>
+            }
+          </Box>
+        </PopupModal>
+      )}
     </AppBar>
   );
 };
