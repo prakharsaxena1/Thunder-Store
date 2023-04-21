@@ -6,11 +6,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import AccountsBox from '../../Components/AccountsBox';
 import AccountApis from '../../redux/apis/Account/account.api';
+import { useAppDispatch } from '../../redux/hooks';
+import { setUserDetails } from '../../redux/slices/userSlice';
 
 const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
   const [loginTrigger, { isLoading }] = AccountApis.useLoginMutation();
@@ -24,6 +27,13 @@ const Login: FC = () => {
           enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
           navigate('/', { replace: true });
           // Set state of user
+          dispatch(setUserDetails({
+            id: res.data.id,
+            username: res.data.username,
+            email: res.data.email,
+            cart: res.data.cart,
+          }));
+          // set token in local storage
         }
         enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
       }).catch(() => {

@@ -19,9 +19,11 @@ const ReviewDetails: FC<any> = ({ reviews }) => {
       </Stack>
       <Divider />
       <Stack direction="column" spacing={1} alignItems="stretch">
-        {reviews.map((review: any, i: number) => (
-          <Review data={review} key={i} />
-        ))}
+        {reviews.length > 0
+          ? reviews.map((review: any, i: number) => (
+            <Review data={review} key={i} />
+          ))
+          : <Typography variant="h6" align="center" gutterBottom sx={{ color: 'gray' }}>No reviews</Typography>}
       </Stack>
       {showModal && (
         <PopupModal showModal={showModal} setShowModal={setShowModal} title="Write a review">
