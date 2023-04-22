@@ -19,6 +19,22 @@ const issueJWT = (user) => {
     return { token, expiresIn }
 };
 
+const issueRefreshToken = async (token) => {
+    const PUB_KEY = fs.readFileSync(path.join('bin', 'id_rsa_pub.pem'), 'utf8');
+    const PRIV_KEY = fs.readFileSync(path.join('bin', 'id_rsa_priv.pem'), 'utf8');
+    try {
+        const decoded = jsonwebtoken.verify(token, PUB_KEY);
+        if (decoded.exp < new Date(Date.now())) {
+            throw new Error('Token has expired');
+        }
+        const newPayload = { sub: decoded.sub, iat: Date.now() };
+        const newJwt = jsonwebtoken.sign(newPayload, PRIV_KEY, { expiresIn: '1d', algorithm: 'RS256' });
+        return { isAuth: true, token: newJwt };
+    } catch (err) {
+        return { isAuth: false };
+    }
+};
+
 const setAuthCookie = (res, user) => {
     createKeysIfNotExist();
     const token = issueJWT(user);
@@ -35,4 +51,5 @@ const setAuthCookie = (res, user) => {
 module.exports = {
     setAuthCookie,
     createKeysIfNotExist,
+    issueRefreshToken,
 }

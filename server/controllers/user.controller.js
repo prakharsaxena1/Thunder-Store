@@ -84,10 +84,11 @@ const deleteUser = async (req, res) => {
     }
 }
 
-const checkAuthUser = async (req, res) => {
-    res.status(200).json({
+const refreshUser = async (req, res) => {
+    const data = await auth.issueRefreshToken(req.body.token);
+    return res.status(200).json({
         status: 'success',
-        message: 'Authenticated'
+        ...data,
     });
 }
 
@@ -96,5 +97,5 @@ module.exports = {
     userRegister,
     userLogout,
     deleteUser,
-    checkAuthUser
+    refreshUser,
 }
