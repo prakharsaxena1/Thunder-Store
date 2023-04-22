@@ -27,12 +27,7 @@ const Login: FC = () => {
           enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
           navigate('/', { replace: true });
           // Set state of user
-          dispatch(setUserDetails({
-            id: res.data.id,
-            username: res.data.username,
-            email: res.data.email,
-            cart: res.data.cart,
-          }));
+          dispatch(setUserDetails(res.data));
           // set token in local storage
         }
         enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });

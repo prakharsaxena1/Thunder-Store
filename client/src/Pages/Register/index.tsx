@@ -6,12 +6,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import AccountsBox from '../../Components/AccountsBox';
 import AccountApis from '../../redux/apis/Account/account.api';
+import { useAppDispatch } from '../../redux/hooks';
+import { setUserDetails } from '../../redux/slices/userSlice';
 
 const Register: FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [registerTrigger, { isLoading }] = AccountApis.useRegisterMutation();
@@ -25,6 +28,9 @@ const Register: FC = () => {
         if (res.status === 'success') {
           enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
           navigate('/', { replace: true });
+          // Set state of user
+          dispatch(setUserDetails(res.data));
+          // set token in local storage
         }
         enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
       }).catch(() => {

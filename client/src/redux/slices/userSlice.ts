@@ -28,12 +28,7 @@ const userSlice = createSlice({
   name: 'userSlice',
   initialState,
   reducers: {
-    setUserDetails: (state, action) => {
-      state.id = action.payload.id;
-      state.username = action.payload.usename;
-      state.email = action.payload.email;
-      state.cart = action.payload.cart;
-    },
+    setUserDetails: (state, action) => action.payload,
     addItemToCart: (state, action) => {
       const newCartItem = {
         productID: action.payload.productID,

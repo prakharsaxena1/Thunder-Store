@@ -1,15 +1,21 @@
 /* eslint-disable max-len */
 import React, { FC, useState } from 'react';
 import {
-  AppBar, Toolbar, TextField, Menu, Button, MenuItem, Grid, InputAdornment, Box, Typography, Divider,
+  AppBar, Toolbar, TextField, Button, MenuItem, Grid,
+  InputAdornment, Box, Typography, Divider, ListItemIcon,
 } from '@mui/material';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import SearchIcon from '@mui/icons-material/Search';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 import { BrandText } from '../BrandText';
 import RouterBtn from '../RouterLink';
 import { colors } from '../../Constants/constants';
 import PopupModal from '../PopupModal';
+import CustomMenu from '../CustomMenu';
+import { useAppSelector } from '../../redux/hooks';
 
 const SearchBar: FC = () => {
   const [text, setText] = useState('');
@@ -44,15 +50,20 @@ const SearchBar: FC = () => {
 };
 
 const Navbar: FC = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [userMenu, setUserMenu] = useState<null | HTMLElement>(null);
+  const [categoriesMenu, setCategoriesMenu] = useState<null | HTMLElement>(null);
+  const userData = useAppSelector((state) => state.user);
   const [showCart, setShowCart] = useState<boolean>(false);
   const navigate = useNavigate();
   const cartItems = Math.random();
   const cartValue = 10;
+
   const navigateTo = (link: string) => {
     navigate(link);
-    setAnchorEl(null);
+    setUserMenu(null);
+    setCategoriesMenu(null);
   };
+
   return (
     <AppBar
       position="relative"
@@ -72,8 +83,43 @@ const Navbar: FC = () => {
             <SearchBar />
           </Grid>
           <Grid item xs={12} sm={12} md={4} lg={3} sx={{ justifyContent: 'space-around', display: 'flex' }}>
-            <RouterBtn href="/user" title="User" />
-            <RouterBtn href="/login" title="Login" />
+            {userData && userData.username !== ''
+              ? (
+                <>
+                  <Button
+                    variant="text"
+                    color="inherit"
+                    onClick={(event: React.MouseEvent<HTMLElement>) => setUserMenu(event.currentTarget)}
+                    size="small"
+                  >
+                    {userData.username}
+                  </Button>
+                  <CustomMenu anchor={userMenu} setAnchor={setUserMenu}>
+                    <MenuItem onClick={() => setUserMenu(null)}>
+                      <ListItemIcon>
+                        <LocalShippingIcon fontSize="small" />
+                      </ListItemIcon>
+                      Your orders
+                    </MenuItem>
+                    <MenuItem onClick={() => setUserMenu(null)}>
+                      <ListItemIcon>
+                        <Settings fontSize="small" />
+                      </ListItemIcon>
+                      Settings
+                    </MenuItem>
+                    <Divider />
+                    <MenuItem onClick={() => setUserMenu(null)}>
+                      <ListItemIcon>
+                        <Logout fontSize="small" />
+                      </ListItemIcon>
+                      Logout
+                    </MenuItem>
+                  </CustomMenu>
+                </>
+              )
+              : (
+                <RouterBtn href="/login" title="Login" />
+              )}
             <Button variant="text" color="inherit" onClick={() => setShowCart(true)}>
               Cart
               <ShoppingCartIcon sx={{ fontSize: '1rem' }} />
@@ -81,23 +127,16 @@ const Navbar: FC = () => {
             <Button
               variant="text"
               color="inherit"
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget)}
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) => setCategoriesMenu(event.currentTarget)}
             >
-              Categories
+              Top selling
             </Button>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-            >
+            <CustomMenu anchor={categoriesMenu} setAnchor={setCategoriesMenu}>
               <MenuItem onClick={() => navigateTo('/top-sellers/books')}>Books</MenuItem>
               <MenuItem onClick={() => navigateTo('/top-sellers/games')}>Games</MenuItem>
               <MenuItem onClick={() => navigateTo('/top-sellers/electronics')}>Electronics</MenuItem>
               <MenuItem onClick={() => navigateTo('/top-sellers/clothes')}>Clothes</MenuItem>
-            </Menu>
+            </CustomMenu>
           </Grid>
         </Grid>
       </Toolbar>
