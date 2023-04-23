@@ -35,6 +35,12 @@ const Login: FC = () => {
           }));
           dispatch(setCartItems(res.data.cart));
           // set token in local storage
+          localStorage.setItem('user', JSON.stringify({
+            id: res.data.id,
+            username: res.data.username,
+            email: res.data.email,
+            token: res.token,
+          }));
         }
         enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
       }).catch(() => {

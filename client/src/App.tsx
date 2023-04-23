@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Route, createRoutesFromElements, createBrowserRouter, RouterProvider,
 } from 'react-router-dom';
@@ -14,6 +14,8 @@ import NotFound404 from './Pages/NotFound404';
 import TopSelling from './Pages/TopSelling';
 import UserProfile from './Pages/UserProfile';
 import Product from './Pages/Product';
+import { useAppDispatch } from './redux/hooks';
+import { setUserDetails } from './redux/slices/user/userSlice';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,8 +35,22 @@ const router = createBrowserRouter(
   ),
 );
 
-const App = () => (
-  <RouterProvider router={router} />
-);
+const App = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      dispatch(setUserDetails({
+        id: foundUser.id,
+        username: foundUser.username,
+        email: foundUser.email,
+      }));
+    }
+  }, []);
+  return (
+    <RouterProvider router={router} />
+  );
+};
 
 export default App;
