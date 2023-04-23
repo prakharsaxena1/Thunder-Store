@@ -6,8 +6,13 @@ import {
 import ImageSwiper from '../../Components/ImageSwiper';
 import PriceDisplay from '../../Components/Product/PriceDisplay';
 import RatingWrapper from '../../Components/RatingWrapper';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { addItemToCart } from '../../redux/slices/cart/cartSlice';
+import { cartSelector } from '../../redux/slices/cart/cart.selector';
 
 const ProductDetails: FC<any> = ({ product }) => {
+  const dispatch = useAppDispatch();
+  const cartData = useAppSelector(cartSelector);
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={10} sm={6} md={5}>
@@ -22,7 +27,21 @@ const ProductDetails: FC<any> = ({ product }) => {
           </Stack>
           <Stack direction="row" spacing={2} justifyContent="flex-start" alignItems="center">
             <PriceDisplay price={product.price} discount={product.discount} />
-            <Button variant="contained" color="warning" size="small">Add to cart</Button>
+            <Button
+              variant="contained"
+              color="warning"
+              size="small"
+              disabled={cartData.cartId[product.productID] >= 1}
+              onClick={() => dispatch(addItemToCart({
+                productID: product.productID,
+                title: product.title,
+                price: product.price,
+                discount: product.discount,
+                image: product.image,
+              }))}
+            >
+              Add to cart
+            </Button>
           </Stack>
           <Typography variant="body1">{product.description}</Typography>
         </Stack>

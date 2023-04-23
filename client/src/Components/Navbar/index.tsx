@@ -8,6 +8,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import SearchIcon from '@mui/icons-material/Search';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import { useSelector } from 'react-redux';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 import { BrandText } from '../BrandText';
@@ -16,6 +17,8 @@ import { colors } from '../../Constants/constants';
 import PopupModal from '../PopupModal';
 import CustomMenu from '../CustomMenu';
 import { useAppSelector } from '../../redux/hooks';
+import { userSelector } from '../../redux/slices/user/user.selector';
+import { cartSelector } from '../../redux/slices/cart/cart.selector';
 
 const SearchBar: FC = () => {
   const [text, setText] = useState('');
@@ -52,11 +55,11 @@ const SearchBar: FC = () => {
 const Navbar: FC = () => {
   const [userMenu, setUserMenu] = useState<null | HTMLElement>(null);
   const [categoriesMenu, setCategoriesMenu] = useState<null | HTMLElement>(null);
-  const userData = useAppSelector((state) => state.user);
+  const userData = useAppSelector(userSelector);
   const [showCart, setShowCart] = useState<boolean>(false);
   const navigate = useNavigate();
-  const cartItems = Math.random();
-  const cartValue = 10;
+  const cartData = useSelector(cartSelector);
+  const cartItems = cartData.cart.length;
 
   const navigateTo = (link: string) => {
     navigate(link);
@@ -146,7 +149,7 @@ const Navbar: FC = () => {
             <Grid container spacing={2} alignItems="center" justifyContent="center" sx={{ padding: '0.5rem' }}>
               <Grid item xs={8}>
                 <Typography variant="body1" component="h4">{`Cart items: ${cartItems}`}</Typography>
-                <Typography variant="body1" component="h4">{`Cart value: ${cartValue}`}</Typography>
+                <Typography variant="body1" component="h4">Cart value: 0</Typography>
               </Grid>
               <Grid item xs={3.4}>
                 <Button variant="contained" disabled={cartItems === 0}>Checkout</Button>
@@ -156,7 +159,7 @@ const Navbar: FC = () => {
             {
               cartItems === 0
                 ? <Typography variant="h4" component="h4" align="center" sx={{ mt: 5 }}>Cart is empty</Typography>
-                : <Typography variant="h4" component="h4" align="center" sx={{ mt: 5 }}>Will add later</Typography>
+                : JSON.stringify(cartData.cart)
             }
           </Box>
         </PopupModal>

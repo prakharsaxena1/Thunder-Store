@@ -7,7 +7,8 @@ import { useSnackbar } from 'notistack';
 import AccountsBox from '../../Components/AccountsBox';
 import AccountApis from '../../redux/apis/Account/account.api';
 import { useAppDispatch } from '../../redux/hooks';
-import { setUserDetails } from '../../redux/slices/userSlice';
+import { setUserDetails } from '../../redux/slices/user/userSlice';
+import { setCartItems } from '../../redux/slices/cart/cartSlice';
 
 const Login: FC = () => {
   const [email, setEmail] = useState('');
@@ -27,7 +28,12 @@ const Login: FC = () => {
           enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
           navigate('/', { replace: true });
           // Set state of user
-          dispatch(setUserDetails(res.data));
+          dispatch(setUserDetails({
+            id: res.data.id,
+            username: res.data.username,
+            email: res.data.email,
+          }));
+          dispatch(setCartItems(res.data.cart));
           // set token in local storage
         }
         enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
