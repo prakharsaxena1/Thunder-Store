@@ -13,7 +13,7 @@ const createKeysIfNotExist = () => {
 
 const issueJWT = (user) => {
     const PRIV_KEY = fs.readFileSync(path.join('bin', 'id_rsa_priv.pem'), 'utf8');
-    const expiresIn = '1d';
+    const expiresIn = 24 * 60 * 60 * 1000;
     const payload = { sub: user._id, iat: Date.now() };
     const token = jsonwebtoken.sign(payload, PRIV_KEY, { expiresIn: expiresIn, algorithm: 'RS256' });
     return { token, expiresIn }
@@ -22,34 +22,45 @@ const issueJWT = (user) => {
 const issueRefreshToken = async (token) => {
     const PUB_KEY = fs.readFileSync(path.join('bin', 'id_rsa_pub.pem'), 'utf8');
     const PRIV_KEY = fs.readFileSync(path.join('bin', 'id_rsa_priv.pem'), 'utf8');
+    token = token.split(" ")[1];
     try {
-        const decoded = jsonwebtoken.verify(token, PUB_KEY);
-        if (decoded.exp < new Date(Date.now())) {
+        const decoded = jsonwebtoken.verify(token, PUB_KEY, { algorithm: 'RS256' });
+        if (decoded.exp < Date.now()) {
             throw new Error('Token has expired');
         }
         const newPayload = { sub: decoded.sub, iat: Date.now() };
-        const newJwt = jsonwebtoken.sign(newPayload, PRIV_KEY, { expiresIn: '1d', algorithm: 'RS256' });
+        const newJwt = jsonwebtoken.sign(newPayload, PRIV_KEY, { expiresIn: 24 * 60 * 60 * 1000, algorithm: 'RS256' });
         return { isAuth: true, token: newJwt };
     } catch (err) {
+        console.log(err.message);
         return { isAuth: false };
     }
 };
+
+const setCookieResponse = (res, token) => res.cookie('authorization', token, {
+    expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    path: '/',
+    secure: true,
+    sameSite: 'none',
+});
 
 const setAuthCookie = (res, user) => {
     createKeysIfNotExist();
     const token = issueJWT(user);
     res.token = 'Bearer ' + token.token;
-    res.cookie('authorization', res.token, {
-        expires: new Date(Date.now() + 60 * 60 * 1000),
-        path: '/',
-        secure: true,
-        sameSite: 'none',
-    });
-    return res;
+    return setCookieResponse(res, res.token);
+    // res.cookie('authorization', res.token, {
+    //     expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    //     path: '/',
+    //     secure: true,
+    //     sameSite: 'none',
+    // });
+    // return res;
 };
 
 module.exports = {
     setAuthCookie,
     createKeysIfNotExist,
     issueRefreshToken,
+    setCookieResponse,
 }

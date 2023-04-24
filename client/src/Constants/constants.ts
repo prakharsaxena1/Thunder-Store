@@ -22,6 +22,7 @@ export const apiUrls = {
     register: '/user/register',
     logout: '/user/logout',
     deleteAccount: '/user/delete-account',
+    refreshToken: '/user/refresh-token',
   },
   orders: {},
   products: {

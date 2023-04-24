@@ -86,8 +86,10 @@ const deleteUser = async (req, res) => {
 
 const refreshUser = async (req, res) => {
     const data = await auth.issueRefreshToken(req.body.token);
+    if (data.isAuth) {
+        res = auth.setCookieResponse(res, data.token);
+    }
     return res.status(200).json({
-        status: 'success',
         ...data,
     });
 }

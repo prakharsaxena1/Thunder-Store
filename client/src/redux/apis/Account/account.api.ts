@@ -25,6 +25,13 @@ export const AccountApis = baseApi.injectEndpoints({
         credentials: 'include',
       }),
     }),
+    refreshToken: build.mutation<any, any>({
+      query: (params) => ({
+        url: apiUrls.account.refreshToken,
+        method: 'POST',
+        body: params,
+      }),
+    }),
   }),
 });
 

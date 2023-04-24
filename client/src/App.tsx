@@ -16,6 +16,7 @@ import UserProfile from './Pages/UserProfile';
 import Product from './Pages/Product';
 import { useAppDispatch } from './redux/hooks';
 import { setUserDetails } from './redux/slices/user/userSlice';
+import AccountApis from './redux/apis/Account/account.api';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,10 +38,14 @@ const router = createBrowserRouter(
 
 const App = () => {
   const dispatch = useAppDispatch();
+  const [RefreshToken] = AccountApis.useRefreshTokenMutation();
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
+      RefreshToken({
+        token: foundUser.token,
+      });
       dispatch(setUserDetails({
         id: foundUser.id,
         username: foundUser.username,
