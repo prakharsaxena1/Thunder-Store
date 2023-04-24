@@ -1,31 +1,26 @@
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 
-const itemsSchema = new mongoose.Schema({
-    quantity: {
-        type: Number,
-        requrired: true,
-    },
-    productID: {
+const itemSchema = new mongoose.Schema({
+    projectId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
+        ref: 'Project',
+        required: true
     },
-    soldBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Seller',
-    }
-})
+    title: { type: String, required: true },
+    price: { type: Number, required: true },
+    image: { type: String, required: true }
+});
 
 const orderSchema = new mongoose.Schema({
     userID: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
-    items: [itemsSchema],
-    status: {
-        type: String,
-        enum: ["otw", "delivered"]
-    }
+    products: { type: [itemSchema], required: true },
+    totalAmount: { type: Number, required: true },
+    status: { type: String, enum: ["otw", "delivered"] }
 }, {
     timestamps: true,
 });
