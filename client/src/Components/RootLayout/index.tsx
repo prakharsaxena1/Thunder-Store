@@ -8,15 +8,12 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import Navbar from '../Navbar';
 import { colors, urls } from '../../Constants/constants';
 import { CopyrightText } from '../BrandText';
-// import { useAppSelector } from '../../redux/hooks';
-// import { userSelector } from '../../redux/slices/user/user.selector';
 
 const newTabOpenUrl = (url: string) => {
   window.open(url, '_blank');
 };
 
 const RootLayout = () => {
-  // const user = useAppSelector(userSelector);
   return (
     <div
       style={{

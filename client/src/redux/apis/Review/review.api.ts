@@ -5,7 +5,7 @@ export const ReviewApis = baseApi.injectEndpoints({
   endpoints: (build) => ({
     addReview: build.mutation<any, any>({
       query: (params) => ({
-        url: apiUrls.reviews.review,
+        url: `${apiUrls.reviews.productReview}/${params.productID}`,
         method: 'POST',
         body: params,
       }),
@@ -24,17 +24,15 @@ export const ReviewApis = baseApi.injectEndpoints({
       }),
     }),
     getAllReview: build.query<any, any>({
-      query: (params) => ({
-        url: apiUrls.reviews.review,
-        method: 'POST',
-        body: params,
+      query: ({ productID }) => ({
+        url: `${apiUrls.reviews.productReview}/${productID}`,
+        method: 'GET',
       }),
     }),
     getOneReview: build.query<any, any>({
-      query: ({ reviewId, ...rest }) => ({
+      query: ({ reviewId }) => ({
         url: `${apiUrls.reviews.review}/${reviewId}`,
-        method: 'POST',
-        body: rest,
+        method: 'GET',
       }),
     }),
   }),

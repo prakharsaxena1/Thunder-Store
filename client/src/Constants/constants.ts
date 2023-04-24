@@ -24,12 +24,17 @@ export const apiUrls = {
     deleteAccount: '/user/delete-account',
     refreshToken: '/user/refresh-token',
   },
-  orders: {},
+  orders: {
+    addOrder: '/order',
+    getOrdersByUser: '/order/user',
+    getOrderById: '/order',
+  },
   products: {
     product: '/product',
     productByCategory: '/product/category/',
   },
   reviews: {
+    productReview: '/review/product',
     review: '/review',
   },
 };

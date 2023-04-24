@@ -10,6 +10,12 @@ export const AccountApis = baseApi.injectEndpoints({
         body: params,
       }),
     }),
+    logout: build.query<null, any>({
+      query: () => ({
+        url: apiUrls.account.logout,
+        method: 'GET',
+      }),
+    }),
     register: build.mutation<any, any>({
       query: (params) => ({
         url: apiUrls.account.register,

@@ -6,6 +6,7 @@ import {
 // Components
 import RootLayout from './Components/RootLayout';
 import Search from './Pages/Search';
+import Order from './Pages/Order';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
@@ -26,7 +27,8 @@ const router = createBrowserRouter(
         <Route element={<Search />} path="search/:searchQuery" />
         <Route element={<TopSelling />} path="/top-sellers/:category" />
         <Route element={<Product />} path="/product/:id" />
-        <Route element={<UserProfile />} path="/user" />
+        <Route element={<Order />} path="/orders" />
+        <Route element={<UserProfile />} path="/settings" />
         <Route element={<NotFound404 />} path="*" />
       </Route>
       <Route element={<Login />} path="login" />
