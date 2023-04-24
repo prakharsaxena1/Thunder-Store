@@ -1,22 +1,46 @@
+const Review = require('../models/Review.model');
 
-const getReviews = (req, res) => {
-
+const getReviews = async (req, res) => {
+  const { productId } = req.query;
+  let reviews = [];
+  if (productId) {
+    reviews = await Review.find({ productID: productId });
+  }
+  return res.status(200).json({ status: 'success', reviews });
 };
 
-const addReview = (req, res) => {
-
+const addReview = async (req, res) => {
+  const { productId } = req.query;
+  const review = await Review.create({
+    rating: req.body.rating,
+    title: req.body.title,
+    description: req.body.description,
+    userID: req.body.userID,
+    productID: productId,
+  });
+  return res.status(200).json({ status: 'success', review });
 };
 
-const getReviewWithID = (req, res) => {
-
+const getReviewWithID = async (req, res) => {
+  const { reviewId } = req.query;
+  const review = await Review.findById(reviewId);
+  return res.status(200).json({ status: 'success', review });
 };
 
-const editReviewWithID = (req, res) => {
-
+const editReviewWithID = async (req, res) => {
+  const { reviewId } = req.query;
+  const review = await Review.findByIdAndUpdate(reviewId, {
+    rating: req.body.rating,
+    title: req.body.title,
+    description: req.body.description,
+  });
+  return res.status(200).json({ status: 'success', review });
 };
 
-const deleteReviewWithID = (req, res) => {
-
+const deleteReviewWithID = async (req, res) => {
+  const { reviewId } = req.query;
+  const review = await Review.findByIdAndDelete(reviewId);
+  return res.status(200).json({ status: 'success' });
 };
 
 module.exports = {

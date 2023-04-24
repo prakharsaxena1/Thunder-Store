@@ -9,7 +9,7 @@ const authMiddleware = passport.authenticate('jwt', { session: false });
 router.route('product/:productId')
   .get(reviewController.getReviews) // Gets all reviews for a particular product
   .post(authMiddleware, reviewController.addReview); // Adds a review in a particular product
-router.route('review/:reviewId')
+router.route('/:reviewId')
   .get(authMiddleware, reviewController.getReviewWithID) // Get single review
   .put(authMiddleware, reviewController.editReviewWithID) // Edit single review
   .delete(authMiddleware, reviewController.deleteReviewWithID); // Delete single review
