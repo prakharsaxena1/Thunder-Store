@@ -1,0 +1,48 @@
+.quantity {
+  display: flex;
+  padding: 0;
+  min-width: 112px;
+  max-width: 120px;
+}
+
+.quantity__minus,
+.quantity__plus {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  background: #dee0ee;
+  text-decoration: none;
+  text-align: center;
+  line-height: 23px;
+}
+
+.quantity__minus {
+  border-radius: 3px 0 0 3px;
+}
+
+.quantity__plus {
+  border-radius: 0 3px 3px 0;
+}
+
+.quantity__input {
+  width: 32px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  text-align: center;
+  background: #fff;
+  color: #8184a1;
+}
+
+.quantity__minus:link,
+.quantity__plus:link {
+  color: #8184a1;
+}
+
+.quantity__minus:visited,
+.quantity__plus:visited {
+  color: #fff;
+}

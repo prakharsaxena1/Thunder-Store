@@ -1,19 +1,14 @@
 import React, { FC, useState } from 'react';
-import {
-  AppBar, Toolbar, Button, Grid, Typography, Divider,
-} from '@mui/material';
-import { useSelector } from 'react-redux';
+import { AppBar, Toolbar, Grid } from '@mui/material';
 import { BrandText } from '../BrandText';
 import { colors } from '../../Constants/constants';
 import PopupModal from '../PopupModal';
-import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import SearchBar from './SearchBar';
 import NavbarMenuItems from './NavbarMenuItems';
+import Cart from '../Cart/Cart';
 
 const Navbar: FC = () => {
   const [showCart, setShowCart] = useState<boolean>(false);
-  const cartData = useSelector(cartSelector);
-  const cartItems = cartData.cart.length;
   return (
     <AppBar
       position="relative"
@@ -39,23 +34,7 @@ const Navbar: FC = () => {
       </Toolbar>
       {showCart && (
         <PopupModal showModal={showCart} setShowModal={setShowCart} title="Your cart">
-          <div>
-            <Grid container spacing={2} alignItems="center" justifyContent="center" sx={{ padding: '0.5rem' }}>
-              <Grid item xs={8}>
-                <Typography variant="body1" component="h4">{`Cart items: ${cartItems}`}</Typography>
-                <Typography variant="body1" component="h4">Cart value: 0</Typography>
-              </Grid>
-              <Grid item xs={3.4}>
-                <Button variant="contained" disabled={cartItems === 0}>Checkout</Button>
-              </Grid>
-            </Grid>
-            <Divider />
-            {
-              cartItems === 0
-                ? <Typography variant="h4" component="h4" align="center" sx={{ mt: 5 }}>Cart is empty</Typography>
-                : JSON.stringify(cartData.cart)
-            }
-          </div>
+          <Cart />
         </PopupModal>
       )}
     </AppBar>

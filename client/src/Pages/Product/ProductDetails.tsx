@@ -13,6 +13,13 @@ import { cartSelector } from '../../redux/slices/cart/cart.selector';
 const ProductDetails: FC<any> = ({ product }) => {
   const dispatch = useAppDispatch();
   const cartData = useAppSelector(cartSelector);
+  const addToCart = () => dispatch(addItemToCart({
+    productID: product._id,
+    title: product.title,
+    price: product.price,
+    discount: product.discount,
+    image: product.images[0],
+  }));
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={10} sm={6} md={5}>
@@ -25,21 +32,9 @@ const ProductDetails: FC<any> = ({ product }) => {
             <RatingWrapper rateValue={product.rating.rate} />
             <Typography variant="body2">{`(${product.rating.count})`}</Typography>
           </Stack>
-          <Stack direction="row" spacing={2} justifyContent="flex-start" alignItems="center">
+          <Stack spacing={2} justifyContent="flex-start" alignItems="flex-start">
             <PriceDisplay price={product.price} discount={product.discount} />
-            <Button
-              variant="contained"
-              color="warning"
-              size="small"
-              disabled={cartData.cartId[product.productID] >= 1}
-              onClick={() => dispatch(addItemToCart({
-                productID: product.productID,
-                title: product.title,
-                price: product.price,
-                discount: product.discount,
-                image: product.image,
-              }))}
-            >
+            <Button variant="contained" color="warning" disabled={Boolean(cartData.cartId[product._id])} onClick={addToCart}>
               Add to cart
             </Button>
           </Stack>

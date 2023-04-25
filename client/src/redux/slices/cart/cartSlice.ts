@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { createSlice } from '@reduxjs/toolkit';
+import { getPrice } from '../../../utils/helper';
 
 interface CartI {
   productID: string;
@@ -10,7 +11,7 @@ interface CartI {
 }
 
 interface InitialStateType {
-  cart: CartI[] | any;
+  cart: CartI[];
   cartId: Record<string, number>;
   cartValue: number;
 }
@@ -20,8 +21,6 @@ const initialState: InitialStateType = {
   cartId: {},
   cartValue: 0,
 };
-
-const getPrice = (price: number, discount: number) => Math.round(price * (1 - discount / 100));
 
 const cartSlice = createSlice({
   name: 'cartSlice',
