@@ -9,6 +9,7 @@ import Cart from '../Cart/Cart';
 
 const Navbar: FC = () => {
   const [showCart, setShowCart] = useState<boolean>(false);
+  const [title, setTitle] = useState<string>('Your cart');
   return (
     <AppBar
       position="relative"
@@ -33,8 +34,8 @@ const Navbar: FC = () => {
         </Grid>
       </Toolbar>
       {showCart && (
-        <PopupModal showModal={showCart} setShowModal={setShowCart} title="Your cart">
-          <Cart />
+        <PopupModal showModal={showCart} setShowModal={setShowCart} title={title}>
+          <Cart setTitle={setTitle} />
         </PopupModal>
       )}
     </AppBar>

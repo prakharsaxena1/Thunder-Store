@@ -10,7 +10,7 @@ import Order from './Pages/Order';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-import ResetPassword from './Components/ResetPassword';
+import ResetPassword from './Pages/ResetPassword';
 import NotFound404 from './Pages/NotFound404';
 import TopSelling from './Pages/TopSelling';
 import UserProfile from './Pages/UserProfile';

@@ -29,7 +29,7 @@ const PopupModal: FC<any> = ({
               maxHeight: '80vh',
               position: 'relative',
               padding: '2rem 2rem',
-              overflow: 'hidden',
+              overflow: 'auto',
             }}
           >
             <Typography variant="h4" gutterBottom>{title}</Typography>

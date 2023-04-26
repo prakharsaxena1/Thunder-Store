@@ -5,15 +5,13 @@ import Logout from '@mui/icons-material/Logout';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
-import {
-  Button, MenuItem, ListItemIcon, Divider,
-} from '@mui/material';
+import { MenuItem, ListItemIcon, Divider } from '@mui/material';
 import { logoutUser } from '../../redux/slices/user/userSlice';
 import AccountApis from '../../redux/apis/Account/account.api';
 import CustomMenu from '../CustomMenu';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
-import RouterBtn from '../RouterLink';
+import NavBtn from './NavBtn';
 
 const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
   const [userMenu, setUserMenu] = useState<null | HTMLElement>(null);
@@ -32,14 +30,7 @@ const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
       {userData && userData.username !== ''
         ? (
           <>
-            <Button
-              variant="text"
-              color="inherit"
-              size="small"
-              onClick={(event: React.MouseEvent<HTMLElement>) => setUserMenu(event.currentTarget)}
-            >
-              {userData.username}
-            </Button>
+            <NavBtn type="Menu" title={userData.username} onClick={(event: React.MouseEvent<HTMLElement>) => setUserMenu(event.currentTarget)} />
             <CustomMenu anchor={userMenu} setAnchor={setUserMenu}>
               <MenuItem onClick={() => navigateTo('/orders')}>
                 <ListItemIcon><LocalShippingIcon fontSize="small" /></ListItemIcon>
@@ -66,19 +57,10 @@ const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
           </>
         )
         : (
-          <RouterBtn href="/login" title="Login" />
+          <NavBtn href="/login" title="Login" />
         )}
-      <Button variant="text" color="inherit" onClick={() => setShowCart(true)}>
-        Cart
-        <ShoppingCartIcon sx={{ fontSize: '1rem' }} />
-      </Button>
-      <Button
-        variant="text"
-        color="inherit"
-        onClick={(event: React.MouseEvent<HTMLButtonElement>) => setCategoriesMenu(event.currentTarget)}
-      >
-        Top selling
-      </Button>
+      <NavBtn type="Popup" title="Cart" onClick={() => setShowCart(true)} icon={<ShoppingCartIcon sx={{ fontSize: '1rem' }} />} />
+      <NavBtn type="Menu" title="Top selling" onClick={(event: React.MouseEvent<HTMLButtonElement>) => setCategoriesMenu(event.currentTarget)} />
       <CustomMenu anchor={categoriesMenu} setAnchor={setCategoriesMenu}>
         <MenuItem onClick={() => navigateTo('/top-sellers/books')}>Books</MenuItem>
         <MenuItem onClick={() => navigateTo('/top-sellers/games')}>Games</MenuItem>
