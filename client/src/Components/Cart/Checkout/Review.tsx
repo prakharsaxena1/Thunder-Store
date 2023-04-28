@@ -21,11 +21,6 @@ const products = [
     desc: 'Something else',
     price: '$6.51',
   },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
   { name: 'Shipping', desc: '', price: 'Free' },
 ];
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
@@ -39,9 +34,7 @@ const payments = [
 const Review = () => {
   return (
     <>
-      <Typography variant="h6" gutterBottom>
-        Order summary
-      </Typography>
+      <Typography variant="h6" gutterBottom>Order summary</Typography>
       <List disablePadding>
         {products.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>

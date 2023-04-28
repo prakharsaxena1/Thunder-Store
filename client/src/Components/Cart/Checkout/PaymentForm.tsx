@@ -13,7 +13,6 @@ const PaymentForm = () => {
         <Grid item xs={12} md={6}>
           <TextField
             required
-            id="cardName"
             label="Name on card"
             fullWidth
             variant="standard"
@@ -22,7 +21,6 @@ const PaymentForm = () => {
         <Grid item xs={12} md={6}>
           <TextField
             required
-            id="cardNumber"
             label="Card number"
             fullWidth
             variant="standard"
@@ -31,7 +29,6 @@ const PaymentForm = () => {
         <Grid item xs={12} md={6}>
           <TextField
             required
-            id="expDate"
             label="Expiry date"
             fullWidth
             variant="standard"
@@ -40,7 +37,6 @@ const PaymentForm = () => {
         <Grid item xs={12} md={6}>
           <TextField
             required
-            id="cvv"
             label="CVV"
             helperText="Last three digits on signature strip"
             fullWidth

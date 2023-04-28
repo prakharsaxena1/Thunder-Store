@@ -49,7 +49,7 @@ const Checkout: FC = () => {
       {activeStep === steps.length ? (
         <>
           <Typography variant="h5" gutterBottom>
-            Thank you for your order
+            Thank you for your order!!
           </Typography>
           <Typography variant="subtitle1">
             Your order number is #2001539. We have emailed your order
