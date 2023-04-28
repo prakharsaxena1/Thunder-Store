@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Grid, Typography, Paper,
+  Box, Typography,
 } from '@mui/material';
+import OrderItem from './OrderItem';
 
 const orders = [
   {
@@ -10,7 +11,7 @@ const orders = [
     title: 'Some good product #12',
     price: 4999,
     dateOrdered: new Date().toDateString(),
-    dateReceived: new Date().toDateString(),
+    dateDelivered: new Date().toDateString(),
   },
   {
     id: '42',
@@ -18,37 +19,26 @@ const orders = [
     title: 'Pc parts',
     price: 1940,
     dateOrdered: new Date().toDateString(),
-    dateReceived: new Date().toDateString(),
+    // dateDelivered: new Date().toDateString(),
   },
 ];
 
 const Order: React.FC = () => {
   return (
-    <Grid container spacing={2} justifyContent="center" sx={{ p: 3 }}>
-      {orders.map((order: any) => (
-        <Grid item sm={12} md={11} lg={10} component={Paper}>
-          <Grid container spacing={2} justifyContent="space-around">
-            <Grid item sm={2} md={2} lg={2}>
-              <div style={{ width: '90px', height: '120px', margin: 'auto' }}>
-                <img src={order.image} alt="first" style={{ maxHeight: '100%', width: '100%' }} />
-              </div>
-            </Grid>
-            <Grid item sm={5} md={4} lg={4}>
-              <Typography variant="body1" component="p">{order.title}</Typography>
-            </Grid>
-            <Grid item sm={1} md={2} lg={2}>
-              <Typography variant="body1" component="p">{order.price}</Typography>
-            </Grid>
-            <Grid item sm={1.5} md={2} lg={2}>
-              <Typography variant="body1" component="p">{order.dateOrdered}</Typography>
-            </Grid>
-            <Grid item sm={1.5} md={2} lg={2}>
-              <Typography variant="body1" component="p">{order.dateReceived}</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      ))}
-    </Grid>
+    <Box
+      sx={{
+        p: 2,
+        width: { sm: '95%', md: '85%', lg: '75%' },
+        m: '1rem auto',
+      }}
+    >
+      <Typography variant="h3" component="h3">Orders</Typography>
+      <Box sx={{ p: 2 }}>
+        {orders.map((order) => (
+          <OrderItem order={order} />
+        ))}
+      </Box>
+    </Box>
   );
 };
 
