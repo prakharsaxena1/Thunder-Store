@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 
 const addressSchema = new mongoose.Schema({
+    name: { type: String, required: true },
     address: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
@@ -14,6 +15,12 @@ const cartSchema = new mongoose.Schema({
     product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
 });
 
+const cardSchema = new mongoose.Schema({
+    cardName: { type: String, required: true },
+    cardNumber: { type: Number, required: true, },
+    expiry: { type: String, required: true },
+});
+
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -21,6 +28,7 @@ const userSchema = new mongoose.Schema({
     profilePhoto: String,
     address: [addressSchema],
     cart: [cartSchema],
+    cards: [cardSchema]
 }, { timestamps: true }
 );
 

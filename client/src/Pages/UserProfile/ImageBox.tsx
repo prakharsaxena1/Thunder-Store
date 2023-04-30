@@ -11,7 +11,7 @@ const imgWrapperStyles = {
   border: '0.5rem solid #F2F1EF',
 };
 
-const ImageBox: FC = () => {
+const ImageBox: FC<any> = ({ photo }) => {
   return (
     <Box
       sx={{
@@ -28,7 +28,7 @@ const ImageBox: FC = () => {
       >
         <Box sx={imgWrapperStyles}>
           <img
-            src="/imgs/Gojo.jpg"
+            src={photo}
             alt=""
             style={{
               width: '100%',

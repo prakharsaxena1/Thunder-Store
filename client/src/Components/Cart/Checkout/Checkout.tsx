@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -9,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-// import PopupModal from '../../PopupModal';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
