@@ -9,6 +9,7 @@ import AccountApis from '../../redux/apis/Account/account.api';
 import { useAppDispatch } from '../../redux/hooks';
 import { setUserDetails } from '../../redux/slices/user/userSlice';
 import { setCartItems } from '../../redux/slices/cart/cartSlice';
+import { writeLS } from '../../utils/helper';
 
 const Login: FC = () => {
   const [email, setEmail] = useState('');
@@ -20,63 +21,63 @@ const Login: FC = () => {
   const [loginTrigger, { isLoading }] = AccountApis.useLoginMutation();
   const attemptLogin = () => {
     if (email && pass) {
-      loginTrigger({
-        email: email.trim(),
-        password: pass.trim(),
-      }).unwrap().then((res) => {
-        if (res.status === 'success') {
-          enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
-          navigate('/', { replace: true });
-          // Set state of user
-          dispatch(setUserDetails({
-            id: res.data.id,
-            username: res.data.username,
-            email: res.data.email,
-          }));
-          dispatch(setCartItems(res.data.cart));
-          // set token in local storage
-          localStorage.setItem('user', JSON.stringify({
-            id: res.data.id,
-            username: res.data.username,
-            email: res.data.email,
-            token: res.token,
-          }));
-        }
-        enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
-      }).catch(() => {
-        enqueueSnackbar('Provided wrong credentials', { variant: 'error', preventDuplicate: true });
-      });
+      loginTrigger({ email: email.trim(), password: pass.trim() })
+        .unwrap().then((res) => {
+          if (res.status === 'success') {
+            navigate('/', { replace: true });
+            const userDetails = {
+              id: res.data.id,
+              username: res.data.username,
+              email: res.data.email,
+            };
+            dispatch(setUserDetails(userDetails));
+            dispatch(setCartItems(res.data.cart));
+            writeLS('user', { ...userDetails, token: res.token });
+            return enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
+          }
+          return enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
+        }).catch(() => {
+          return enqueueSnackbar('Provided wrong credentials', { variant: 'error', preventDuplicate: true });
+        });
     }
   };
   return (
     <AccountsBox isLoading={isLoading}>
       <Typography variant="h5" component="h5" align="center" sx={{ mb: 3 }}>Sign-in to your account</Typography>
       <Stack spacing={2}>
-        {/* Email */}
-        <TextField required type="email" label="Email" value={email} onChange={(e) => { setEmail(e.target.value); }} />
-        {/* Password */}
-        <TextField required type="password" label="Password" value={pass} onChange={(e) => { setPass(e.target.value); }} />
+        <TextField
+          required
+          type="email"
+          label="Email"
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); }}
+        />
+        <TextField
+          required
+          type="password"
+          label="Password"
+          value={pass}
+          onChange={(e) => { setPass(e.target.value); }}
+        />
       </Stack>
-      {/* Button */}
-      <Button variant="contained" sx={{ width: '200px', mx: 'auto', my: 3 }} onClick={attemptLogin}>
+      <Button
+        variant="contained"
+        sx={{ width: '200px', mx: 'auto', my: 3 }}
+        onClick={attemptLogin}
+      >
         Login
       </Button>
-      {/* Others */}
       <Divider />
       <Box sx={{ mt: 2 }}>
         <Typography variant="body2" align="center" component="p">
-          Forgot password? Click
-          {' '}
+          Forgot password? Click&nbsp;
           <Link to="/reset-password">here</Link>
-          {' '}
-          to reset
+          &nbsp;to reset
         </Typography>
         <Typography variant="body2" align="center" component="p">
-          New here?
-          {' '}
+          New here?&nbsp;
           <Link to="/register">Register</Link>
-          {' '}
-          an account
+          &nbsp;an account
         </Typography>
       </Box>
     </AccountsBox>

@@ -17,6 +17,7 @@ import Product from './Pages/Product';
 import { useAppDispatch } from './redux/hooks';
 import { setUserDetails } from './redux/slices/user/userSlice';
 import AccountApis from './redux/apis/Account/account.api';
+import { setCartItems } from './redux/slices/cart/cartSlice';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,15 +43,18 @@ const App = () => {
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
+      const cart = localStorage.getItem('cart');
       const foundUser = JSON.parse(loggedInUser);
-      RefreshToken({
-        token: foundUser.token,
-      });
+      RefreshToken({ token: foundUser.token });
       dispatch(setUserDetails({
         id: foundUser.id,
         username: foundUser.username,
         email: foundUser.email,
       }));
+      if (cart) {
+        const parsedCart = JSON.parse(cart);
+        dispatch(setCartItems(parsedCart));
+      }
     }
   }, []);
   return (

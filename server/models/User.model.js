@@ -17,7 +17,7 @@ const cartSchema = new mongoose.Schema({
 
 const cardSchema = new mongoose.Schema({
     cardName: { type: String, required: true },
-    cardNumber: { type: Number, required: true, },
+    cardNumber: { type: Number, required: true },
     expiry: { type: String, required: true },
 });
 

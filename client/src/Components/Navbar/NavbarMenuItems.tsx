@@ -12,6 +12,7 @@ import CustomMenu from '../CustomMenu';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
 import NavBtn from './NavBtn';
+import { emptyCart } from '../../redux/slices/cart/cartSlice';
 
 const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
   const [userMenu, setUserMenu] = useState<null | HTMLElement>(null);
@@ -42,6 +43,7 @@ const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
               <MenuItem onClick={() => {
                 LogoutTrigger({}).unwrap().then(() => {
                   dispatch(logoutUser());
+                  dispatch(emptyCart());
                   setUserMenu(null);
                   window.localStorage.clear();
                   navigate('/', { replace: true });

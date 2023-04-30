@@ -27,10 +27,10 @@ const items = [
 
 const Home: FC = () => {
   return (
-    <div>
+    <>
       <ImageSwiper items={items} swiperType="cover" />
       <ProjectWorking />
-    </div>
+    </>
   );
 };
 
