@@ -27,7 +27,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     setCartItems: (state, action) => {
-      state.cart += action.payload.cart;
+      state.cart = [state.cart, ...action.payload.cart];
       let temp = 0;
       for (let i = 0; i < state.cart.length; i++) {
         temp += getPrice(state.cart[i].price, state.cart[i].discount);

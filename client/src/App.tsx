@@ -12,7 +12,6 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ResetPassword from './Pages/ResetPassword';
 import NotFound404 from './Pages/NotFound404';
-import TopSelling from './Pages/TopSelling';
 import UserProfile from './Pages/UserProfile';
 import Product from './Pages/Product';
 import { useAppDispatch } from './redux/hooks';
@@ -25,7 +24,6 @@ const router = createBrowserRouter(
       <Route path="/" element={<RootLayout />}>
         <Route index element={<Home />} />
         <Route element={<Search />} path="search/:searchQuery" />
-        <Route element={<TopSelling />} path="/top-sellers/:category" />
         <Route element={<Product />} path="/product/:id" />
         <Route element={<Order />} path="/orders" />
         <Route element={<UserProfile />} path="/settings" />

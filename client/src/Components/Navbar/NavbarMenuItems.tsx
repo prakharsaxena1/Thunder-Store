@@ -15,7 +15,6 @@ import NavBtn from './NavBtn';
 
 const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
   const [userMenu, setUserMenu] = useState<null | HTMLElement>(null);
-  const [categoriesMenu, setCategoriesMenu] = useState<null | HTMLElement>(null);
   const userData = useAppSelector(userSelector);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -23,7 +22,6 @@ const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
   const navigateTo = (link: string) => {
     navigate(link);
     setUserMenu(null);
-    setCategoriesMenu(null);
   };
   return (
     <>
@@ -60,13 +58,6 @@ const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
           <NavBtn href="/login" title="Login" />
         )}
       <NavBtn type="Popup" title="Cart" onClick={() => setShowCart(true)} icon={<ShoppingCartIcon sx={{ fontSize: '1rem' }} />} />
-      <NavBtn type="Menu" title="Top selling" onClick={(event: React.MouseEvent<HTMLButtonElement>) => setCategoriesMenu(event.currentTarget)} />
-      <CustomMenu anchor={categoriesMenu} setAnchor={setCategoriesMenu}>
-        <MenuItem onClick={() => navigateTo('/top-sellers/books')}>Books</MenuItem>
-        <MenuItem onClick={() => navigateTo('/top-sellers/games')}>Games</MenuItem>
-        <MenuItem onClick={() => navigateTo('/top-sellers/electronics')}>Electronics</MenuItem>
-        <MenuItem onClick={() => navigateTo('/top-sellers/clothes')}>Clothes</MenuItem>
-      </CustomMenu>
     </>
   );
 };

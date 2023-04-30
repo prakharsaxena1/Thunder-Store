@@ -30,32 +30,28 @@ const issueRefreshToken = async (token) => {
         }
         const newPayload = { sub: decoded.sub, iat: Date.now() };
         const newJwt = jsonwebtoken.sign(newPayload, PRIV_KEY, { expiresIn: 24 * 60 * 60 * 1000, algorithm: 'RS256' });
-        return { isAuth: true, token: newJwt };
+        return { isAuth: true, token: `Bearer ${newJwt}` };
     } catch (err) {
         console.log(err.message);
         return { isAuth: false };
     }
 };
 
-const setCookieResponse = (res, token) => res.cookie('authorization', token, {
-    expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-    path: '/',
-    secure: true,
-    sameSite: 'none',
-});
+const setCookieResponse = (res, token) => {
+    res.cookie('authorization', token, {
+        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        path: '/',
+        secure: true,
+        sameSite: 'none',
+    });
+    return res;
+};
 
 const setAuthCookie = (res, user) => {
     createKeysIfNotExist();
     const token = issueJWT(user);
     res.token = 'Bearer ' + token.token;
     return setCookieResponse(res, res.token);
-    // res.cookie('authorization', res.token, {
-    //     expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-    //     path: '/',
-    //     secure: true,
-    //     sameSite: 'none',
-    // });
-    // return res;
 };
 
 module.exports = {

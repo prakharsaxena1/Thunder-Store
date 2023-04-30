@@ -21,12 +21,12 @@ const NotFound404 = () => (
       </Typography>
     </Box>
     <Box>
-      <img src="./404_lost.png" alt="lost404" width="500px" />
+      <img src="/404_lost.png" alt="lost404" width="350px" />
     </Box>
     <Box>
       <Typography variant="h4" component="h4" align="center">Looks like you are lost in space captain</Typography>
       <Typography variant="h4" component="h4" align="center">
-        Here, let me point you to the
+        Here, let me point you to the&nbsp;
         <Link to="/">home</Link>
         {' '}
         page
