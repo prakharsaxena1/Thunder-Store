@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
 import NavBtn from './NavBtn';
 import { emptyCart } from '../../redux/slices/cart/cartSlice';
+import { writeLS } from '../../utils/helper';
 
 const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
   const [userMenu, setUserMenu] = useState<null | HTMLElement>(null);
@@ -46,6 +47,7 @@ const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
                   dispatch(emptyCart());
                   setUserMenu(null);
                   window.localStorage.clear();
+                  writeLS('cart', []);
                   navigate('/', { replace: true });
                 });
               }}

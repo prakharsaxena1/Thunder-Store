@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { createSlice } from '@reduxjs/toolkit';
-import { getPrice, writeLS } from '../../../utils/helper';
+import { getFromLS, getPrice, writeLS } from '../../../utils/helper';
 
 interface CartI {
   productID: string;
@@ -22,20 +22,19 @@ const initialState: InitialStateType = {
   cartValue: 0,
 };
 
-const cartItemLS = (item: any, action = 'add', id = null) => {
-  const cart = localStorage.getItem('cart');
-  if (cart) {
-    const cartItems = JSON.parse(cart);
-    if (action === 'add') {
-      cartItems.push(item);
-    } else {
-      const objWithIdIndex = cartItems.findIndex((obj: CartI) => obj.productID === id);
-      if (objWithIdIndex > -1) {
-        cartItems.splice(objWithIdIndex, 1);
-      }
+const cartItemLS = (item: CartI, action = 'add', id = null) => {
+  const cartItems = getFromLS('cart', []);
+  if (action === 'add') {
+    cartItems.push(item);
+  } else {
+    const objWithIdIndex = cartItems.findIndex(
+      (obj: CartI) => obj.productID === id,
+    );
+    if (objWithIdIndex > -1) {
+      cartItems.splice(objWithIdIndex, 1);
     }
-    writeLS('cart', cartItems);
   }
+  writeLS('cart', cartItems);
 };
 
 const cartSlice = createSlice({
@@ -43,16 +42,18 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     setCartItems: (state, action) => {
-      const tempCart = [...state.cart, ...action.payload];
+      const tempCart = [...getFromLS('cart', []), ...action.payload];
       let temp = 0;
+      const cartID: Record<string, number> = {};
       for (let i = 0; i < tempCart.length; i++) {
         temp += getPrice(tempCart[i].price, tempCart[i].discount);
-        if (state.cartId[tempCart[i].productID]) {
-          state.cartId[tempCart[i].productID] += 1;
+        if (cartID[tempCart[i].productID]) {
+          cartID[tempCart[i].productID] += 1;
         } else {
-          state.cartId[tempCart[i].productID] = 1;
+          cartID[tempCart[i].productID] = 1;
         }
       }
+      state.cartId = cartID;
       state.cart = tempCart.filter((product, index, self) => index === self.findIndex((p) => p.productID === product.productID));
       state.cartValue = temp;
       writeLS('cart', tempCart);

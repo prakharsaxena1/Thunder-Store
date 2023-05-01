@@ -4,6 +4,15 @@ export const getPrice = (price: number, discount: number) => Math.round(price * 
 
 export const writeLS = (key: string, data: any) => localStorage.setItem(key, JSON.stringify(data));
 
+export const getFromLS = (key: string, defaultReturn: any) => {
+  const item = localStorage.getItem(key);
+  let parsedItem = defaultReturn;
+  if (item !== null) {
+    parsedItem = JSON.parse(item);
+  }
+  return parsedItem;
+};
+
 export const clearLS = () => {
   window.localStorage.clear();
 };
