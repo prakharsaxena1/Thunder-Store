@@ -11,7 +11,7 @@ import Review from './Review';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step: number) {
+const getStepContent = (step: number) => {
   switch (step) {
     case 0:
       return <AddressForm />;
@@ -22,7 +22,7 @@ function getStepContent(step: number) {
     default:
       throw new Error('Unknown step');
   }
-}
+};
 
 const Checkout: FC = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -59,16 +59,8 @@ const Checkout: FC = () => {
         <>
           {getStepContent(activeStep)}
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            {activeStep !== 0 && (
-              <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                Back
-              </Button>
-            )}
-            <Button
-              variant="contained"
-              onClick={handleNext}
-              sx={{ mt: 3, ml: 1 }}
-            >
+            {activeStep !== 0 && (<Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>Back</Button>)}
+            <Button variant="contained" onClick={handleNext} sx={{ mt: 3, ml: 1 }}>
               {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
             </Button>
           </Box>

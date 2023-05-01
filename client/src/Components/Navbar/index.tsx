@@ -6,10 +6,11 @@ import PopupModal from '../PopupModal';
 import SearchBar from './SearchBar';
 import NavbarMenuItems from './NavbarMenuItems';
 import Cart from '../Cart/Cart';
+import Checkout from '../Checkout/Checkout';
 
 const Navbar: FC = () => {
   const [showCart, setShowCart] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>('Your cart');
+  const [showCheckout, setShowCheckout] = useState<boolean>(false);
   return (
     <AppBar
       position="relative"
@@ -34,8 +35,13 @@ const Navbar: FC = () => {
         </Grid>
       </Toolbar>
       {showCart && (
-        <PopupModal showModal={showCart} setShowModal={setShowCart} title={title}>
-          <Cart setTitle={setTitle} />
+        <PopupModal showModal={showCart} setShowModal={setShowCart} title="Your cart">
+          <Cart setShowCheckout={setShowCheckout} setShowCart={setShowCart} />
+        </PopupModal>
+      )}
+      {showCheckout && (
+        <PopupModal showModal={showCheckout} setShowModal={setShowCheckout} title="Checkout">
+          <Checkout />
         </PopupModal>
       )}
     </AppBar>
