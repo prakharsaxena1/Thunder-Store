@@ -11,7 +11,7 @@ const imgWrapperStyles = {
   border: '0.5rem solid #F2F1EF',
 };
 
-const ImageBox: FC<any> = ({ photo }) => {
+const ImageBox: FC<any> = ({ photo, username }) => {
   return (
     <Box
       sx={{
@@ -36,7 +36,9 @@ const ImageBox: FC<any> = ({ photo }) => {
             }}
           />
         </Box>
-        <Typography variant="h5">Username</Typography>
+        <Typography variant="h5">
+          {`Hi, ${username}`}
+        </Typography>
       </Stack>
     </Box>
   );

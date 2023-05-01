@@ -29,6 +29,7 @@ const Login: FC = () => {
               id: res.data.id,
               username: res.data.username,
               email: res.data.email,
+              profilePhoto: res.data.profilePhoto,
             };
             dispatch(setUserDetails(userDetails));
             dispatch(setCartItems(res.data.cart));

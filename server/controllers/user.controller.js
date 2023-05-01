@@ -14,6 +14,7 @@ const userLogin = async (req, res) => {
                         username: user.username,
                         email: user.email,
                         id: user._id,
+                        profilePhoto: user.profilePhoto,
                         cart: user.cart,
                         address: user.address,
                     },

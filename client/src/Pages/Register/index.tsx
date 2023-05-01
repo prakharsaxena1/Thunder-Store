@@ -8,6 +8,8 @@ import AccountsBox from '../../Components/AccountsBox';
 import AccountApis from '../../redux/apis/Account/account.api';
 import { useAppDispatch } from '../../redux/hooks';
 import { setUserDetails } from '../../redux/slices/user/userSlice';
+import { setCartItems } from '../../redux/slices/cart/cartSlice';
+import { writeLS } from '../../utils/helper';
 
 const Register: FC = () => {
   const [username, setUsername] = useState('');
@@ -26,17 +28,19 @@ const Register: FC = () => {
         password: password.trim(),
       }).unwrap().then((res) => {
         if (res.status === 'success') {
-          enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
           navigate('/', { replace: true });
-          // Set state of user
-          dispatch(setUserDetails({
+          const userDetails = {
             id: res.data.id,
             username: res.data.username,
             email: res.data.email,
-          }));
-          // set token in local storage
+            profilePhoto: res.data.profilePhoto,
+          };
+          dispatch(setUserDetails(userDetails));
+          dispatch(setCartItems(res.data.cart));
+          writeLS('user', { ...userDetails, token: res.token });
+          return enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
         }
-        enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
+        return enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
       }).catch(() => {
         enqueueSnackbar('Provided incomplete or wrong credentials', { variant: 'error', preventDuplicate: true });
       });
