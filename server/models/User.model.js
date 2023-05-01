@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 
 const addressSchema = new mongoose.Schema({
-    name: { type: String, required: true, unique: true, dropDups: true },
+    name: { type: String, required: true, unique: true },
     address: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },

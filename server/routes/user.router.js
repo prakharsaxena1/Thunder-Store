@@ -12,10 +12,9 @@ router.route('/register').post(userController.userRegister);
 router.route('/logout').get(authMiddleware, userController.userLogout);
 router.route('/delete-account').post(authMiddleware, userController.deleteUser);
 // Address
-// router.route('/address')
-//   .get(authMiddleware, userController.userAddress)
-//   .post(authMiddleware, userController.userAddress)
-//   .delete(authMiddleware, userController.userAddress);
+router.route('/address')
+  .post(authMiddleware, userController.addAddress)
+  .delete(authMiddleware, userController.deleteAddress);
 
 // Exports
 module.exports = router;

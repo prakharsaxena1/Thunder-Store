@@ -96,18 +96,38 @@ const refreshUser = async (req, res) => {
     });
 }
 
-// const deleteAddress = async (req, res) => {
-//     const x = await User.findById(req.user._id);
+const deleteAddress = async (req, res) => {
+    try {
+        const addressID = req.body.addressID;
+        const user = await User.findByIdAndUpdate(req.user._id, { $pull: { address: { _id: addressID } } }, { new: true });
+        return res.status(200).json({
+            status: 'success',
+            data: [...user.address],
+            total: user.address.length,
+        });
+    } catch (err) {
+        return res.status(400).json({
+            status: 'failed',
+            message: 'Invalid request',
+        });
+    }
+};
 
-// };
-// const addAddress = async (req, res) => {
-//     const x = await User.findById(req.user._id);
-
-// };
-
-// const userCard = async (req, res) => {
-
-// };
+const addAddress = async (req, res) => {
+    const user = await User.findById(req.user._id);
+    user.address.push({
+        name: req.body.name,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        country: req.body.country,
+        pin: req.body.pin,
+    });
+    user.save();
+    return res.status(200).json({
+        data: [...user.address]
+    });
+};
 
 module.exports = {
     userLogin,
@@ -115,4 +135,6 @@ module.exports = {
     userLogout,
     deleteUser,
     refreshUser,
+    deleteAddress,
+    addAddress,
 }
