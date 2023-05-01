@@ -8,7 +8,7 @@ const AddressWrapper: FC<any> = ({ action }) => {
   const address = useRef<HTMLInputElement>(null);
   const city = useRef<HTMLInputElement>(null);
   const state = useRef<HTMLInputElement>(null);
-  const pincode = useRef<HTMLInputElement>(null);
+  const pin = useRef<HTMLInputElement>(null);
   const country = useRef<HTMLInputElement>(null);
   const handleAddAddress = () => {
     action({
@@ -16,7 +16,7 @@ const AddressWrapper: FC<any> = ({ action }) => {
       address: address.current!.value,
       city: city.current!.value,
       state: state.current!.value,
-      pincode: pincode.current!.value,
+      pin: pin.current!.value,
       country: country.current!.value,
     });
   };
@@ -35,7 +35,7 @@ const AddressWrapper: FC<any> = ({ action }) => {
         <TextField required inputRef={state} label="State/Province/Region" fullWidth variant="standard" />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <TextField required inputRef={pincode} label="Zip / Postal code" fullWidth variant="standard" />
+        <TextField required inputRef={pin} label="Zip / Postal code" fullWidth variant="standard" />
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField required inputRef={country} label="Country" fullWidth variant="standard" />

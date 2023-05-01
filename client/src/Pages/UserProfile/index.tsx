@@ -48,7 +48,7 @@ const UserProfile: FC = () => {
           <UserDetails details={details} />
         )}
         {currentTab === 1 && (
-          <AddressDetails dataList={details.address} type="address" />
+          <AddressDetails />
         )}
       </Box>
     </>

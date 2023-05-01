@@ -5,7 +5,9 @@ const dataToString = (data: any) => {
   let str = '';
   const keys = Object.keys(data);
   keys.forEach((key: string) => {
-    str += `${key.toUpperCase()}: ${data[key]}\n`;
+    if (key !== '_id') {
+      str += `${key.toUpperCase()}: ${data[key]}\n`;
+    }
   });
   return [str.trimEnd(), keys.length];
 };

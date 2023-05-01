@@ -6,25 +6,24 @@ export const UserApis = baseApi.injectEndpoints({
     getAddresses: build.query<any, any>({
       query: () => ({
         url: apiUrls.user.address,
-        method: 'GET',
-        credentials: 'include',
       }),
+      providesTags: ['address'],
     }),
     deleteAddress: build.mutation<any, any>({
       query: (params) => ({
         url: apiUrls.user.address,
         method: 'DELETE',
         body: params,
-        credentials: 'include',
       }),
+      invalidatesTags: ['address'],
     }),
     addAddress: build.mutation<any, any>({
       query: (params) => ({
         url: apiUrls.user.address,
         method: 'POST',
         body: params,
-        credentials: 'include',
       }),
+      invalidatesTags: ['address'],
     }),
   }),
 });
