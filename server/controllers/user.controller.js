@@ -15,6 +15,7 @@ const userLogin = async (req, res) => {
                         email: user.email,
                         id: user._id,
                         cart: user.cart,
+                        address: user.address,
                     },
                     token: res.token,
                 });
@@ -48,6 +49,7 @@ const userRegister = async (req, res) => {
                 email: user.email,
                 id: user._id,
                 cart: user.cart,
+                address: user.address,
             },
             token: res.token,
         });
@@ -93,6 +95,19 @@ const refreshUser = async (req, res) => {
         ...data,
     });
 }
+
+// const deleteAddress = async (req, res) => {
+//     const x = await User.findById(req.user._id);
+
+// };
+// const addAddress = async (req, res) => {
+//     const x = await User.findById(req.user._id);
+
+// };
+
+// const userCard = async (req, res) => {
+
+// };
 
 module.exports = {
     userLogin,

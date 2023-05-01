@@ -4,8 +4,7 @@ import {
 import React, { FC } from 'react';
 import ImageBox from './ImageBox';
 import UserDetails from './UserDetails';
-import PaymentDetails from './PaymentDetails';
-import DeliveryDetails from './DeliveryDetails';
+import AddressDetails from './AddressDetails';
 
 const details = {
   username: 'Prakhar Saxena',
@@ -29,18 +28,6 @@ const details = {
       pin: '201018',
     },
   ],
-  card: [
-    {
-      name: 'HDFC card',
-      number: '1249-1209-4094-2123',
-      'expiry date': '12/25',
-    },
-    {
-      name: 'ICICI card',
-      number: '1202-9419-1294-9124',
-      'expiry date': '08/24',
-    },
-  ],
 };
 
 const UserProfile: FC = () => {
@@ -56,16 +43,12 @@ const UserProfile: FC = () => {
         <Tabs value={currentTab} onChange={handleChange} centered>
           <Tab label="User details" />
           <Tab label="Delivery details" />
-          <Tab label="Payment details" />
         </Tabs>
         {currentTab === 0 && (
           <UserDetails details={details} />
         )}
         {currentTab === 1 && (
-          <DeliveryDetails addresses={details.address} />
-        )}
-        {currentTab === 2 && (
-          <PaymentDetails cards={details.card} />
+          <AddressDetails dataList={details.address} type="address" />
         )}
       </Box>
     </>

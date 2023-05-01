@@ -37,6 +37,9 @@ export const apiUrls = {
     productReview: '/review/product',
     review: '/review',
   },
+  user: {
+    address: '/user/address',
+  },
 };
 
 export const uiUrls = {

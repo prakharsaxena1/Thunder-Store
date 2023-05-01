@@ -10,6 +10,11 @@ const itemSchema = new mongoose.Schema({
     pricePaid: { type: Number, required: true },
 });
 
+const cardSchema = new mongoose.Schema({
+    cardName: { type: String, required: true },
+    cardNumber: { type: Number, required: true },
+});
+
 const orderSchema = new mongoose.Schema({
     userID: {
         type: mongoose.Schema.Types.ObjectId,
@@ -18,7 +23,8 @@ const orderSchema = new mongoose.Schema({
     },
     products: { type: [itemSchema], required: true },
     totalAmount: { type: Number, required: true },
-    status: { type: String, enum: ["otw", "delivered"] }
+    status: { type: String, enum: ["otw", "delivered"] },
+    payment: cardSchema,
 }, {
     timestamps: true,
 });

@@ -26,9 +26,15 @@ const getStepContent = (step: number) => {
 
 const Checkout: FC = () => {
   const [activeStep, setActiveStep] = useState(0);
+  // const [orderState, setOrderState] = useState({
+  //   address: {}, card: {}, items: {},
+  // });
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    if (activeStep === steps.length - 1) {
+      // Handle order API request
+    }
   };
 
   const handleBack = () => {
