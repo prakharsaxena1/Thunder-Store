@@ -5,8 +5,8 @@ import { colors } from '../../Constants/constants';
 import PopupModal from '../PopupModal';
 import SearchBar from './SearchBar';
 import NavbarMenuItems from './NavbarMenuItems';
-import Cart from '../Cart/Cart';
-import Checkout from '../Checkout/Checkout';
+import Cart from '../../Pages/Cart/Cart';
+import Checkout from '../../Pages/Checkout/Checkout';
 
 const Navbar: FC = () => {
   const [showCart, setShowCart] = useState<boolean>(false);

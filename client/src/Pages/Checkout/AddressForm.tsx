@@ -6,10 +6,10 @@ import {
   Radio, FormControl, FormLabel, Box,
 } from '@mui/material';
 import UserApis from '../../redux/apis/User/user.api';
-import Loader from '../Loader';
-import ObjStrWrapper from '../ObjStrWrapper';
-import PopupModal from '../PopupModal';
-import AddressWrapper from '../AddressWrapper';
+import Loader from '../../Components/Loader';
+import ObjStrWrapper from '../../Components/ObjStrWrapper';
+import PopupModal from '../../Components/PopupModal';
+import AddressWrapper from '../../Components/AddressWrapper';
 
 const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
   const [show, setShow] = useState(false);

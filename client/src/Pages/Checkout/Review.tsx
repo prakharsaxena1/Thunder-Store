@@ -5,7 +5,7 @@ import {
 import { useAppSelector } from '../../redux/hooks';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import OrderApis from '../../redux/apis/Order/orders.api';
-import Loader from '../Loader';
+import Loader from '../../Components/Loader';
 
 const getAddressString = (addressObj: Record<string, string>) => {
   return `${addressObj?.address}\n${addressObj?.city}, ${addressObj?.state}, ${addressObj?.country}\n${addressObj?.pin}`;
