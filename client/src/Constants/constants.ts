@@ -25,9 +25,7 @@ export const apiUrls = {
     refreshToken: '/user/refresh-token',
   },
   orders: {
-    addOrder: '/order',
-    getOrdersByUser: '/order/user',
-    getOrderById: '/order',
+    order: '/order',
   },
   products: {
     product: '/product',

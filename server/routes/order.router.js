@@ -6,8 +6,9 @@ const orderController = require('../controllers/order.controller.js');
 const authMiddleware = passport.authenticate('jwt', { session: false });
 
 // Routes
-router.route('/').post(authMiddleware, orderController.addOrder);
-router.route('/user/:userId').get(authMiddleware, orderController.getOrdersByUser);
+router.route('/')
+  .get(authMiddleware, orderController.getOrdersByUser)
+  .post(authMiddleware, orderController.addOrder);
 router.route('/:orderId').get(authMiddleware, orderController.getOrderById);
 
 // Exports

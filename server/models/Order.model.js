@@ -13,7 +13,7 @@ const addressSchema = new mongoose.Schema({
 const itemSchema = new mongoose.Schema({
     projectId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project',
+        ref: 'Product',
         required: true
     },
     qty: { type: Number, required: true },

@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 
 const OrderItem: FC<any> = ({ order }) => {
+  console.log(order);
   const deliveryStatus = order.dateDelivered ? `Delivered ${order.dateDelivered}` : 'pending';
   return (
     <Box sx={{ m: 1 }}>
@@ -13,17 +14,17 @@ const OrderItem: FC<any> = ({ order }) => {
             {/* Ship */}
             <div>
               <Typography variant="body2">Ship to:</Typography>
-              <Typography variant="body1">Prakhar Saxena</Typography>
+              <Typography variant="body1">{order.shipTo.name}</Typography>
             </div>
             {/* Total $ */}
             <div>
               <Typography variant="body2">Total amount:</Typography>
-              <Typography variant="body1">6124</Typography>
+              <Typography variant="body1">{order.totalAmount}</Typography>
             </div>
             {/* Order placed on */}
             <div>
               <Typography variant="body2">Order placed on:</Typography>
-              <Typography variant="body1">21/02/2023</Typography>
+              <Typography variant="body1">{order.createdAt}</Typography>
             </div>
           </Stack>
         </Grid>
