@@ -1,36 +1,39 @@
 [
     {
-      "title": "To Kill a Mockingbird [Harper Lee] :books",
+      "title": "To Kill a Mockingbird [Harper Lee]",
       "price": 899,
       "description": "Compassionate, dramatic, and deeply moving, To Kill A Mockingbird takes readers to the roots of human behavior - to innocence and experience, kindness and cruelty, love and hatred, humor and pathos. Now with over 18 million copies in print and translated into forty languages, this regional story by a young Alabama woman claims universal appeal. Harper Lee always considered her book to be a simple love story. Today it is regarded as a masterpiece of American literature.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/71FxgtFKcQL.jpg"],
       "stock": 5,
       "discount": 0,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["To Kill a Mockingbird", "Harper Lee", "books", "book"]
     },
     {
-      "title": "The Great Gatsby [F. Scott Fitzgerald] :books",
+      "title": "The Great Gatsby [F. Scott Fitzgerald]",
       "price": 109,
       "description": "It's the Roaring Twenties and New York City is the place to be. Everything can be purchased, everyone can be bought. But, can you make money erase your past? As more and more people lose themselves to the lure of money, ironically the only person who remains unaffected is Jay Gatsby, the enigmatic host of the most extravagant parties. In this definitive tale on American culture, Fitzgerald pits a chaste dream against the corrupting influences of wealth and comes up with an epic story that can only be defined as 'a Great American novel'.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/817+192hZyS.jpg"],
       "stock": 12,
       "discount": 3,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["The Great Gatsby", "F. Scott Fitzgerald", "books", "book"]
     },
     {
-      "title": "Harry Potter and the Philosopher's Stone [J.K. Rowling] :books",
+      "title": "Harry Potter and the Philosopher's Stone [J.K. Rowling]",
       "price": 249,
       "description": "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/81m1s4wIPML.jpg"],
       "stock": 19,
       "discount": 0,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Harry Potter and the Philosopher's Stone", "J.K. Rowling", "books", "book"]
     },
     {
-      "title": "Ikigai: The Japanese secret to a long and happy life [Héctor García, Francesc Miralles] :books",
+      "title": "Ikigai The Japanese secret to a long and happy life [Héctor García, Francesc Miralles]",
       "price": 499,
       "description": "THE INTERNATIONAL BESTSELLER We all have an ikigai. It's the Japanese word for 'a reason to live' or 'a reason to jump out of bed in the morning'. It's the place where your needs, desires, ambitions, and satisfaction meet. A place of balance. Small wonder that finding your ikigai is closely linked to living longer. Finding your ikigai is easier than you might think. This book will help you work out what your own ikigai really is, and equip you to change your life. You have a purpose in this world: your skills, your interests, your desires and your history have made you the perfect candidate for something. All you have to do is find it. Do that, and you can make every single day of your life joyful and meaningful. ‘I read it and it's bewitched me ever since. I'm spellbound.' Chris Evans 'Ikigai gently unlocks simple secrets we can all use to live long, meaningful, happy lives. Science-based studies weave beautifully into honest, straight-talking conversation you won't be able to put down. Warm, patient, and kind, this book pulls you gently along your own journey rather than pushing you from behind.' Neil Pasricha, bestselling author of The Happiness Equation",
       "category": "books",
@@ -40,40 +43,44 @@
       ],
       "stock": 15,
       "discount": 4,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Ikigai: The Japanese secret to a long and happy life","Héctor García", "Francesc Miralles", "books", "book"]
     },
     {
-      "title": "Rich Dad Poor Dad [Robert Kiyosaki] :books",
+      "title": "Rich Dad Poor Dad [Robert Kiyosaki]",
       "price": 300,
       "description": "April of 2022 marks a 25-year milestone for the personal finance classic Rich Dad Poor Dad that still ranks as the #1 Personal Finance book of all time. And although 25 years have passed since Rich Dad Poor Dad was first published,readers will find that very little in the book itself has changed ― and for good reason. While so much in our world is changing a high speed, the lessons about money and the principles of Rich Dad Poor Dad haven't changed. Today, as money continues to play a key role in our daily lives, the messages in Robert Kiyosaki's international bestseller are more timely and more important than ever.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/81BE7eeKzAL.jpg"],
       "stock": 20,
       "discount": 7,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Rich Dad Poor Dad", "Robert Kiyosaki", "books", "book"]
     },
     {
-      "title": "Pride and Prejudice [Jane Austen] :books",
+      "title": "Pride and Prejudice [Jane Austen]",
       "price": 699,
       "description": "A beloved novel by Jane Austen that follows the romantic entanglements of the Bennet sisters in 19th-century England.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/61J8NJB9dTL.jpg"],
       "stock": 18,
       "discount": 1,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Pride and Prejudice", "Jane Austen", "books", "book"]
     },
     {
-      "title": "Dopamine Detox [Thibaut Meurisse] :books",
+      "title": "Dopamine Detox [Thibaut Meurisse]",
       "price": 349,
       "description": "When the time comes to work, we suddenly find an excess of other things to do. Instead of working toward our goals, we go for a walk, grab a coffee, or check our emails. Everything seems like a great idea—everything except the very things we should be doing. Do you recognize yourself in the above situation? If so, don't worry. You're simply overstimulated. Dopamine Detox will help you lower your level of stimulation and regain focus in 48 hours or less,so that you can tackle your key tasks.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/413tVFk--xS._SX260_.jpg"],
       "stock": 35,
       "discount": 10,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Dopamine Detox", "Thibaut Meurisse", "books", "book"]
     },
     {
-      "title": "The Hobbit [J.R.R. Tolkien] :books",
+      "title": "The Hobbit [J.R.R. Tolkien]",
       "price": "399",
       "description": "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.Written for J.R.R. Tolkien's own children, The Hobbit met with instant critical acclaim when it was first published in 1937. Now recognized as a timeless classic, this introduction to the hobbit Bilbo Baggins, the wizard Gandalf, Gollum, and the spectacular world of Middle-earth recounts of the adventures of a reluctant hero, a powerful and dangerous ring, and the cruel dragon Smaug the Magnificent. The text in this 372-page paperback edition is based on that first published in Great Britain by Collins Modern Classics (1998), and includes a note on the text by Douglas A. Anderson (2001).",
       "category": "books",
@@ -82,10 +89,11 @@
       ],
       "stock": 31,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["The Hobbit", "J.R.R. Tolkien", "books", "book"]
     },
     {
-      "title": "Wolfish: Wolf, Self, and the Stories We Tell About Fear [Erica Berry] :books",
+      "title": "Wolfish: Wolf, Self, and the Stories We Tell About Fear [Erica Berry]",
       "price": 899,
       "description": "An original and probing debut work of nonfiction by a brilliant new writer, rooted in her years-long quest to study the cultural legacy of the wolf.\nIn this enthralling, kaleidoscopic exploration of wolves both real and symbolic, Erica Berry weaves historic and scientific findings alongside criticism, journalism, and memoir to illuminate the strands of our cultural constructions of predator and prey, and what it means to navigate a world in which we can be both.\nFrom 17th-century Europeans referring to mysterious bodily sores as wolves, to contemporary xenophobia about wolves crossing national borders, wolves have long been made to carry our most entrenched sociopolitical, environmental, and bodily fears. Intimate and thought-provoking, Wolfish is a lyrical inquiry into the relationship between humans and wolves, anchored in the dual stories of one legendary tagged wolf, OR-7, and the author.",
       "category": "books",
@@ -94,10 +102,11 @@
       ],
       "stock": 15,
       "discount": 0,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Wolfish: Wolf, Self, and the Stories We Tell About Fear", "Erica Berry", "books", "book"]
     },
     {
-      "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones [James Clear] :books",
+      "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones [James Clear]",
       "price": 399,
       "description": "No matter your goals, Atomic Habits offers a proven framework for improving—every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.",
       "category": "books",
@@ -106,20 +115,22 @@
       ],
       "stock": 20,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones", "James Clear", "books", "book"]
     },
     {
-      "title": "Psych: The Story of the Human Mind [Paul Bloom] :books",
+      "title": "Psych: The Story of the Human Mind [Paul Bloom]",
       "price": 999,
       "description": "How does the brain—a three-pound wrinkly mass—give rise to intelligence and conscious experience? Was Freud right that we are all plagued by forbidden sexual desires? What is the function of emotions such as disgust, gratitude, and shame? Renowned psychologist Paul Bloom answers these questions and many more in Psych, his riveting new book about the science of the mind.\n Psych is an expert and passionate guide to the most intimate aspects of our nature, serving up the equivalent of a serious university course while being funny, engaging, and full of memorable anecdotes. But Psych is much more than a comprehensive overview of the field of psychology. Bloom reveals what psychology can tell us about the most pressing moral and political issues of our time—including belief in conspiracy theories, the role of genes in explaining human differences, and the nature of prejudice and hatred.",
       "category": "books",
       "images": ["https://m.media-amazon.com/images/I/81QNkeOJobL.jpg"],
       "stock": 20,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Psych: The Story of the Human Mind", "Paul Bloom", "books", "book"]
     },
     {
-      "title": "The Psychology of Money [Morgan Housel] :books",
+      "title": "The Psychology of Money [Morgan Housel]",
       "price": 299,
       "description": "Doing well with money isn't necessarily about what you know. It's about how you behave. And behavior is hard to teach, even to really smart people. Money--investing, personal finance, and business decisions--is typically taught as a math-based field, where data and formulas tell us exactly what to do. But in the real world people don't make financial decisions on a spreadsheet. They make them at the dinner table, or in a meeting room, where personal history, your own unique view of the world, ego, pride, marketing, and odd incentives are scrambled together. In The Psychology of Money, award-winning author Morgan Housel shares 19 short stories exploring the strange ways people think about money and teaches you how to make better sense of one of life's most important topics.",
       "category": "books",
@@ -128,10 +139,11 @@
       ],
       "stock": 11,
       "discount": 0,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["The Psychology of Money", "Morgan Housel", "books", "book"]
     },
     {
-      "title": "Red Dead Redemption 2 [ROCKSTAR GAMES] [PC, XBOX, Playstation] :books",
+      "title": "Red Dead Redemption 2 [ROCKSTAR GAMES]",
       "price": 2599,
       "description": "An epic open-world action-adventure game by Rockstar Games, set in the Wild West era of America.",
       "category": "games",
@@ -142,10 +154,11 @@
       ],
       "stock": 20,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Red Dead Redemption 2", "ROCKSTAR GAMES", "PC", "XBOX", "Playstation", "rdr2", "games"]
     },
     {
-      "title": "The Legend of Zelda: Breath of the Wild [Nintendo] [Nintendo Switch]",
+      "title": "The Legend of Zelda: Breath of the Wild [Nintendo]",
       "price": 1999,
       "description": "A critically acclaimed action-adventure game by Nintendo, featuring an open world and exploration-based gameplay.",
       "category": "games",
@@ -155,10 +168,11 @@
       ],
       "stock": 15,
       "discount": 3,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["The Legend of Zelda: Breath of the Wild", "Nintendo", "Nintendo Switch", "games"]
     },
     {
-      "title": "FIFA 22 [Electronic Arts] [PC, XBOX, Playstation]",
+      "title": "FIFA 22 [Electronic Arts]",
       "price": 1599,
       "description": "The latest installment in the popular football/soccer simulation game series by EA Sports, featuring updated graphics and gameplay.",
       "category": "games",
@@ -169,10 +183,11 @@
       ],
       "stock": 25,
       "discount": 2,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["FIFA 22", "Electronic Arts", "PC", "XBOX", "Playstation", "games"]
     },
     {
-      "title": "Call of Duty: Modern Warfare [ACTIVISION] [PC, XBOX, Playstation]",
+      "title": "Call of Duty: Modern Warfare [ACTIVISION]",
       "price": 1499,
       "description": "A first-person shooter game by Activision, featuring realistic graphics and intense multiplayer gameplay.",
       "category": "games",
@@ -183,10 +198,11 @@
       ],
       "stock": 10,
       "discount": 1,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Call of Duty: Modern Warfare", "cod", "ACTIVISION", "PC", "XBOX", "Playstation", "games"]
     },
     {
-      "title": "Assassin's Creed Valhalla [Ubisoft] [PC, XBOX, Playstation]",
+      "title": "Assassin's Creed Valhalla [Ubisoft]",
       "price": 2399,
       "description": "An action role-playing game by Ubisoft, set in the Viking Age and featuring exploration and combat.",
       "category": "games",
@@ -197,30 +213,33 @@
       ],
       "stock": 30,
       "discount": 4,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Assassin's Creed Valhalla", "Ubisoft", "PC", "XBOX", "Playstation", "games"]
     },
     {
-      "title": "Super Smash Bros. Ultimate [Nintendo] [Nintendo Switch]",
+      "title": "Super Smash Bros. Ultimate [Nintendo]",
       "price": 599,
       "description": "A popular fighting game by Nintendo, featuring a roster of iconic video game characters and multiplayer battles.",
       "category": "games",
       "images": ["https://m.media-amazon.com/images/I/81bH3+DbvNL._SY741_.jpg"],
       "stock": 18,
       "discount": 0,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Super Smash Bros. Ultimate", "Nintendo", "Nintendo Switch", "games"]
     },
     {
-      "title": "God of War [Sony] [Playstation]",
+      "title": "God of War [Sony]",
       "price": 999,
       "description": "A new beginning - his vengeance against the gods of Olympus far behind him, Kratos now lives as a man in the lands of Norse gods and monsters. As mentor and protector to a son determined to earn his respect, Kratos is faced with an unexpected opportunity to master the Rage that has long defined him",
       "category": "games",
       "images": ["https://m.media-amazon.com/images/I/81emBOJxExL._SX679_.jpg"],
       "stock": 12,
       "discount": 3,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["God of war", "Sony", "Playstation", "games"]
     },
     {
-      "title": "GTA V [Rockstar] [PC, XBOX, Playstation]",
+      "title": "GTA V [Rockstar]",
       "price": 999,
       "description": "The Grand Theft Auto V: Premium Edition Includes The Complete Grand Theft Auto V Story Experience, Free Access To The Ever-Evolving Grand Theft Auto Online + The Criminal Enterprise Starter Pack",
       "category": "games",
@@ -231,10 +250,11 @@
       ],
       "stock": 12,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["GTA V", "GTA 5", "GTA5", "Rockstar", "PC", "XBOX", "Playstation", "games"]
     },
     {
-      "title": "Minecraft [Mojang] [PC, XBOX, Playstation]",
+      "title": "Minecraft [Mojang]",
       "price": 999,
       "description": "Players have access to a virtual sandbox where they can explore, create, and survive. The game's strong community and open-ended gameplay have made it popular with people of all ages and helped it become one of the most successful video games ever.",
       "category": "games",
@@ -245,10 +265,11 @@
       ],
       "stock": 12,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Minecraft", "Mojang", "PC", "XBOX", "Playstation", "games"]
     },
     {
-      "title": "Battlefield  [EA] [PC, XBOX, Playstation]",
+      "title": "Battlefield [Electronic Arts]",
       "price": 1999,
       "description": "Push the frontline in Operations - Take part in a series of inter-connected multiplayer battles spread across multiple maps in the new Operations. Attackers must break through the lines of defenders, and push the conflict onto the next map.Experience the dawn of all-out war - be a part of the greatest battles ever known to man. From the heavily defended Alps to the scorching deserts of Arabia",
       "category": "games",
@@ -259,10 +280,11 @@
       ],
       "stock": 9,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Battlefield", "EA", "Electronic Arts", "PC", "XBOX", "Playstation", "games"]
     },
     {
-      "title": "HyperX Cloud Stinger :Headphone",
+      "title": "HyperX Cloud Stinger [HyperX]",
       "price": 6000,
       "description": "HyperX Cloud Stinger is among the cheapest HyperX gaming headset, but don't go on its pricing, as its performance is almost equal to the very high-end gaming headphones.The plastic material used in its design is the most important reason that HyperX Cloud Stinger has been placed in the budget segment instead of something pricier. But, again, don't go on the overall plastic build, as the Cloud Stinger doesn't feel cheap. Weighing 275 g is a bit heavier than its competitors but lighter than Astro A10. The headphone comes with padded, synthetic leather, earcups, and headband padding. And the material used in headband padding is excellent compared to the pricing of this headset.",
       "category": "electronics",
@@ -272,10 +294,11 @@
       ],
       "stock": 4,
       "discount": 30,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["HyperX Cloud Stinger", "Headphones", "electronics", "headset", "gaming"]
     },
     {
-      "title": "Logitech G331 :Headphone",
+      "title": "Logitech G331 [Logitech]",
       "price": 4700,
       "description": "Big 50 mm audio drivers produce a complete, expansive sound for a more immersive gaming experience. \nYour favorite games will finally sound the way they're supposed to: Amazing 6 mm mic makes sure your squadmates can hear you. Flip-to-mute boom silences you when you don't want to be heard and folds up out of the way when you don't need it.\nSensitivity: 107 dB SPL/mW Your headphones work with your PC or Mac or with gaming consoles including PlayStation 4, Xbox One, Nintendo Switch, and mobile devices via 3.5 mm cable\nEverything about these headphones is about comfort: The deluxe lightweight leatherette ear cups and headband are made to keep pressure off your ears. Ear cups rotate up to 90 degrees for convenience;\nConveniently and quickly adjust volume on any platform with the ear-cup mounted volume wheel Frequency response: 100 Hz-20 KHz . For PC, Console and Mobile Devices",
       "category": "electronics",
@@ -285,10 +308,11 @@
       ],
       "stock": 2,
       "discount": 8,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Logitech G331", "Headphones", "electronics", "headset", "gaming"]
     },
     {
-      "title": "Cooler Master MH630 :Headphone",
+      "title": "Cooler Master MH630 [Cooler Master]",
       "price": 4599,
       "description": "The Cooler Master MH630 comes with a Black design. However, you won’t find any RGB support. Weighing around 303 grams, this Cooler Master product is mainly made of plastic, but the headband is manufactured with steel to give it a premium look. Being a lightweight product, I didn’t feel any heaviness on my head while using it for long hours of gaming.",
       "category": "electronics",
@@ -298,10 +322,11 @@
       ],
       "stock": 9,
       "discount": 10,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Cooler Master MH630", "Headphones", "electronics", "headset", "gaming"]
     },
     {
-      "title": "realme Buds Air 3 :Earphones",
+      "title": "realme Buds Air 3 [Realme]",
       "price": 3949,
       "description": "Whether you want to watch your favourite movies on the go or enjoy listening to your playlist during intense workout sessions, the realme Buds Air 3 Earbuds are an ideal choice. Featuring Smart Wear Detection technology, these earbuds identify when you are wearing them and instantly pause music when you remove them from your ears. In addition, these earbuds enable you to manage your music or take a call while on the go, thanks to their advanced touch controls.",
       "category": "electronics",
@@ -312,10 +337,11 @@
       ],
       "stock": 4,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["realme Buds Air 3", "Earphones", "electronics", "tws"]
     },
     {
-      "title": "OnePlus Buds Z2 :Earphones",
+      "title": "OnePlus Buds Z2 [OnePlus]",
       "price": 12122,
       "description": "Active Noise Cancellation: Up to 40 dB noise cancelling with 2 modes - Faint (+/- 25dB) & Extreme (+/- 40 dB) through manual adjustment via OnePlus mobile or HeyMelody App.\nHigh Quality Sound: 11mm dynamic drivers acoustically tuned for bigger, bolder beats with razor-sharp treble & Dolby atmos support delivers immersive, true-to-life sound using industry leading spatial audio\n3-MIC ENC Call Noise Reduction: To keep your calls sounding smooth, the 3-MIC design trims down wind noise caused by air friction. It sharpens voice-pickup & cuts down surrounding noise for crystal clear speech.\nWorry-free Battery Life: Enjoy up to 38 hours of music and a quick fast charging of 10 minutes for 5 hours of playtime.\nBuilt for Mobile Gaming: Your winning advantage starts here with latency as low as 94ms, with Pro Gaming mode activated\nIP55 Water & Sweat Resistance",
       "category": "electronics",
@@ -326,10 +352,11 @@
       ],
       "stock": 13,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["OnePlus Buds Z2", "Earphones", "electronics", "tws"]
     },
     {
-      "title": "Jbl Tune 230Nc Bluetooth 5.2 Truly Wireless In Ear Earbuds :Earphones",
+      "title": "Jbl Tune 230Nc Bluetooth 5.2 Truly Wireless In Ear Earbuds [JBL]",
       "price": 5739,
       "description": "ACTIVE NOISE CANCELLATION EARBUDS: The Active Noise Cancellation technology with 4 microphones of these wireless earbuds lets you minimize audio distractions. With Ambient Aware, you can tune into your surroundings at any time so that you feel safer when you're out in the world, while TalkThru lets you stop for a quick chat without having to remove your headphones.\nUP TO 40 HOURS PLAYTIME: Never miss a beat with up to 40 hours of battery life (10 hours on the Earbuds + 30 hours in the Case) or up to 32 hours when noise cancelling is engaged (8 hours on the Earbuds + 24 hours in the Case). Need a boost? Speed Charge for just 10 minutes to get 2 hours of playtime.\nCUSTOMIZE YOUR SOUND WITH JBL HEADPHONES APP: Personalize your listening experience with My JBL Headphones App. Need more Bass? Less Bass? Boosted Bass? customize Equalizer settings as per your preference. Switch on Adaptive Noise cancellation, select your preferred Voice Assistant, set your Ambient sound settings, Find your Earbuds, Customize Touch controls and much more. Download your JBL Headphones App from Google Play Store or Apple App Store for Free.",
       "category": "electronics",
@@ -340,10 +367,11 @@
       ],
       "stock": 9,
       "discount": 35,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Jbl Tune 230Nc Bluetooth 5.2 Truly Wireless In Ear Earbuds", "electronics", "Earphones", "tws"]
     },
     {
-      "title": "Samsung Galaxy S23 Ultra 5G :Phone",
+      "title": "Samsung Galaxy S23 Ultra 5G [Samsung]",
       "price": 134999,
       "description": "Samsung Galaxy S23 Ultra 5G comes loaded with a plethora of high-end specifications, proving beneficial for both personal and professional needs. You can depend on the device with great visuals, advanced camera features, powerful processor setup and impressive battery layout. It is also a water-resistant and dustproof functionality equipped smartphone, featuring an on-screen optical fingerprint sensor.",
       "category": "electronics",
@@ -354,10 +382,11 @@
       ],
       "stock": 9,
       "discount": 10,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Samsung Galaxy S23 Ultra 5G", "phone", "mobile", "electronics"]
     },
     {
-      "title": "Apple iPhone 14 Pro Max ",
+      "title": "Apple iPhone 14 Pro Max [Apple]",
       "price": 139999,
       "description": "17.00 cm (6.7-inch) Super Retina XDR display featuring Always-On and ProMotion\nDynamic Island, a magical new way to interact with iPhone\n48MP Main camera for up to 4x greater resolution\nCinematic mode now in 4K Dolby Vision up to 30 fps\nAction mode for smooth, steady, handheld videos",
       "category": "electronics",
@@ -367,20 +396,22 @@
       ],
       "stock": 9,
       "discount": 9,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Apple iPhone 14 Pro Max", "iphone", "mobile", "electronics"]
     },
     {
-      "title": "Xiaomi 13 Pro :Phone",
+      "title": "Xiaomi 13 Pro [Xiaomi]",
       "price": 89999,
       "description": "50MP Leica professional optics helps in capture images in great detail. The largest camera sensor on a smartphone - Sony IMX989 1 inch sensor with 3.2 μm large pixels captures brighter images even in extreme lowlight. The 50MP Telephoto-Macro(75mm Leica portrait) and 50MP Ultra-wide lens enables you to capture in different perspectives. Xiaomi 13 Pro can supports 8K video recording and also can record in Dolby Vision for a professional cinematography experience. The high resolution 32MP front camera comes with smart FoV switching",
       "category": "electronics",
       "images": [""],
       "stock": 4,
       "discount": 11,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Xiaomi 13 Pro ", "phone", "mobile", "electronics"]
     },
     {
-      "title": "Nikon D7500 20.9MP DSLR Camera",
+      "title": "Nikon D7500 20.9MP DSLR [Nikon]",
       "price": 81999,
       "description": "Effective Pixels: 20.9 MP\nVideo Resolution: 4K at 30 FPS\nSensor: CMOS Sensor, APS-C (23.5x15.7mm)\nWiFi Available: Yes\nDimension & Weight: 720g, 135.5x72.5x104mm\n4K Ultra HD Video, 51 Point AF System, 180k-pixel RGB Sensor\n1 Year Product Warranty",
       "category": "electronics",
@@ -390,10 +421,11 @@
       ],
       "stock": 9,
       "discount": 4,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Nikon D7500 20.9MP DSLR", "Camera", "electronics"]
     },
     {
-      "title": "Nikon D5300 24.2MP Digital SLR Camera",
+      "title": "Nikon D5300 24.2MP Digital SLR [Nikon]",
       "price": 41750,
       "description": "Capture beautifully detailed photos and full-HD movies with the 24.2-million pixel DX-format CMOS sensor with no optical low-pass filter for superior image quality and definition\nBuilt in Wi-Fi for transmitting high quality images to a smart device for simple sharing along with built in GPS function that records location data\nExplore your creativity with the 3.2-inch, 1037k-dot vari-angle LCD monitor with wide viewing angle\nNikon's new EXPEED 4 Image Processing Engine to ensure even clearer photos and movies than before with shooting in low light\nThis updated kit boasts a much smaller, lighter, retractable 18-55mm VR II kit lens, making it more comfortable than ever to carry a Digital SLR",
       "category": "electronics",
@@ -404,10 +436,11 @@
       ],
       "stock": 9,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Nikon D5300 24.2MP Digital SLR", "Camera", "electronics"]
     },
     {
-      "title": "Crucial BX500 500GB 2.5-inch SATA 3D NAND Internal SSD",
+      "title": "Crucial BX500 500GB 2.5-inch SATA 3D NAND Internal SSD [Crucial]",
       "price": 1999,
       "description": "The new Crucial BX500 500GB Internal Solid State Drive improves your overall system responsiveness. It delivers sequential Read and Write speeds of up to 550MB/s and 500MB/s respectively.\nBeing 3X faster than a standard HDD, this SATA Crucial SSD lets you feel the difference with super-fast OS boot times and application loads. It also features SSD Endurance (TBW) of 120 Terabytes.",
       "category": "electronics",
@@ -417,10 +450,11 @@
       ],
       "stock": 9,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Crucial BX500 500GB 2.5-inch SATA 3D NAND Internal SSD", "electronics", "storage", "PC", "Laptop"]
     },
     {
-      "title": "WD Blue SN570 NVMe 500GB :ssd",
+      "title": "WD Blue SN570 NVMe 500GB [Western Digital]",
       "price": 3000,
       "description": "Read speeds up to 3,500 MB/s2 (500GB – 1TB models), Sequential Write Performance: 1200MB/s\nDownloadable Western Digital SSD Dashboard4 helps you monitor your drive’s health\nSlim M.2 2280 form factor",
       "category": "electronics",
@@ -430,10 +464,11 @@
       ],
       "stock": 9,
       "discount": 2,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["WD Blue SN570 NVMe 500GB", "western digital", "electronics", "storage", "PC", "Laptop"]
     },
     {
-      "title": "Crucial P3 500GB PCIe 3.0 3D NAND NVMe M.2 SSD",
+      "title": "Crucial P3 500GB PCIe 3.0 3D NAND NVMe M.2 SSD [Crucial]",
       "price": 3400,
       "description": "Impressive read/ write speeds up to 3500/3000MB/s\nSpacious storage up to 4TB\nSolid Gen3 performance. Micron Advanced 3D NAND. NVMe PCIe 3.0 M.2 (2280).\nPerforms up to 45% better than the previous generation⁴\nDynamic write acceleration. Multistep data integrity algorithm.",
       "category": "electronics",
@@ -443,10 +478,11 @@
       ],
       "stock": 9,
       "discount": 15,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Crucial P3 500GB PCIe 3.0 3D NAND NVMe M.2 SSD", "electronics", "storage", "PC", "Laptop"]
     },
     {
-      "title": "London Hills Solid Men's Round Neck Half Sleeve Sports TShirt",
+      "title": "London Hills Solid Men's Round Neck Half Sleeve Sports TShirt [London Hills]",
       "price": 299,
       "description": "Suitable for Gym, Workout, Running, Jogging, Cricket, Yoga, Night wear, Sportswear other outdoor activities.",
       "category": "fastion",
@@ -456,10 +492,11 @@
       ],
       "stock": 9,
       "discount": 0,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["London Hills Solid Men's Round Neck Half Sleeve Sports TShirt", "fashion", "shirt"]
     },
     {
-      "title": "Solid Men Half Sleeve Pure Cotton Round Neck TShirt",
+      "title": "Solid Men Half Sleeve Pure Cotton Round Neck TShirt [Generic]",
       "price": 199,
       "description": "Suitable for Gym, Workout, Running, Jogging, Cricket, Yoga, Night wear, Sportswear other outdoor activities.",
       "category": "fastion",
@@ -469,80 +506,88 @@
       ],
       "stock": 11,
       "discount": 0,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Solid Men Half Sleeve Pure Cotton Round Neck TShirt", "generic", "fashion", "shirt"]
     },
     {
-      "title": "IndoPrimo Men's Classic Fit Casual Shirt",
+      "title": "IndoPrimo Men's Classic Fit Casual Shirt [IndoPrimo]",
       "price": 499,
       "description": "Care Instructions: Hand Wash Only\nFit Type: Regular Fit\nWash Care: Hand Wash Only\nFabric Type: Cotton",
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/61QwMfrVbaL._UY741_.jpg"],
       "stock": 14,
       "discount": 10,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["IndoPrimo Men's Classic Fit Casual Shirt", "fashion"]
     },
     {
-      "title": "Dennis Lingo Men's Solid Chinese Collar Casual Shirt",
+      "title": "Dennis Lingo Men's Solid Chinese Collar Casual Shirt [Dennis Lingo]",
       "price": 499,
       "description": "Solid full sleeve casual shirt\nSlim Fit\nBest for casual & smart casual wear",
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/51v8UlSQfBL._UX679_.jpg"],
       "stock": 17,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Dennis Lingo Men's Solid Chinese Collar Casual Shirt", "fashion"]
     },
     {
-      "title": "Jockey Men's Cotton Track Pants",
+      "title": "Jockey Men's Cotton Track Pants [Jockey]",
       "price": 1099,
       "description": "Style Number:9500\nMaterial composition:80% cotton, 20% polyester\nSuper combed Cotton Rich fabric\nComfortable waistband with drawstring\nConvenient side pockets\nRegular fit\nLabel free for all day comfort",
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/61qoz5T51VL._UX569_.jpg"],
       "stock": 11,
       "discount": 8,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Jockey Men's Cotton Track Pants", "fashion", "jeans"]
     },
     {
-      "title": "Nike' Unisex-Adult Track Pants :Nike",
+      "title": "Nike' Unisex-Adult Track Pants [Nike]",
       "price": 999,
       "description": "Nike pants",
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/414E+szoKKL.jpg"],
       "stock": 11,
       "discount": 0,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Nike Unisex-Adult Track Pants", "jeans", "fashion"]
     },
     {
-      "title": "Lee Men Pants :jeans",
+      "title": "Lee Men Pants [Lee]",
       "price": 1799,
       "description": "Men jeans",
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/81hRsnzkpLL._UX569_.jpg"],
       "stock": 11,
       "discount": 10,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Lee Men Pants", "jeans", "fashion"]
     },
     {
-      "title": "Lee Men's Slim Fit Jeans",
+      "title": "Lee Men's Slim Fit Jeans [Lee]",
       "price": 2299,
       "description": "Lee Men's Slim Fit Jeans",
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/819lFYghn+L._UX569_.jpg"],
       "stock": 11,
       "discount": 25,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Lee Men's Slim Fit Jeans", "fashion"]
     },
     {
-      "title": "Lee Men Jeans blue",
+      "title": "Lee Men Jeans blue [Lee]",
       "price": 1999,
       "description": "Lee Men Jeans",
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/61EPxK6Pf-L._UX679_.jpg"],
       "stock": 11,
       "discount": 6,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Lee Men Jeans blue", "fashion"]
     },
     {
-      "title": "Fur Jaden Anti Theft Backpack 15.6 Inch Laptop Bag with USB Charging Port",
+      "title": "Fur Jaden Anti Theft Backpack 15.6 Inch Laptop Bag with USB Charging Port [Fur Jaden]",
       "price": 899,
       "description": "Anti theft backpack",
       "category": "fastion",
@@ -552,10 +597,11 @@
       ],
       "stock": 11,
       "discount": 10,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Fur Jaden Anti Theft Backpack 15.6 Inch Laptop Bag with USB Charging Port", "bag", "school", "laptop"]
     },
     {
-      "title": "Wildcraft Nylon 44 Ltrs Casual Backpack",
+      "title": "Wildcraft Nylon 44 Ltrs Casual Backpack [Wildcraft]",
       "price": 1799,
       "description": "Number of compartments: 3, Laptop Sleeve: Yes",
       "category": "fastion",
@@ -565,20 +611,22 @@
       ],
       "stock": 11,
       "discount": 8,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["Wildcraft Nylon 44 Ltrs Casual Backpack", "bag", "school", "laptop"]
     },
     {
-      "title": "BATA Mens Driver Sneaker :shoes",
+      "title": "BATA Mens Driver Sneaker [Bata]",
       "price": 599,
       "description": "Sole: Rubber\nClosure: Pull On\nShoe Width: Medium\nStylish Shoes\nTarget gender: male",
       "category": "fastion",
       "images": ["https://m.media-amazon.com/images/I/61zRflRqKBS._UX695_.jpg"],
       "stock": 11,
       "discount": 10,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["BATA Mens Driver Sneaker", "shoes", "fashion"]
     },
     {
-      "title": "US Polo Association Mens Abor Sneakers :shoes",
+      "title": "US Polo Association Mens Abor Sneakers [US Polo Association]",
       "price": 1299,
       "description": "Sole: Thermoplastic Elastomers\nClosure: Lace-Up\nFit Type: Regular\nShoe Width: Medium\nSneaker\nTarget gender: male",
       "category": "fastion",
@@ -588,6 +636,7 @@
       ],
       "stock": 11,
       "discount": 5,
-      "rating": { "rate": 0, "count": 0 }
+      "rating": { "rate": 0, "count": 0 },
+      "keywords": ["US Polo Association Mens Abor Sneakers", "shoes", "fashion"]
     }
 ]

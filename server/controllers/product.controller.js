@@ -4,7 +4,12 @@ const getProducts = async (req, res) => {
   try {
     const { search } = req.query;
     const productsArray = await Product.find({
-      title: { $regex: search, $options: 'i' },
+      $or: [
+        { title: { $regex: search, $options: 'i' } },
+        { description: { $regex: search, $options: 'i' } },
+        { category: { $regex: search, $options: 'i' } },
+        { keywords: { $regex: search, $options: 'i' } },
+      ],
     });
     res.status(200).json({
       products: productsArray,

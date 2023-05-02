@@ -36,7 +36,7 @@ const Order: React.FC = () => {
     >
       <Typography variant="h3" component="h3">Orders</Typography>
       <Box sx={{ p: 2 }}>
-        {data && data?.orders?.map((order: any) => <OrderItem order={order} />)}
+        {data && data?.orders?.map((order: any, i: number) => <OrderItem key={i} order={order} />)}
       </Box>
     </Box>
   );

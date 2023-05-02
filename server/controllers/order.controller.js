@@ -18,7 +18,7 @@ const addOrder = async (req, res) => {
 const getOrdersByUser = async (req, res) => {
   const userID = req.user._id;
   if (userID) {
-    const orders = await Order.find({ userID }).populate({ path: 'Product', strictPopulate: false });
+    const orders = await Order.find({ userID }).populate('products.projectId');
     return res.status(200).json({ status: 'success', orders });
   }
   return res.status(400).json({ status: 'failed', message: 'Invalid user' });

@@ -12,7 +12,8 @@ const productSchema = new mongoose.Schema({
     rating: {
         rate: { type: Number, default: 0 },
         count: { type: Number, default: 0 },
-    }
+    },
+    keywords: [{ type: String, required: true }],
 });
 
 module.exports = mongoose.model('Product', productSchema);
