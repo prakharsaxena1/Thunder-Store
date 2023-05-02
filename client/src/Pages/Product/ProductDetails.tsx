@@ -32,9 +32,27 @@ const ProductDetails: FC<any> = ({ product }) => {
             <RatingWrapper rateValue={product.rating.rate} />
             <Typography variant="body2">{`(${product.rating.count})`}</Typography>
           </Stack>
-          <Stack spacing={2} justifyContent="flex-start" alignItems="flex-start">
-            <PriceDisplay price={product.price} discount={product.discount} />
-            <Button variant="contained" color="warning" disabled={Boolean(cartData.cartId[product._id])} onClick={addToCart}>
+          <Stack spacing={1} justifyContent="flex-start" alignItems="flex-start">
+            {product.stock === 0
+              ? (
+                <Typography variant="body1" sx={{ color: '#CF000F' }}>
+                  Out of stock
+                </Typography>
+              )
+              : (
+                <PriceDisplay price={product.price} discount={product.discount} />
+              )}
+            {product.stock <= 10 && product.stock > 0 && (
+              <Typography variant="body2" sx={{ color: '#FFA400' }}>
+                {`Only ${product.stock} left in stock!`}
+              </Typography>
+            )}
+            <Button
+              variant="contained"
+              color="warning"
+              disabled={Boolean(cartData.cartId[product._id]) || product.stock === 0}
+              onClick={addToCart}
+            >
               Add to cart
             </Button>
           </Stack>
