@@ -1,11 +1,13 @@
 const Order = require('../models/Order.model');
 
 const addOrder = async (req, res) => {
-  if (req.user.userID && req.body.products.length > 0 && req.body.totalAmount) {
+  if (req.body.products.length > 0 && req.body.totalAmount) {
     const order = await Order.create({
-      userID: req.user.userID,
+      userID: req.user._id,
+      payment: req.body.payment,
       products: req.body.products,
       totalAmount: req.body.totalAmount,
+      shipTo: req.body.shipTo,
       status: "otw",
     });
     return res.status(201).json({ status: 'success', order });

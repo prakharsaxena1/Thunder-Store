@@ -5,7 +5,7 @@ const dataToString = (data: any) => {
   let str = '';
   const keys = Object.keys(data);
   keys.forEach((key: string) => {
-    if (key !== '_id') {
+    if (key !== '_id' && key !== 'name') {
       str += `${key.toUpperCase()}: ${data[key]}\n`;
     }
   });
@@ -24,6 +24,12 @@ const RadioSelectWrapper: FC<any> = ({ data }) => {
         maxRows={maxRows}
         value={stringData}
         size="small"
+        sx={{
+          '& .MuiInputBase-input.Mui-disabled': {
+            WebkitTextFillColor: '#000000',
+          },
+          minWidth: '300px',
+        }}
       />
     </Box>
   );

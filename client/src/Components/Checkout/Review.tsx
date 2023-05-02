@@ -1,42 +1,59 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
+import React, { FC } from 'react';
+import {
+  Button, Typography, List, ListItem, ListItemText, Grid, Box,
+} from '@mui/material';
+import { useAppSelector } from '../../redux/hooks';
+import { cartSelector } from '../../redux/slices/cart/cart.selector';
+import OrderApis from '../../redux/apis/Order/orders.api';
+import Loader from '../Loader';
 
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
+const getAddressString = (addressObj: Record<string, string>) => {
+  return `${addressObj?.address}\n${addressObj?.city}, ${addressObj?.state}, ${addressObj?.country}\n${addressObj?.pin}`;
+};
 
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
-
-const Review = () => {
+const Review: FC<any> = ({ data, handleBack, handleNext }) => {
+  const { address, payment } = data;
+  const cartData = useAppSelector(cartSelector);
+  const [orderTrigger, { isLoading }] = OrderApis.useAddOrderMutation();
+  const placeOrder = () => {
+    // Make order object
+    const uniqueKeys = Object.keys(cartData.cartId);
+    const products = uniqueKeys.map((key) => ({
+      projectId: key,
+      pricePaid: cartData.cart.find((item) => item.productID === key)?.price,
+      qty: cartData.cartId[key],
+    }));
+    const order = {
+      products,
+      shipTo: {
+        ...address, pin: Number(address.pin),
+      },
+      totalAmount: cartData.cartValue,
+      payment: {
+        cardName: payment.name,
+        cardNumber: payment.number,
+      },
+    };
+    orderTrigger(order);
+    handleNext();
+  };
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <Typography variant="h6" gutterBottom>Order summary</Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+        {cartData.cart.map((product) => (
+          <ListItem key={product.title} sx={{ py: 1, px: 0 }}>
+            <ListItemText primary={product.title} secondary={`Qty: ${cartData.cartId[product.productID]}`} />
+            <Typography variant="body2">{cartData.cartId[product.productID] * product.price}</Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            {`Rs ${cartData.cartValue}`}
           </Typography>
         </ListItem>
       </List>
@@ -45,27 +62,31 @@ const Review = () => {
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{address.name.toUpperCase()}</Typography>
+          <Typography gutterBottom>{getAddressString(address)}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Payment details
           </Typography>
           <Grid container>
-            {payments.map((payment) => (
-              <div key={payment.name}>
+            {payment && (
+              <div>
                 <Grid item xs={6}>
                   <Typography gutterBottom>{payment.name}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
+                  <Typography gutterBottom>{payment.number}</Typography>
                 </Grid>
               </div>
-            ))}
+            )}
           </Grid>
         </Grid>
       </Grid>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>Back</Button>
+        <Button variant="contained" onClick={placeOrder} sx={{ mt: 3, ml: 1 }}>Place Order</Button>
+      </Box>
     </>
   );
 };
