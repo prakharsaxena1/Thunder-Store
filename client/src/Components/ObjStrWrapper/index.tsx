@@ -1,36 +1,52 @@
 import React, { FC } from 'react';
-import { Box, TextField } from '@mui/material';
+import { Box, TextField, Typography } from '@mui/material';
 
-const dataToString = (data: any) => {
+const dataToString = (data: any, textOnly = false) => {
   let str = '';
   const keys = Object.keys(data);
   keys.forEach((key: string) => {
     if (key !== '_id' && key !== 'name') {
-      str += `${key.toUpperCase()}: ${data[key]}\n`;
+      if (textOnly) {
+        str += `${data[key]}, `;
+      } else {
+        str += `${key.toUpperCase()}: ${data[key]}\n`;
+      }
     }
   });
-  return [str.trimEnd(), keys.length];
+  return [str.substring(0, str.length - 2), keys.length];
 };
 
-const RadioSelectWrapper: FC<any> = ({ data }) => {
-  const [stringData, maxRows] = dataToString(data);
+const textOnlyProps = {
+  p: 1,
+  m: 1,
+  backgroundColor: 'whitesmoke',
+  border: '1px solid grey',
+};
+
+const RadioSelectWrapper: FC<any> = ({ data, textOnly }) => {
+  const [stringData, maxRows] = dataToString(data, textOnly);
   return (
-    <Box sx={{ p: 1 }}>
-      <TextField
-        label={data.name}
-        multiline
-        disabled
-        fullWidth
-        maxRows={maxRows}
-        value={stringData}
-        size="small"
-        sx={{
-          '& .MuiInputBase-input.Mui-disabled': {
-            WebkitTextFillColor: '#000000',
-          },
-          minWidth: '300px',
-        }}
-      />
+    <Box
+      sx={textOnly ? textOnlyProps : { p: 1 }}
+    >
+      {textOnly
+        ? (<Typography variant="body1">{stringData}</Typography>)
+        : (
+          <TextField
+            label={data.name}
+            multiline
+            disabled
+            fullWidth
+            maxRows={maxRows}
+            value={stringData}
+            size="small"
+            sx={{
+              '& .MuiInputBase-input.Mui-disabled': {
+                WebkitTextFillColor: '#000000',
+              },
+            }}
+          />
+        )}
     </Box>
   );
 };

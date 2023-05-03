@@ -16,7 +16,7 @@ const UserProfile: FC = () => {
   const userData = useAppSelector(userSelector);
   return (
     <>
-      <ImageBox photo={userData?.profilePhoto || '/imgs/Gojo.jpg'} username={userData?.username} />
+      <ImageBox photo={userData?.profilePhoto} username={userData?.username} />
       <Box>
         <Tabs value={currentTab} onChange={handleChange} centered>
           <Tab label="User details" />

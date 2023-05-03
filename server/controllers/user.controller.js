@@ -51,6 +51,7 @@ const userRegister = async (req, res) => {
                 id: user._id,
                 cart: user.cart,
                 address: user.address,
+                profilePhoto: user.profilePhoto,
             },
             token: res.token,
         });

@@ -48,6 +48,7 @@ const App = () => {
         id: foundUser.id,
         username: foundUser.username,
         email: foundUser.email,
+        profilePhoto: foundUser.profilePhoto,
       }));
     }
   }, []);

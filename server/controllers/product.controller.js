@@ -6,7 +6,6 @@ const getProducts = async (req, res) => {
     const productsArray = await Product.find({
       $or: [
         { title: { $regex: search, $options: 'i' } },
-        { description: { $regex: search, $options: 'i' } },
         { category: { $regex: search, $options: 'i' } },
         { keywords: { $regex: search, $options: 'i' } },
       ],

@@ -59,7 +59,7 @@ const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
         <FormLabel>Where to deliver your order?</FormLabel>
         <RadioGroup
           name="address"
-          sx={{ display: 'flex' }}
+          sx={{ p: 1 }}
           value={addressValue}
           onChange={handleChange}
         >
@@ -68,7 +68,7 @@ const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
               key={i}
               value={data.name}
               control={<Radio />}
-              label={<ObjStrWrapper data={data} />}
+              label={<ObjStrWrapper data={data} textOnly />}
             />
           ))}
         </RadioGroup>

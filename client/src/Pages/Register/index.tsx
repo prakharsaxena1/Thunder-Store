@@ -10,6 +10,7 @@ import { useAppDispatch } from '../../redux/hooks';
 import { setUserDetails } from '../../redux/slices/user/userSlice';
 import { setCartItems } from '../../redux/slices/cart/cartSlice';
 import { writeLS } from '../../utils/helper';
+import { profileURL } from '../../Constants/constants';
 
 const Register: FC = () => {
   const [username, setUsername] = useState('');
@@ -33,7 +34,7 @@ const Register: FC = () => {
             id: res.data.id,
             username: res.data.username,
             email: res.data.email,
-            profilePhoto: res.data.profilePhoto,
+            profilePhoto: res.data.profilePhoto || profileURL,
           };
           dispatch(setUserDetails(userDetails));
           dispatch(setCartItems(res.data.cart));

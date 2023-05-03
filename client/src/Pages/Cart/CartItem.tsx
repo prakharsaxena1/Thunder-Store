@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
   Typography, IconButton, Grid, Paper,
 } from '@mui/material';
@@ -12,16 +12,13 @@ import { decrementQuantity, incrementQuantity } from '../../redux/slices/cart/ca
 import { getPrice } from '../../utils/helper';
 
 const CartItem: FC<any> = ({ data }) => {
-  const [qty, setQty] = useState(1);
   const cartData = useAppSelector(cartSelector);
   const dispatch = useAppDispatch();
   const handleQtyIncrement = () => {
     dispatch(incrementQuantity(data));
-    setQty(cartData.cartId[data.productID] + 1);
   };
   const handleQtyDecrement = () => {
     dispatch(decrementQuantity(data));
-    setQty(cartData.cartId[data.productID] - 1);
   };
   return (
     <Paper sx={{ p: 1, m: 1 }}>
@@ -61,10 +58,11 @@ const CartItem: FC<any> = ({ data }) => {
             >
               <RemoveCircleOutlineIcon />
             </IconButton>
-            <input name="quantity" type="text" className={styles.quantity__input} value={qty} readOnly />
+            <input name="quantity" type="text" className={styles.quantity__input} value={cartData.cartId[data.productID]} readOnly />
             <IconButton
               className={styles.quantity__plus}
               onClick={handleQtyIncrement}
+              disabled={cartData.cartId[data.productID] + 1 > data.stock}
             >
               <AddCircleOutlineIcon />
             </IconButton>

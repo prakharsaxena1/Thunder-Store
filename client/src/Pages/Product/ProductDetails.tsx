@@ -19,6 +19,7 @@ const ProductDetails: FC<any> = ({ product }) => {
     price: product.price,
     discount: product.discount,
     image: product.images[0],
+    stock: product.stock,
   }));
   return (
     <Grid container spacing={2} justifyContent="center">

@@ -8,6 +8,7 @@ interface CartI {
   price: number;
   discount: number;
   image: string;
+  stock: number;
 }
 
 interface InitialStateType {
