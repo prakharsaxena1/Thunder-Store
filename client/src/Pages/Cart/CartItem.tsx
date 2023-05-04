@@ -10,14 +10,24 @@ import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { decrementQuantity, incrementQuantity } from '../../redux/slices/cart/cartSlice';
 import { getPrice } from '../../utils/helper';
+import UserApis from '../../redux/apis/User/user.api';
 
 const CartItem: FC<any> = ({ data }) => {
   const cartData = useAppSelector(cartSelector);
   const dispatch = useAppDispatch();
+  const [CartTrigger] = UserApis.useAddItemToCartMutation();
   const handleQtyIncrement = () => {
+    CartTrigger({
+      productId: data.productID,
+      operation: 'add',
+    });
     dispatch(incrementQuantity(data));
   };
   const handleQtyDecrement = () => {
+    CartTrigger({
+      productId: data.productID,
+      operation: 'delete',
+    });
     dispatch(decrementQuantity(data));
   };
   return (

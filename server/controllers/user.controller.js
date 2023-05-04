@@ -4,7 +4,7 @@ const auth = require('../auth/auth');
 const userLogin = async (req, res) => {
     try {
         if (req.body.email && req.body.password) {
-            const user = await User.findOne({ email: req.body.email });
+            const user = await User.findOne({ email: req.body.email }).populate('cart');
             if (user.password === req.body.password) {
                 res = auth.setAuthCookie(res, user);
                 return res.status(200).json({
@@ -15,7 +15,14 @@ const userLogin = async (req, res) => {
                         email: user.email,
                         id: user._id,
                         profilePhoto: user.profilePhoto,
-                        cart: user.cart,
+                        cart: user.cart.map((item) => ({
+                            discount: item.discount,
+                            image: item.images[0],
+                            price: item.price,
+                            productID: item._id,
+                            stock: item.stock,
+                            title: item.title,
+                        })),
                         address: user.address,
                     },
                     token: res.token,
@@ -158,10 +165,10 @@ const updateCart = async (req, res) => {
         const user = await User.findById(req.user._id);
         const cart = [...user.cart]
         if (req.body.operation === 'delete') {
-            
-        }
-        if (req.body.operation === 'add') {
-            
+            const index = cart.findIndex(item => item.productId === req.body.productId);
+            cart.splice(index, 1);
+        } else if (req.body.operation === 'add') {
+            cart.push(req.body.productId);
         }
         user.cart = cart;
         await user.save();

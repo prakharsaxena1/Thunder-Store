@@ -9,18 +9,32 @@ import RatingWrapper from '../../Components/RatingWrapper';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { addItemToCart } from '../../redux/slices/cart/cartSlice';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
+import { colors } from '../../Constants/constants';
+import UserApis from '../../redux/apis/User/user.api';
+// import Loader from '../../Components/Loader';
 
 const ProductDetails: FC<any> = ({ product }) => {
   const dispatch = useAppDispatch();
   const cartData = useAppSelector(cartSelector);
-  const addToCart = () => dispatch(addItemToCart({
-    productID: product._id,
-    title: product.title,
-    price: product.price,
-    discount: product.discount,
-    image: product.images[0],
-    stock: product.stock,
-  }));
+  const [CartTrigger] = UserApis.useAddItemToCartMutation();
+  const addToCart = () => {
+    CartTrigger({
+      productId: product._id,
+      operation: 'add',
+    });
+    dispatch(addItemToCart({
+      productID: product._id,
+      title: product.title,
+      price: product.price,
+      discount: product.discount,
+      image: product.images[0],
+      stock: product.stock,
+    }));
+  };
+
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={10} sm={6} md={5}>
@@ -36,7 +50,7 @@ const ProductDetails: FC<any> = ({ product }) => {
           <Stack spacing={1} justifyContent="flex-start" alignItems="flex-start">
             {product.stock === 0
               ? (
-                <Typography variant="body1" sx={{ color: '#CF000F' }}>
+                <Typography variant="body1" sx={{ color: colors.outOfStock }}>
                   Out of stock
                 </Typography>
               )
@@ -44,7 +58,7 @@ const ProductDetails: FC<any> = ({ product }) => {
                 <PriceDisplay price={product.price} discount={product.discount} />
               )}
             {product.stock <= 10 && product.stock > 0 && (
-              <Typography variant="body2" sx={{ color: '#FFA400' }}>
+              <Typography variant="body2" sx={{ color: colors.stockLeft }}>
                 {`Only ${product.stock} left in stock!`}
               </Typography>
             )}

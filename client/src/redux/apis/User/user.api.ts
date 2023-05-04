@@ -25,6 +25,13 @@ export const UserApis = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['address'],
     }),
+    addItemToCart: build.mutation<any, any>({
+      query: (params) => ({
+        url: apiUrls.user.cart,
+        method: 'PUT',
+        body: params,
+      }),
+    }),
   }),
 });
 

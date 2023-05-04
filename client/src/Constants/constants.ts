@@ -14,6 +14,8 @@ export const urls = {
 
 export const colors = {
   primary: 'rgb(241 241 241 / 34%)',
+  stockLeft: '#FFA400',
+  outOfStock: '#CF000F',
 };
 
 export const apiUrls = {
@@ -37,6 +39,7 @@ export const apiUrls = {
   },
   user: {
     address: '/user/address',
+    cart: '/user/cart',
   },
 };
 

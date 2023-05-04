@@ -24,7 +24,7 @@ const Review: FC<any> = ({ data, handleBack, handleNext }) => {
       qty: cartData.cartId[key],
     }));
     const order = {
-      shipTo: { ...address, pin: Number(address.pin) },
+      shipTo: address._id,
       products,
       payment: {
         cardName: payment.name,
