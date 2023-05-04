@@ -17,6 +17,7 @@ import Product from './Pages/Product';
 import { useAppDispatch } from './redux/hooks';
 import { setUserDetails } from './redux/slices/user/userSlice';
 import AccountApis from './redux/apis/Account/account.api';
+import { setCartItems } from './redux/slices/cart/cartSlice';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,6 +51,7 @@ const App = () => {
         email: foundUser.email,
         profilePhoto: foundUser.profilePhoto,
       }));
+      dispatch(setCartItems([]));
     }
   }, []);
   return (

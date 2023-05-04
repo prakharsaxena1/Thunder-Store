@@ -153,6 +153,30 @@ const getAddress = async (req, res) => {
     }
 };
 
+const updateCart = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        const cart = [...user.cart]
+        if (req.body.operation === 'delete') {
+            
+        }
+        if (req.body.operation === 'add') {
+            
+        }
+        user.cart = cart;
+        await user.save();
+        return res.status(200).json({
+            status: 'success',
+            data: [...user.cart]
+        });
+    } catch (err) {
+        return res.status(400).json({
+            status: 'failed',
+            message: 'Invalid request',
+        });
+    }
+};
+
 module.exports = {
     userLogin,
     userRegister,
@@ -162,4 +186,5 @@ module.exports = {
     deleteAddress,
     addAddress,
     getAddress,
+    updateCart,
 }

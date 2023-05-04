@@ -3,11 +3,7 @@ const { addressSchema } = require('./user.model');
 mongoose.set('strictQuery', true);
 
 const itemSchema = new mongoose.Schema({
-    projectId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true
-    },
+    product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
     qty: { type: Number, required: true },
     pricePaid: { type: Number, required: true },
 });
@@ -18,16 +14,12 @@ const cardSchema = new mongoose.Schema({
 });
 
 const orderSchema = new mongoose.Schema({
-    userID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     shipTo: { type: addressSchema, required: true },
     products: { type: [itemSchema], required: true },
+    payment: cardSchema,
     totalAmount: { type: Number, required: true },
     status: { type: String, enum: ["otw", "delivered"] },
-    payment: cardSchema,
 }, {
     timestamps: true,
 });

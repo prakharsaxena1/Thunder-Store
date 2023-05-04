@@ -1,13 +1,13 @@
 const Order = require('../models/Order.model');
 
 const addOrder = async (req, res) => {
-  if (req.body.products.length > 0 && req.body.totalAmount) {
+  if (req.body.products.length > 0 && req.body.totalAmount > 0) {
     const order = await Order.create({
-      userID: req.user._id,
-      payment: req.body.payment,
-      products: req.body.products,
-      totalAmount: req.body.totalAmount,
+      user: req.user._id,
       shipTo: req.body.shipTo,
+      products: req.body.products,
+      payment: req.body.payment,
+      totalAmount: req.body.totalAmount,
       status: "otw",
     });
     return res.status(201).json({ status: 'success', order });
@@ -16,9 +16,9 @@ const addOrder = async (req, res) => {
 };
 
 const getOrdersByUser = async (req, res) => {
-  const userID = req.user._id;
-  if (userID) {
-    const orders = await Order.find({ userID }).populate('products.projectId');
+  const user = req.user._id;
+  if (user) {
+    const orders = await Order.find({ user }).populate('products.product');
     return res.status(200).json({ status: 'success', orders });
   }
   return res.status(400).json({ status: 'failed', message: 'Invalid user' });

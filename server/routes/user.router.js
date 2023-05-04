@@ -17,5 +17,8 @@ router.route('/address')
   .post(authMiddleware, userController.addAddress)
   .delete(authMiddleware, userController.deleteAddress);
 
+router.route('/cart')
+  .put(authMiddleware, userController.updateCart)
+
 // Exports
 module.exports = router;

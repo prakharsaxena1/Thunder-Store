@@ -19,20 +19,18 @@ const Review: FC<any> = ({ data, handleBack, handleNext }) => {
     // Make order object
     const uniqueKeys = Object.keys(cartData.cartId);
     const products = uniqueKeys.map((key) => ({
-      projectId: key,
+      product: key,
       pricePaid: cartData.cart.find((item) => item.productID === key)?.price,
       qty: cartData.cartId[key],
     }));
     const order = {
+      shipTo: { ...address, pin: Number(address.pin) },
       products,
-      shipTo: {
-        ...address, pin: Number(address.pin),
-      },
-      totalAmount: cartData.cartValue,
       payment: {
         cardName: payment.name,
         cardNumber: payment.number,
       },
+      totalAmount: cartData.cartValue,
     };
     orderTrigger(order);
     handleNext();
