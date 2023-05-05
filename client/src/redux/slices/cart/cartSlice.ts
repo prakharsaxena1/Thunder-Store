@@ -83,7 +83,10 @@ const cartSlice = createSlice({
       cartItemLS(action.payload, 'remove', action.payload.productID);
       state.cartValue -= getPrice(action.payload.price, action.payload.discount);
     },
-    emptyCart: () => initialState,
+    emptyCart: () => {
+      writeLS('cart', []);
+      return initialState;
+    },
   },
 });
 

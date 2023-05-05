@@ -2,21 +2,22 @@ import React, { FC } from 'react';
 import {
   Button, Typography, List, ListItem, ListItemText, Grid, Box,
 } from '@mui/material';
-import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import OrderApis from '../../redux/apis/Order/orders.api';
 import Loader from '../../Components/Loader';
+import { emptyCart } from '../../redux/slices/cart/cartSlice';
 
 const getAddressString = (addressObj: Record<string, string>) => {
   return `${addressObj?.address}\n${addressObj?.city}, ${addressObj?.state}, ${addressObj?.country}\n${addressObj?.pin}`;
 };
-
+~
 const Review: FC<any> = ({ data, handleBack, handleNext }) => {
   const { address, payment } = data;
   const cartData = useAppSelector(cartSelector);
+  const dispatch = useAppDispatch();
   const [orderTrigger, { isLoading }] = OrderApis.useAddOrderMutation();
   const placeOrder = () => {
-    // Make order object
     const uniqueKeys = Object.keys(cartData.cartId);
     const products = uniqueKeys.map((key) => ({
       product: key,
@@ -32,8 +33,11 @@ const Review: FC<any> = ({ data, handleBack, handleNext }) => {
       },
       totalAmount: cartData.cartValue,
     };
-    orderTrigger(order);
-    handleNext();
+    orderTrigger(order)
+      .unwrap().then(() => {
+        dispatch(emptyCart());
+        handleNext();
+      });
   };
   if (isLoading) {
     return <Loader />;

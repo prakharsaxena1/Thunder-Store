@@ -37,10 +37,6 @@ const Checkout: FC = () => {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
-    if (activeStep + 1 === steps.length) {
-      // Handle order API request
-      console.log('Hello world');
-    }
   };
 
   const handleBack = () => {

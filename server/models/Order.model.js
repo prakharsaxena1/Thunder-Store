@@ -5,14 +5,11 @@ mongoose.set('strictQuery', true);
 const orderSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     shipTo: { type: mongoose.Schema.Types.ObjectId, required: true },
-    products: {
-        type: [{
-            product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-            qty: { type: Number, required: true },
-            pricePaid: { type: Number, required: true },
-        }],
-        required: true
-    },
+    products: [{
+        product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+        qty: { type: Number, required: true },
+        pricePaid: { type: Number, required: true },
+    }],
     payment: {
         cardName: { type: String, required: true },
         cardNumber: { type: Number, required: true },

@@ -11,7 +11,6 @@ import { addItemToCart } from '../../redux/slices/cart/cartSlice';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import { colors } from '../../Constants/constants';
 import UserApis from '../../redux/apis/User/user.api';
-// import Loader from '../../Components/Loader';
 
 const ProductDetails: FC<any> = ({ product }) => {
   const dispatch = useAppDispatch();
@@ -32,9 +31,6 @@ const ProductDetails: FC<any> = ({ product }) => {
     }));
   };
 
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={10} sm={6} md={5}>
