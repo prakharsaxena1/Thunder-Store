@@ -11,7 +11,7 @@ import { emptyCart } from '../../redux/slices/cart/cartSlice';
 const getAddressString = (addressObj: Record<string, string>) => {
   return `${addressObj?.address}\n${addressObj?.city}, ${addressObj?.state}, ${addressObj?.country}\n${addressObj?.pin}`;
 };
-~
+
 const Review: FC<any> = ({ data, handleBack, handleNext }) => {
   const { address, payment } = data;
   const cartData = useAppSelector(cartSelector);
