@@ -4,7 +4,7 @@ mongoose.set('strictQuery', true);
 
 const orderSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    shipTo: { type: mongoose.Schema.Types.ObjectId, required: true },
+    shipTo: { type: String, required: true },
     products: [{
         product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
         qty: { type: Number, required: true },

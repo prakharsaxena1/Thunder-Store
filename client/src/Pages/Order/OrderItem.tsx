@@ -1,48 +1,66 @@
 import React, { FC } from 'react';
 import {
-  Typography, Stack, Paper, Grid, Box,
+  Accordion, AccordionDetails, AccordionSummary, Box, Paper, Stack,
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography,
 } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const OrderItem: FC<any> = ({ order }) => {
-  console.log(order);
-  const deliveryStatus = order.dateDelivered ? `Delivered ${order.dateDelivered}` : 'pending';
+  const deliveryStatus = order.dateDelivered ? `Delivered ${order.dateDelivered}` : 'Not delivered';
+  const { products } = order;
   return (
     <Box sx={{ m: 1 }}>
-      <Grid container component={Paper}>
-        <Grid item xs={12} sm={3.5} md={2.5} lg={2} sx={{ p: 1, backgroundColor: '#ECF0F1' }}>
-          <Stack direction="column" spacing={1}>
-            {/* Ship */}
-            <div>
-              <Typography variant="body2">Ship to:</Typography>
-              <Typography variant="body1">{order.shipTo.name}</Typography>
-            </div>
-            {/* Total $ */}
-            <div>
-              <Typography variant="body2">Total amount:</Typography>
-              <Typography variant="body1">{order.totalAmount}</Typography>
-            </div>
-            {/* Order placed on */}
-            <div>
-              <Typography variant="body2">Order placed on:</Typography>
-              <Typography variant="body1">{order.createdAt}</Typography>
-            </div>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Stack direction="row" justifyContent="space-between" sx={{ width: '90%' }}>
+            <Typography variant="body1" component="p">{`Order #${order._id}`}</Typography>
+            <Typography variant="body1" component="p">{deliveryStatus}</Typography>
           </Stack>
-        </Grid>
-        <Grid item xs={12} sm={8.5} md={9.5} lg={10}>
-          <Stack direction="row" justifyContent="start" sx={{ m: 1 }} spacing={2}>
-            <div style={{ maxWidth: '7rem', maxHeight: '80%' }}>
-              <img src={order.image} alt="order" style={{ maxWidth: '100%', maxHeight: '100%' }} />
-            </div>
-            <Stack direction="column">
-              <Typography variant="h6">{order.title}</Typography>
-              <Stack direction="row" justifyContent="start" spacing={1}>
-                <Typography variant="body2">Status:</Typography>
-                <Typography variant="body2">{deliveryStatus}</Typography>
-              </Stack>
-            </Stack>
-          </Stack>
-        </Grid>
-      </Grid>
+        </AccordionSummary>
+        <AccordionDetails>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Product</TableCell>
+                  <TableCell>Quantity</TableCell>
+                  <TableCell>Price</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {products.map((prod: any) => {
+                  const { product } = prod;
+                  return (
+                    <TableRow>
+                      <TableCell>
+                        <Stack direction="column">
+                          <div style={{ maxWidth: '100px', height: '120px' }}>
+                            <img
+                              src={product.images[0]}
+                              alt="first"
+                              style={{
+                                maxHeight: '100%',
+                                maxWidth: '100%',
+                              }}
+                            />
+                          </div>
+                          <Typography variant="body1" component="p">{product.title}</Typography>
+                        </Stack>
+                      </TableCell>
+                      <TableCell>{prod.qty}</TableCell>
+                      <TableCell>{prod.pricePaid}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </AccordionDetails>
+      </Accordion>
     </Box>
   );
 };
