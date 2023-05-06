@@ -4,10 +4,10 @@ import { apiUrls } from '../../../Constants/constants';
 export const ReviewApis = baseApi.injectEndpoints({
   endpoints: (build) => ({
     addReview: build.mutation<any, any>({
-      query: (params) => ({
-        url: `${apiUrls.reviews.productReview}/${params.productID}`,
+      query: ({ productID, ...rest }) => ({
+        url: `${apiUrls.reviews.productReview}/${productID}`,
         method: 'POST',
-        body: params,
+        body: rest,
       }),
     }),
     updateReview: build.mutation<any, any>({

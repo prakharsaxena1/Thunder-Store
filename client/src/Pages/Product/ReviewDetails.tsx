@@ -1,21 +1,63 @@
 /* eslint-disable max-len */
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import {
   Stack, Typography, Button, Divider, Rating, TextField,
 } from '@mui/material';
 import Review from '../../Components/Review';
+import ReviewApis from '../../redux/apis/Review/review.api';
 import PopupModal from '../../Components/PopupModal';
+import Loader from '../../Components/Loader';
+import { useAppSelector } from '../../redux/hooks';
+import { userSelector } from '../../redux/slices/user/user.selector';
 
-const ReviewDetails: FC<any> = ({ reviews }) => {
+const ReviewDetails: FC<any> = ({ reviews, id }) => {
+  const userData = useAppSelector(userSelector);
   const [showModal, setShowModal] = useState(false);
   const [rating, setRating] = useState(0);
   const [title, setTitle] = useState('');
+  const [canReview, setCanReview] = useState(false);
   const [description, setDescription] = useState('');
+  const [ReviewTrigger, { isLoading: addReviewLoading }] = ReviewApis.useAddReviewMutation();
+  const handleReviewSubmit = () => {
+    ReviewTrigger({
+      rating,
+      title,
+      description,
+      productID: id,
+    }).unwrap().then(() => {
+      setRating(0);
+      setTitle('');
+      setDescription('');
+      setShowModal(false);
+    });
+  };
+  if (addReviewLoading) {
+    return <Loader />;
+  }
+  useEffect(() => {
+    if (!userData.id) {
+      return setCanReview(false);
+    }
+    if (!reviews.find((review: any) => review.userID._id === userData.id)) {
+      return setCanReview(true);
+    }
+    return setCanReview(false);
+  }, []);
+
   return (
     <>
       <Stack direction="row" justifyContent="space-between">
         <Typography variant="h4">Reviews</Typography>
-        <Button variant="text" color="primary" size="small" onClick={() => setShowModal(true)}>Write a review</Button>
+        {canReview && (
+          <Button
+            variant="text"
+            color="primary"
+            size="small"
+            onClick={() => setShowModal(true)}
+          >
+            Write a review
+          </Button>
+        )}
       </Stack>
       <Divider />
       <Stack direction="column" spacing={1} alignItems="stretch">
@@ -40,7 +82,14 @@ const ReviewDetails: FC<any> = ({ reviews }) => {
               style={{ width: '100%' }}
             />
             <Stack justifyContent="space-around" gap={3} sx={{ padding: '0.5rem 1rem' }}>
-              <Button variant="contained" size="large" sx={{ width: '100px', margin: 'auto' }}>Submit</Button>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{ width: '100px', margin: 'auto' }}
+                onClick={handleReviewSubmit}
+              >
+                Submit
+              </Button>
             </Stack>
           </Stack>
         </PopupModal>

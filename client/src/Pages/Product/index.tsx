@@ -6,16 +6,17 @@ import ProductApis from '../../redux/apis/Product/product.api';
 import Loader from '../../Components/Loader';
 import ProductDetails from './ProductDetails';
 import ReviewDetails from './ReviewDetails';
+import ReviewApis from '../../redux/apis/Review/review.api';
 
 const Product: FC = () => {
   const { id } = useParams();
+  const [GetReviewTrigger, { data: reviewData, isLoading: reviewLoading, isFetching: reviewFetch }] = ReviewApis.useLazyGetAllReviewQuery();
   const [ProductTrigger, { data, isLoading, isFetching }] = ProductApis.useLazyGetProductWithIDQuery();
   useEffect(() => {
-    ProductTrigger({
-      id,
-    }, true);
+    ProductTrigger({ id }, true);
+    GetReviewTrigger({ productID: id }, true);
   }, [id]);
-  if (isLoading || isFetching || !data) {
+  if (reviewLoading || reviewFetch || isLoading || isFetching || !data) {
     return <Loader />;
   }
   return (
@@ -23,7 +24,7 @@ const Product: FC = () => {
       {/* PRODUCT DETAILS */}
       <ProductDetails product={data?.product} />
       {/* REVIEWS */}
-      <ReviewDetails reviews={[]} />
+      <ReviewDetails reviews={reviewData.reviews || []} id={id} canReview={reviewData.canReview} />
     </Stack>
   );
 };

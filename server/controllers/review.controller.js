@@ -1,21 +1,24 @@
 const Review = require('../models/Review.model');
 
 const getReviews = async (req, res) => {
-  const { productId } = req.query;
+  const { productId } = req.params;
   let reviews = [];
   if (productId) {
-    reviews = await Review.find({ productID: productId });
+    reviews = await Review.find({ productID: productId }).populate({
+      path: 'userID',
+      select: '-password -cart -address -createdAt -updatedAt -__v'
+    });
   }
   return res.status(200).json({ status: 'success', reviews });
 };
 
 const addReview = async (req, res) => {
-  const { productId } = req.query;
+  const { productId } = req.params;
   const review = await Review.create({
     rating: req.body.rating,
     title: req.body.title,
     description: req.body.description,
-    userID: req.body.userID,
+    userID: req.user._id,
     productID: productId,
   });
   return res.status(200).json({ status: 'success', review });

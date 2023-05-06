@@ -6,7 +6,7 @@ const reviewController = require('../controllers/review.controller');
 const authMiddleware = passport.authenticate('jwt', { session: false });
 
 // Routes
-router.route('product/:productId')
+router.route('/product/:productId')
   .get(reviewController.getReviews) // Gets all reviews for a particular product
   .post(authMiddleware, reviewController.addReview); // Adds a review in a particular product
 router.route('/:reviewId')
