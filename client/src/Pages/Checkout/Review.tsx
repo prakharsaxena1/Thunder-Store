@@ -7,9 +7,10 @@ import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import OrderApis from '../../redux/apis/Order/orders.api';
 import Loader from '../../Components/Loader';
 import { emptyCart } from '../../redux/slices/cart/cartSlice';
+import { getPrice, maskCardNumber } from '../../utils/helper';
 
 const getAddressString = (addressObj: Record<string, string>) => {
-  return `${addressObj?.address}\n${addressObj?.city}, ${addressObj?.state}, ${addressObj?.country}\n${addressObj?.pin}`;
+  return `${addressObj?.name},\n${addressObj?.address},\n${addressObj?.city}, ${addressObj?.state}, ${addressObj?.country}\n${addressObj?.pin}`;
 };
 
 const Review: FC<any> = ({ data, handleBack, handleNext }) => {
@@ -19,13 +20,16 @@ const Review: FC<any> = ({ data, handleBack, handleNext }) => {
   const [orderTrigger, { isLoading }] = OrderApis.useAddOrderMutation();
   const placeOrder = () => {
     const uniqueKeys = Object.keys(cartData.cartId);
-    const products = uniqueKeys.map((key) => ({
-      product: key,
-      pricePaid: cartData.cart.find((item) => item.productID === key)?.price,
-      qty: cartData.cartId[key],
-    }));
+    const products = uniqueKeys.map((key) => {
+      const seletedProduct = cartData.cart.find((item) => item.productID === key);
+      return {
+        product: key,
+        pricePaid: getPrice(seletedProduct?.price || 0, seletedProduct?.discount || 0),
+        qty: cartData.cartId[key],
+      };
+    });
     const order = {
-      shipTo: address._id,
+      shipTo: getAddressString(address),
       products,
       payment: {
         cardName: payment.name,
@@ -78,7 +82,7 @@ const Review: FC<any> = ({ data, handleBack, handleNext }) => {
                   <Typography gutterBottom>{payment.name}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.number}</Typography>
+                  <Typography gutterBottom>{maskCardNumber(payment.number)}</Typography>
                 </Grid>
               </div>
             )}

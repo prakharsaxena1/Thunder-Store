@@ -16,3 +16,5 @@ export const getFromLS = (key: string, defaultReturn: any) => {
 export const clearLS = () => {
   window.localStorage.clear();
 };
+
+export const maskCardNumber = (cardNumber: string) => `XXXXXXXX${cardNumber.slice(12)}`;

@@ -7,17 +7,6 @@ import OrderItem from './OrderItem';
 import OrderApis from '../../redux/apis/Order/orders.api';
 import Loader from '../../Components/Loader';
 
-// const orders = [
-//   {
-//     id: '12',
-//     image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//     title: 'Some good product #12',
-//     price: 4999,
-//     dateOrdered: new Date().toDateString(),
-//     dateDelivered: new Date().toDateString(),
-//   },
-// ];
-
 const Order: React.FC = () => {
   const [OrderListTrigger, { data, isLoading, isFetching }] = OrderApis.useLazyGetOrdersByUserQuery();
   useEffect(() => {
