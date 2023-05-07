@@ -41,20 +41,11 @@ const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
   }, []);
 
   const actionHandler = (data: any) => {
-    const keys = Object.keys(data);
-    let allowRequest = true;
-    keys.forEach((key) => {
-      if (data[key] === '') {
-        allowRequest = false;
-      }
-    });
-    if (allowRequest) {
-      addAddressTrigger(data)
-        .unwrap().then(() => {
-          setDataList((prev: any) => [...prev, data]);
-        });
-      setShow(false);
-    }
+    addAddressTrigger(data)
+      .unwrap().then(() => {
+        setDataList((prev: any) => [...prev, data]);
+      });
+    setShow(false);
   };
 
   if (isLoading || isFetching || addLoading) {
@@ -64,13 +55,7 @@ const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
     <>
       <FormControl sx={{ width: '100%' }}>
         <FormLabel>Where to deliver your order?</FormLabel>
-        <RadioGroup
-          name="address"
-          sx={{ p: 1 }}
-          value={addressValue}
-          defaultValue={dataList?.length > 0 && dataList[0].name}
-          onChange={handleChange}
-        >
+        <RadioGroup name="address" sx={{ p: 1 }} value={addressValue} onChange={handleChange}>
           {dataList && dataList.map((data, i: number) => (
             <FormControlLabel
               key={i}
@@ -82,15 +67,15 @@ const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
         </RadioGroup>
         {showError && <Typography variant="caption" display="block" gutterBottom color="red">Select an address or add new to proceed further</Typography>}
         <Button onClick={() => setShow(true)}>Add address</Button>
-        {show && (
-          <PopupModal showModal={show} setShowModal={setShow} title="Add an address">
-            <AddressWrapper action={actionHandler} />
-          </PopupModal>
-        )}
       </FormControl>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="contained" onClick={gotoNext} sx={{ mt: 3, ml: 1 }}>Next</Button>
       </Box>
+      {show && (
+        <PopupModal showModal={show} setShowModal={setShow} title="Add an address">
+          <AddressWrapper action={actionHandler} />
+        </PopupModal>
+      )}
     </>
   );
 };

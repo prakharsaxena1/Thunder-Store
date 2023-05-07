@@ -24,7 +24,7 @@ const Product: FC = () => {
       {/* PRODUCT DETAILS */}
       <ProductDetails product={data?.product} />
       {/* REVIEWS */}
-      <ReviewDetails reviews={reviewData.reviews || []} id={id} canReview={reviewData.canReview} />
+      <ReviewDetails reviews={reviewData.reviews || []} canReview={reviewData.canReview || true} />
     </Stack>
   );
 };

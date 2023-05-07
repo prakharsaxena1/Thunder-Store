@@ -34,20 +34,11 @@ const AddressDetails: FC = () => {
   }, []);
 
   const actionHandler = (data: any) => {
-    const keys = Object.keys(data);
-    let allowRequest = true;
-    keys.forEach((key) => {
-      if (data[key] === '') {
-        allowRequest = false;
-      }
-    });
-    if (allowRequest) {
-      addAddressTrigger(data)
-        .unwrap().then(() => {
-          setDataList((prev: any) => [...prev, data]);
-        });
-      setShow(false);
-    }
+    addAddressTrigger(data)
+      .unwrap().then(() => {
+        setDataList((prev: any) => [...prev, data]);
+      });
+    setShow(false);
   };
 
   if (deleteLoading || addLoading || isLoading || isFetching) {
