@@ -6,6 +6,7 @@ const baseApi = createApi({
     'address',
     'order',
     'review',
+    'productReview',
   ],
   baseQuery: fetchBaseQuery({
     mode: 'cors',

@@ -9,6 +9,7 @@ export const ReviewApis = baseApi.injectEndpoints({
         method: 'POST',
         body: rest,
       }),
+      invalidatesTags: ['productReview'],
     }),
     updateReview: build.mutation<any, any>({
       query: ({ reviewId, ...rest }) => ({
@@ -28,6 +29,7 @@ export const ReviewApis = baseApi.injectEndpoints({
         url: `${apiUrls.reviews.productReview}/${productID}`,
         method: 'GET',
       }),
+      providesTags: ['productReview'],
     }),
     getOneReview: build.query<any, any>({
       query: ({ reviewId }) => ({

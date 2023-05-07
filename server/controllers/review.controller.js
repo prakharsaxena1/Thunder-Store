@@ -16,6 +16,8 @@ const getReviews = async (req, res) => {
 const addReview = async (req, res) => {
   const { productId } = req.params;
   const productData = await Product.findById(productId);
+  productData.rating.rate += req.body.rating;
+  productData.rating.count += 1;
   const review = await Review.create({
     rating: req.body.rating,
     title: req.body.title,
@@ -23,6 +25,7 @@ const addReview = async (req, res) => {
     userID: req.user._id,
     productID: productId,
   });
+  await productData.save();
   return res.status(200).json({ status: 'success', review });
 };
 

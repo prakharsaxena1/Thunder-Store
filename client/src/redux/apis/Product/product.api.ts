@@ -14,6 +14,7 @@ export const ProductApis = baseApi.injectEndpoints({
         url: `${apiUrls.products.product}/${params.id}`,
         method: 'GET',
       }),
+      providesTags: ['productReview'],
     }),
     getProductsByCategory: build.query<any, any>({
       query: (params) => ({

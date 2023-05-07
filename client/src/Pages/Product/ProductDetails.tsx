@@ -40,7 +40,7 @@ const ProductDetails: FC<any> = ({ product }) => {
         <Stack direction="column" spacing={1}>
           <Typography variant="h5">{product.title}</Typography>
           <Stack direction="row" alignItems="center" spacing={1}>
-            <RatingWrapper rateValue={product.rating.rate} />
+            <RatingWrapper rateValue={product.rating.rate / product.rating.count} />
             <Typography variant="body2">{`(${product.rating.count})`}</Typography>
           </Stack>
           <Stack spacing={1} justifyContent="flex-start" alignItems="flex-start">

@@ -19,7 +19,7 @@ const addOrder = async (req, res) => {
     for (let orderProduct of req.body.products) {
       const productData = await Product.findById(orderProduct.product);
       productData.stock -= orderProduct.qty;
-      productData.save();
+      await productData.save();
     }
     const order = await Order.create({
       user: req.user._id,
