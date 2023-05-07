@@ -1,7 +1,26 @@
 const Order = require('../models/Order.model');
+const Product = require('../models/Product.model');
 
 const addOrder = async (req, res) => {
   if (req.body.products.length > 0 && req.body.totalAmount > 0) {
+    // Add to a array then response
+    const errorOrderProducts = [];
+    for (let orderProduct of req.body.products) {
+      const productData = await Product.findById(orderProduct.product)
+        .select('-category -description -discount -keywords -rating');
+      if (orderProduct.qty > productData.stock) {
+        errorOrderProducts.push(productData);
+      }
+    }
+    if (errorOrderProducts.length > 0) {
+      return res.status(200).json({ status: 'failed', message: 'Some products are not available', data: errorOrderProducts });
+    }
+    // Else
+    for (let orderProduct of req.body.products) {
+      const productData = await Product.findById(orderProduct.product);
+      productData.stock -= orderProduct.qty;
+      productData.save();
+    }
     const order = await Order.create({
       user: req.user._id,
       shipTo: req.body.shipTo,

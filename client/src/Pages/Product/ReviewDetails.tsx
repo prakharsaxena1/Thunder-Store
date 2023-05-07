@@ -18,6 +18,17 @@ const ReviewDetails: FC<any> = ({ reviews, id }) => {
   const [canReview, setCanReview] = useState(false);
   const [description, setDescription] = useState('');
   const [ReviewTrigger, { isLoading: addReviewLoading }] = ReviewApis.useAddReviewMutation();
+
+  useEffect(() => {
+    if (!userData.id) {
+      return setCanReview(false);
+    }
+    if (!reviews.find((review: any) => review.userID._id === userData.id)) {
+      return setCanReview(true);
+    }
+    return setCanReview(false);
+  }, []);
+
   const handleReviewSubmit = () => {
     ReviewTrigger({
       rating,
@@ -34,16 +45,6 @@ const ReviewDetails: FC<any> = ({ reviews, id }) => {
   if (addReviewLoading) {
     return <Loader />;
   }
-  useEffect(() => {
-    if (!userData.id) {
-      return setCanReview(false);
-    }
-    if (!reviews.find((review: any) => review.userID._id === userData.id)) {
-      return setCanReview(true);
-    }
-    return setCanReview(false);
-  }, []);
-
   return (
     <>
       <Stack direction="row" justifyContent="space-between">

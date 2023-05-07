@@ -1,4 +1,5 @@
 const Review = require('../models/Review.model');
+const Product = require('../models/Product.model');
 
 const getReviews = async (req, res) => {
   const { productId } = req.params;
@@ -14,6 +15,7 @@ const getReviews = async (req, res) => {
 
 const addReview = async (req, res) => {
   const { productId } = req.params;
+  const productData = await Product.findById(productId);
   const review = await Review.create({
     rating: req.body.rating,
     title: req.body.title,
