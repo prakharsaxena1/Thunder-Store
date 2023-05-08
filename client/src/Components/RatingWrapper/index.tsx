@@ -12,8 +12,8 @@ const RatingWrapper: FC<RatingWrapperProps> = ({ rateValue }) => {
   }
   return (
     <Stack direction="row" spacing={1} alignItems="center">
-      <Typography variant="body2">{cleanValue}</Typography>
-      <Rating value={cleanValue} readOnly precision={0.5} />
+      <Typography variant="body2">{cleanValue || 0}</Typography>
+      <Rating value={cleanValue || 0} readOnly precision={0.5} />
     </Stack>
   );
 };

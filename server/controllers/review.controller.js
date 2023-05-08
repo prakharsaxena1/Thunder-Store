@@ -41,11 +41,16 @@ const getReviewWithID = async (req, res) => {
 const editReviewWithID = async (req, res) => {
   const { reviewId } = req.params;
   const review = await Review.findById(reviewId);
-  if (review && review.userID._id === req.user._id) {
+  console.log({ review, reviewId });
+  if (review && review.userID._id.equals(req.user._id)) {
+    const ratingDiff = req.body.rating - review.rating;
     review.rating = req.body.rating;
     review.title = req.body.title;
     review.description = req.body.description;
     review.save();
+    const productData = await Product.findById(review.productID);
+    productData.rating.rate += ratingDiff;
+    await productData.save();
     return res.status(200).json({ success: true, review });
   }
   return res.status(401).json({ success: false, message: 'Unauthorized' });
@@ -55,14 +60,18 @@ const deleteReviewWithID = async (req, res) => {
   try {
     const { reviewId } = req.params;
     const review = await Review.findById(reviewId);
+    const productData = await Product.findById(review.productID);
     if (!review) {
       return res.status(404).json({ success: false, message: 'Review not found' });
     }
-    if (review.userID._id !== req.user._id) {
-      return res.status(401).json({ success: false, message: 'Unauthorized' });
+    if (review.userID._id.equals(req.user._id)) {
+      productData.rating.rate -= review.rating;
+      productData.rating.count -= 1;
+      await productData.save();
+      await review.remove();
+      return res.status(204).json({ success: true, message: 'Review deleted' });
     }
-    await review.remove();
-    return res.status(204).json({ success: true, message: 'Review deleted' });
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
   } catch (error) {
     return res.status(500).json({ success: false, message: 'Internal server error' });
   }

@@ -28,15 +28,9 @@ const userLogin = async (req, res) => {
                 });
             }
         }
-        return res.status(400).json({
-            success: false,
-            message: 'Invalid credentials',
-        });
+        return res.status(400).json({ success: false, message: 'Invalid credentials' });
     } catch (err) {
-        res.status(400).json({
-            success: false,
-            message: 'Invalid credentials',
-        }) 
+        res.status(400).json({ success: false, message: 'Invalid credentials' }) 
     }
 }
 

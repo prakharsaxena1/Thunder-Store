@@ -38,8 +38,8 @@ const ProductItem: FC<any> = ({ product }) => {
           <Stack direction="column" spacing={1}>
             <Typography variant="body1">{product.title}</Typography>
             <Stack direction="row" alignItems="center" spacing={1}>
-              <RatingWrapper rateValue={product?.rating.rate} />
-              <Typography variant="body2">{`(${product?.rating.count})`}</Typography>
+              <RatingWrapper rateValue={product.rating.rate / product.rating.count} />
+              <Typography variant="body2">{`(${product.rating.count})`}</Typography>
             </Stack>
             <PriceDisplay price={product.price} discount={product.discount} />
           </Stack>
