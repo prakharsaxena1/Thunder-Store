@@ -8,7 +8,7 @@ const userLogin = async (req, res) => {
             if (user.password === req.body.password) {
                 res = auth.setAuthCookie(res, user);
                 return res.status(200).json({
-                    status: 'success',
+                    success: true,
                     message: 'Login successful',
                     data: {
                         username: user.username,
@@ -23,19 +23,18 @@ const userLogin = async (req, res) => {
                             stock: item.stock,
                             title: item.title,
                         })),
-                        address: user.address,
                     },
                     token: res.token,
                 });
             }
         }
         return res.status(400).json({
-            status: 'failed',
+            success: false,
             message: 'Invalid credentials',
         });
     } catch (err) {
         res.status(400).json({
-            status: 'failed',
+            success: false,
             message: 'Invalid credentials',
         }) 
     }
@@ -50,7 +49,7 @@ const userRegister = async (req, res) => {
         });
         res = auth.setAuthCookie(res, user);
         return res.status(201).json({
-            status: 'success',
+            success: true,
             message: 'Account registered successfully',
             data: {
                 username: user.username,
@@ -64,7 +63,7 @@ const userRegister = async (req, res) => {
         });
     } catch (err) {
         res.status(400).json({
-            status: 'failed',
+            success: false,
             message: 'Failed to register account',
         })
     }
@@ -84,12 +83,12 @@ const deleteUser = async (req, res) => {
             await User.findByIdAndDelete(id);
         }
         return res.status(200).json({
-            status: 'success',
+            success: true,
             message: 'Account deleted',
         });
     } catch (err) {
         res.status(400).json({
-            status: 'failed',
+            success: false,
             message: 'Unable to delete account'
         });
     }
@@ -110,12 +109,12 @@ const deleteAddress = async (req, res) => {
         const addressID = req.body.addressID;
         await User.findByIdAndUpdate(req.user._id, { $pull: { address: { _id: addressID } } }, { new: true });
         return res.status(200).json({
-            status: 'success',
+            success: true,
             message: 'Removed address',
         });
     } catch (err) {
         return res.status(400).json({
-            status: 'failed',
+            success: false,
             message: 'Invalid request',
         });
     }
@@ -134,12 +133,12 @@ const addAddress = async (req, res) => {
         });
         await user.save();
         return res.status(200).json({
-            status: 'success',
+            success: true,
             data: [...user.address]
         });
     } catch (err) {
         return res.status(400).json({
-            status: 'failed',
+            success: false,
             message: 'Invalid request',
         });
     }
@@ -149,12 +148,12 @@ const getAddress = async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
         return res.status(200).json({
-            status: 'success',
+            success: true,
             data: [...user.address]
         });
     } catch (err) {
         return res.status(400).json({
-            status: 'failed',
+            success: false,
             message: 'Invalid request',
         });
     }
@@ -173,12 +172,12 @@ const updateCart = async (req, res) => {
         user.cart = cart;
         await user.save();
         return res.status(200).json({
-            status: 'success',
+            success: true,
             data: [...user.cart]
         });
     } catch (err) {
         return res.status(400).json({
-            status: 'failed',
+            success: false,
             message: 'Invalid request',
         });
     }

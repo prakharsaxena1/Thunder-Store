@@ -10,7 +10,7 @@ const getReviews = async (req, res) => {
       select: '-password -cart -address -createdAt -updatedAt -__v'
     });
   }
-  return res.status(200).json({ status: 'success', reviews });
+  return res.status(200).json({ success: true, reviews });
 };
 
 const addReview = async (req, res) => {
@@ -26,29 +26,46 @@ const addReview = async (req, res) => {
     productID: productId,
   });
   await productData.save();
-  return res.status(200).json({ status: 'success', review });
+  return res.status(200).json({ success: true, review });
 };
 
 const getReviewWithID = async (req, res) => {
-  const { reviewId } = req.query;
+  const { reviewId } = req.params;
   const review = await Review.findById(reviewId);
-  return res.status(200).json({ status: 'success', review });
+  if (review) {
+    return res.status(200).json({ success: true, review });
+  }
+  return res.status(200).json({ success: false, message: 'review not found' });
 };
 
 const editReviewWithID = async (req, res) => {
-  const { reviewId } = req.query;
-  const review = await Review.findByIdAndUpdate(reviewId, {
-    rating: req.body.rating,
-    title: req.body.title,
-    description: req.body.description,
-  });
-  return res.status(200).json({ status: 'success', review });
+  const { reviewId } = req.params;
+  const review = await Review.findById(reviewId);
+  if (review && review.userID._id === req.user._id) {
+    review.rating = req.body.rating;
+    review.title = req.body.title;
+    review.description = req.body.description;
+    review.save();
+    return res.status(200).json({ success: true, review });
+  }
+  return res.status(401).json({ success: false, message: 'Unauthorized' });
 };
 
 const deleteReviewWithID = async (req, res) => {
-  const { reviewId } = req.query;
-  const review = await Review.findByIdAndDelete(reviewId);
-  return res.status(200).json({ status: 'success' });
+  try {
+    const { reviewId } = req.params;
+    const review = await Review.findById(reviewId);
+    if (!review) {
+      return res.status(404).json({ success: false, message: 'Review not found' });
+    }
+    if (review.userID._id !== req.user._id) {
+      return res.status(401).json({ success: false, message: 'Unauthorized' });
+    }
+    await review.remove();
+    return res.status(204).json({ success: true, message: 'Review deleted' });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Internal server error' });
+  }
 };
 
 module.exports = {
