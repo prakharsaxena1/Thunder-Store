@@ -47,10 +47,6 @@ const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
       });
     setShow(false);
   };
-
-  if (isLoading || isFetching || addLoading) {
-    return <Loader />;
-  }
   return (
     <>
       <FormControl sx={{ width: '100%' }}>
@@ -76,6 +72,7 @@ const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
           <AddressWrapper action={actionHandler} />
         </PopupModal>
       )}
+      {(isLoading || isFetching || addLoading) && <Loader />}
     </>
   );
 };

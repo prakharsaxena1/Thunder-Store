@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Grid, Typography, Stack, Paper, Box, IconButton,
 } from '@mui/material';
@@ -13,8 +13,10 @@ import ReviewApis from '../../redux/apis/Review/review.api';
 import Loader from '../Loader';
 import { useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
+import Confirmation from '../Confirmation';
 
 const Review: FC<any> = ({ data, setData, setShowModal }) => {
+  const [popupOpen, setPopupOpen] = useState(false);
   const userData = useAppSelector(userSelector);
   const [GetReviewTrigger, { isLoading: reviewLoading, isFetching: reviewFetching }] = ReviewApis.useLazyGetOneReviewQuery();
   const [DeleteReviewTrigger, { isLoading: reviewDeleting }] = ReviewApis.useDeleteReviewMutation();
@@ -25,14 +27,11 @@ const Review: FC<any> = ({ data, setData, setShowModal }) => {
         setShowModal(true);
       });
   };
-  const handleDeleteOpen = () => {
+  const handleDelete = () => {
     DeleteReviewTrigger({ reviewId: data._id })
       .unwrap().then(() => setData(null));
+    setPopupOpen(false);
   };
-
-  if (reviewLoading || reviewFetching || reviewDeleting) {
-    return <Loader />;
-  }
   return (
     <Paper>
       <Grid container sx={{ position: 'relative' }}>
@@ -63,12 +62,22 @@ const Review: FC<any> = ({ data, setData, setShowModal }) => {
             <IconButton onClick={handleEditOpen}>
               <EditIcon fontSize="small" />
             </IconButton>
-            <IconButton onClick={handleDeleteOpen}>
+            <IconButton onClick={() => setPopupOpen(true)}>
               <DeleteIcon fontSize="small" />
             </IconButton>
           </Box>
         )}
+        {popupOpen && (
+          <Confirmation
+            open={popupOpen}
+            onClose={() => setPopupOpen(false)}
+            onConfirm={handleDelete}
+            message="Are you sure you want to delete your review?"
+            confirmLabel="Yes"
+          />
+        )}
       </Grid>
+      {(reviewLoading || reviewFetching || reviewDeleting) && <Loader />}
     </Paper>
   );
 };

@@ -59,10 +59,6 @@ const ReviewPopup: FC<any> = ({
       }
     }
   };
-
-  if (addReviewLoading || updateReviewLoading) {
-    return <Loader />;
-  }
   return (
     <PopupModal showModal={showModal} setShowModal={setShowModal} title="Write a review">
       <Stack direction="column" justifyContent="space-around" spacing={3} sx={{ padding: '1rem' }}>
@@ -98,6 +94,7 @@ const ReviewPopup: FC<any> = ({
           </Button>
         </Stack>
       </Stack>
+      {(addReviewLoading || updateReviewLoading) && <Loader />}
     </PopupModal>
   );
 };

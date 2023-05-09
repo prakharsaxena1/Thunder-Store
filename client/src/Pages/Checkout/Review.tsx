@@ -43,11 +43,9 @@ const Review: FC<any> = ({ data, handleBack, handleNext }) => {
         handleNext();
       });
   };
-  if (isLoading) {
-    return <Loader />;
-  }
   return (
     <>
+      {isLoading && <Loader />}
       <Typography variant="h6" gutterBottom>Order summary</Typography>
       <List disablePadding>
         {cartData.cart.map((product) => (

@@ -90,6 +90,7 @@ const deleteAddress = async (req, res) => {
         await User.findByIdAndUpdate(req.user._id, { $pull: { address: { _id: addressID } } }, { new: true });
         return res.status(200).json({ success: true, message: 'Removed address' });
     } catch (err) {
+        console.log(err.message);
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
