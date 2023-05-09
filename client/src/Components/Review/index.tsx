@@ -40,19 +40,19 @@ const Review: FC<any> = ({ data, setData, setShowModal }) => {
           <Stack direction="column">
             <Stack direction="row" spacing={1}>
               <AccountCircleIcon />
-              <Typography variant="body1">{data.userID.username}</Typography>
+              <Typography variant="body1">{data?.userID.username}</Typography>
             </Stack>
-            <RatingWrapper rateValue={data.rating} />
-            <Typography variant="body1">{dayjs(data.updatedAt).format('DD MMM YYYY')}</Typography>
+            <RatingWrapper rateValue={data?.rating} />
+            <Typography variant="body1">{dayjs(data?.updatedAt).format('DD MMM YYYY')}</Typography>
           </Stack>
         </Grid>
         <Grid item xs={12} sm={8} md={9} lg={10}>
           <Stack direction="column" sx={{ maxWidth: '95%', m: '8px auto' }}>
-            <Typography variant="h6">{data.title}</Typography>
-            <Typography variant="body2">{data.description}</Typography>
+            <Typography variant="h6">{data?.title}</Typography>
+            <Typography variant="body2">{data?.description}</Typography>
           </Stack>
         </Grid>
-        {userData.id === data.userID._id && (
+        {userData.id === data?.userID._id && (
           <Box
             sx={{
               position: 'absolute',

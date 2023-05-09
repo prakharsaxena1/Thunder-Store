@@ -9,9 +9,10 @@ import ReviewPopup from '../../Components/Review/ReviewPopup';
 import { useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
 
-const ReviewDetails: FC<any> = ({ reviews, canReview }) => {
+const ReviewDetails: FC<any> = ({ reviews }) => {
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
+  const [canReview, setCanReview] = useState(false);
   const [data, setData] = useState<any>(null);
   const [sortedReviews, setSortedReviews] = useState<any>([]);
   const userData = useAppSelector(userSelector);
@@ -19,7 +20,12 @@ const ReviewDetails: FC<any> = ({ reviews, canReview }) => {
     if (reviews && userData.id) {
       const userReview = reviews.find((item: any) => item.userID._id === userData.id);
       const filteredReviews = reviews.filter((item: any) => item.userID._id !== userData.id);
-      setSortedReviews([userReview, ...filteredReviews]);
+      if (userReview !== null && userReview !== undefined) {
+        setSortedReviews([userReview, ...filteredReviews]);
+      } else {
+        setSortedReviews([...filteredReviews]);
+      }
+      setCanReview(userReview === undefined);
     }
   }, [reviews]);
 
