@@ -36,38 +36,32 @@ const userLogin = async (req, res) => {
 
 const userRegister = async (req, res) => {
     try {
-        const user = await User.create({
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password,
-        });
-        res = auth.setAuthCookie(res, user);
-        return res.status(201).json({
-            success: true,
-            message: 'Account registered successfully',
-            data: {
-                username: user.username,
-                email: user.email,
-                id: user._id,
-                cart: user.cart,
-                address: user.address,
-                profilePhoto: user.profilePhoto,
-            },
-            token: res.token,
-        });
+        if (req.body.username && req.body.email && req.body.password) {
+            const user = await User.create({ username: req.body.username, email: req.body.email, password: req.body.password });
+            res = auth.setAuthCookie(res, user);
+            return res.status(201).json({
+                success: true,
+                message: 'Account registered successfully',
+                data: {
+                    username: user.username,
+                    email: user.email,
+                    id: user._id,
+                    cart: user.cart,
+                    address: user.address,
+                    profilePhoto: user.profilePhoto,
+                },
+                token: res.token,
+            });
+        }
+        return res.status(401).json({ success: false, message: 'Credentials missing' });
     } catch (err) {
-        res.status(400).json({
-            success: false,
-            message: 'Failed to register account',
-        })
+        res.status(400).json({ success: false, message: 'Failed to register account' });
     }
 }
 
 const userLogout = (req, res) => {
     res.clearCookie('authorization');
-    res.status(200).json({
-        message: 'Successful logout'
-    });
+    res.status(200).json({ success: true, message: 'Successful logout' });
 }
 
 const deleteUser = async (req, res) => {
@@ -76,15 +70,9 @@ const deleteUser = async (req, res) => {
         if (id) {
             await User.findByIdAndDelete(id);
         }
-        return res.status(200).json({
-            success: true,
-            message: 'Account deleted',
-        });
+        return res.status(200).json({ success: true, message: 'Account deleted' });
     } catch (err) {
-        res.status(400).json({
-            success: false,
-            message: 'Unable to delete account'
-        });
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 }
 
@@ -93,24 +81,16 @@ const refreshUser = async (req, res) => {
     if (data.isAuth) {
         res = auth.setCookieResponse(res, data.token);
     }
-    return res.status(200).json({
-        ...data,
-    });
+    return res.status(200).json({ ...data, success: true });
 }
 
 const deleteAddress = async (req, res) => {
     try {
         const addressID = req.body.addressID;
         await User.findByIdAndUpdate(req.user._id, { $pull: { address: { _id: addressID } } }, { new: true });
-        return res.status(200).json({
-            success: true,
-            message: 'Removed address',
-        });
+        return res.status(200).json({ success: true, message: 'Removed address' });
     } catch (err) {
-        return res.status(400).json({
-            success: false,
-            message: 'Invalid request',
-        });
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
 
@@ -126,54 +106,39 @@ const addAddress = async (req, res) => {
             pin: req.body.pin,
         });
         await user.save();
-        return res.status(200).json({
-            success: true,
-            data: [...user.address]
-        });
+        return res.status(200).json({ success: true, data: [...user.address] });
     } catch (err) {
-        return res.status(400).json({
-            success: false,
-            message: 'Invalid request',
-        });
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
 
 const getAddress = async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
-        return res.status(200).json({
-            success: true,
-            data: [...user.address]
-        });
+        return res.status(200).json({ success: true, data: [...user.address] });
     } catch (err) {
-        return res.status(400).json({
-            success: false,
-            message: 'Invalid request',
-        });
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
 
 const updateCart = async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
-        const cart = [...user.cart]
-        if (req.body.operation === 'delete') {
-            const index = cart.findIndex(item => item.productId === req.body.productId);
-            cart.splice(index, 1);
-        } else if (req.body.operation === 'add') {
-            cart.push(req.body.productId);
+        if (user) {
+            const cart = [...user.cart]
+            if (req.body.operation === 'delete') {
+                const index = cart.findIndex(item => item.productId === req.body.productId);
+                cart.splice(index, 1);
+            } else if (req.body.operation === 'add') {
+                cart.push(req.body.productId);
+            }
+            user.cart = cart;
+            await user.save();
+            return res.status(200).json({ success: true, data: [...user.cart] });
         }
-        user.cart = cart;
-        await user.save();
-        return res.status(200).json({
-            success: true,
-            data: [...user.cart]
-        });
+        return res.status(400).json({ success: false, message: 'Invalid data' });
     } catch (err) {
-        return res.status(400).json({
-            success: false,
-            message: 'Invalid request',
-        });
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
 

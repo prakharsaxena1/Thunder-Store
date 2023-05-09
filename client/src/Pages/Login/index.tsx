@@ -24,7 +24,7 @@ const Login: FC = () => {
     if (email && pass) {
       loginTrigger({ email: email.trim(), password: pass.trim() })
         .unwrap().then((res) => {
-          if (res.status === 'success') {
+          if (res.success) {
             navigate('/', { replace: true });
             const userDetails = {
               id: res.data.id,

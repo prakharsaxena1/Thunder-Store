@@ -36,11 +36,9 @@ const addOrder = async (req, res) => {
 
 const getOrdersByUser = async (req, res) => {
   const user = req.user._id;
-  if (user) {
-    const orders = await Order.find({ user }).populate('products.product');
-    return res.status(200).json({ success: true, orders });
-  }
-  return res.status(400).json({ success: false, message: 'Invalid user' });
+  let orders = [];
+  orders = await Order.find({ user }).populate('products.product');
+  return res.status(200).json({ success: true, orders });
 };
 
 const getOrderById = async (req, res) => {

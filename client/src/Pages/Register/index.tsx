@@ -28,7 +28,7 @@ const Register: FC = () => {
         email: email.trim(),
         password: password.trim(),
       }).unwrap().then((res) => {
-        if (res.status === 'success') {
+        if (res.success) {
           navigate('/', { replace: true });
           const userDetails = {
             id: res.data.id,

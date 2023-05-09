@@ -10,12 +10,11 @@ const getProducts = async (req, res) => {
         { keywords: { $regex: search, $options: 'i' } },
       ],
     });
-    res.status(200).json({
-      products: productsArray,
-      total: productsArray.length,
+    return res.status(200).json({
+      success: true, products: productsArray, total: productsArray.length,
     });
   } catch (err) {
-    return res.status(403).json({ err: err.message });
+    return res.status(403).json({ success: false, err: err.message });
   }
 };
 
@@ -23,25 +22,24 @@ const getProductWithID = async (req, res) => {
   const { id } = req.params;
   try {
     const product = await Product.findById(id);
-    res.status(200).json({
-      product
-    });
+    if (product) {
+      return res.status(200).json({ success: true, product });
+    } else {
+      return res.status(404).json({ success: false, message: 'Product not found' });
+    }
   } catch (err) {
-    return res.status(403).json({ err });
+    return res.status(500).json({ success: false, message: 'Internal server error' });
   }
-  
 };
-
 const getTopSellingFromCategory = async (req, res) => {
   const { category } = req.params;
   try {
     const productsArray = await Product.find({ category: category });
-    res.status(200).json({
-      products: productsArray,
-      total: productsArray.length,
+    return res.status(200).json({
+      products: productsArray, total: productsArray.length,
     });
   } catch (err) {
-    return res.status(403).json({ err });
+    return res.status(403).json({ success: false, message: 'Internal server error' });
   }
 
 };
