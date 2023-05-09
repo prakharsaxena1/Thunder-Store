@@ -6,10 +6,12 @@ const getReviews = async (req, res) => {
     const { productId } = req.params;
     let reviews = [];
     if (productId) {
-      reviews = await Review.find({ productID: productId }).populate({
-        path: 'userID',
-        select: '-password -cart -address -createdAt -updatedAt -__v'
-      });
+      reviews = await Review.find({ productID: productId })
+        .select('-createdAt -__v')
+        .populate({
+          path: 'userID',
+          select: '-password -cart -address -createdAt -updatedAt -__v -email -profilePhoto'
+        });
     }
     return res.status(200).json({ success: true, reviews });
   } catch (err) {
@@ -55,8 +57,8 @@ const editReviewWithID = async (req, res) => {
   try {
     const { reviewId } = req.params;
     const review = await Review.findById(reviewId);
-    console.log({ review, reviewId });
-    if (review && review.userID._id.equals(req.user._id)) {
+    console.log({ review, reviewId, userID: req.user._id });
+    if (review && review.userID.equals(req.user._id)) {
       const ratingDiff = req.body.rating - review.rating;
       review.rating = req.body.rating;
       review.title = req.body.title;
@@ -81,7 +83,8 @@ const deleteReviewWithID = async (req, res) => {
     if (!review) {
       return res.status(404).json({ success: false, message: 'Review not found' });
     }
-    if (review.userID._id.equals(req.user._id)) {
+    console.log(review);
+    if (review.userID.equals(req.user._id)) {
       productData.rating.rate -= review.rating;
       productData.rating.count -= 1;
       await productData.save();

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { FC } from 'react';
 import {
   Grid, Typography, Stack, Paper, Box, IconButton,
@@ -8,8 +9,30 @@ import EditIcon from '@mui/icons-material/Edit';
 import dayjs from 'dayjs';
 import RatingWrapper from '../RatingWrapper';
 import { colors } from '../../Constants/constants';
+import ReviewApis from '../../redux/apis/Review/review.api';
+import Loader from '../Loader';
+import { useAppSelector } from '../../redux/hooks';
+import { userSelector } from '../../redux/slices/user/user.selector';
 
-const Review: FC<any> = ({ data }) => {
+const Review: FC<any> = ({ data, setData, setShowModal }) => {
+  const userData = useAppSelector(userSelector);
+  const [GetReviewTrigger, { isLoading: reviewLoading, isFetching: reviewFetching }] = ReviewApis.useLazyGetOneReviewQuery();
+  const [DeleteReviewTrigger, { isLoading: reviewDeleting }] = ReviewApis.useDeleteReviewMutation();
+  const handleEditOpen = () => {
+    GetReviewTrigger({ reviewId: data._id }, true)
+      .unwrap().then((res) => {
+        setData(res);
+        setShowModal(true);
+      });
+  };
+  const handleDeleteOpen = () => {
+    DeleteReviewTrigger({ reviewId: data._id })
+      .unwrap().then(() => setData(null));
+  };
+
+  if (reviewLoading || reviewFetching || reviewDeleting) {
+    return <Loader />;
+  }
   return (
     <Paper>
       <Grid container sx={{ position: 'relative' }}>
@@ -29,20 +52,22 @@ const Review: FC<any> = ({ data }) => {
             <Typography variant="body2">{data.description}</Typography>
           </Stack>
         </Grid>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-          }}
-        >
-          <IconButton>
-            <EditIcon fontSize="small" />
-          </IconButton>
-          <IconButton>
-            <DeleteIcon fontSize="small" />
-          </IconButton>
-        </Box>
+        {userData.id === data.userID._id && (
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 10,
+              right: 10,
+            }}
+          >
+            <IconButton onClick={handleEditOpen}>
+              <EditIcon fontSize="small" />
+            </IconButton>
+            <IconButton onClick={handleDeleteOpen}>
+              <DeleteIcon fontSize="small" />
+            </IconButton>
+          </Box>
+        )}
       </Grid>
     </Paper>
   );

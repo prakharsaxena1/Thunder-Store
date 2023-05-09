@@ -97,6 +97,9 @@ const deleteAddress = async (req, res) => {
 const addAddress = async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'Invalid user' });
+        }
         user.address.push({
             name: req.body.name,
             address: req.body.address,
@@ -115,6 +118,9 @@ const addAddress = async (req, res) => {
 const getAddress = async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'Invalid user' });
+        }
         return res.status(200).json({ success: true, data: [...user.address] });
     } catch (err) {
         return res.status(500).json({ success: false, message: 'Internal server error' });
@@ -124,19 +130,19 @@ const getAddress = async (req, res) => {
 const updateCart = async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
-        if (user) {
-            const cart = [...user.cart]
-            if (req.body.operation === 'delete') {
-                const index = cart.findIndex(item => item.productId === req.body.productId);
-                cart.splice(index, 1);
-            } else if (req.body.operation === 'add') {
-                cart.push(req.body.productId);
-            }
-            user.cart = cart;
-            await user.save();
-            return res.status(200).json({ success: true, data: [...user.cart] });
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'Invalid user' });
         }
-        return res.status(400).json({ success: false, message: 'Invalid data' });
+        const cart = [...user.cart]
+        if (req.body.operation === 'delete') {
+            const index = cart.findIndex(item => item.productId === req.body.productId);
+            cart.splice(index, 1);
+        } else if (req.body.operation === 'add') {
+            cart.push(req.body.productId);
+        }
+        user.cart = cart;
+        await user.save();
+        return res.status(200).json({ success: true, data: [...user.cart] });
     } catch (err) {
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }

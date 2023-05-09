@@ -17,12 +17,14 @@ export const ReviewApis = baseApi.injectEndpoints({
         method: 'PUT',
         body: rest,
       }),
+      invalidatesTags: ['productReview'],
     }),
     deleteReview: build.mutation<any, any>({
       query: ({ reviewId }) => ({
         url: `${apiUrls.reviews.review}/${reviewId}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['productReview'],
     }),
     getAllReview: build.query<any, any>({
       query: ({ productID }) => ({
@@ -36,6 +38,7 @@ export const ReviewApis = baseApi.injectEndpoints({
         url: `${apiUrls.reviews.review}/${reviewId}`,
         method: 'GET',
       }),
+      providesTags: ['productReview'],
     }),
   }),
 });
