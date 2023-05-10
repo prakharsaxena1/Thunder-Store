@@ -1,23 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import {
   Route, createRoutesFromElements, createBrowserRouter, RouterProvider,
 } from 'react-router-dom';
-
-// Components
-import RootLayout from './Components/RootLayout';
-import Search from './Pages/Search';
-import Order from './Pages/Order';
-import Home from './Pages/Home';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import ResetPassword from './Pages/ResetPassword';
-import NotFound404 from './Pages/NotFound404';
-import UserProfile from './Pages/UserProfile';
-import Product from './Pages/Product';
 import { useAppDispatch } from './redux/hooks';
 import { setUserDetails } from './redux/slices/user/userSlice';
 import AccountApis from './redux/apis/Account/account.api';
 import { setCartItems } from './redux/slices/cart/cartSlice';
+import Loader from './Components/Loader';
+
+// Components
+const RootLayout = React.lazy(() => import('./Components/RootLayout'));
+const Search = React.lazy(() => import('./Pages/Search'));
+const Order = React.lazy(() => import('./Pages/Order'));
+const Home = React.lazy(() => import('./Pages/Home'));
+const Login = React.lazy(() => import('./Pages/Login'));
+const Register = React.lazy(() => import('./Pages/Register'));
+const ResetPassword = React.lazy(() => import('./Pages/ResetPassword'));
+const NotFound404 = React.lazy(() => import('./Pages/NotFound404'));
+const UserProfile = React.lazy(() => import('./Pages/UserProfile'));
+const Product = React.lazy(() => import('./Pages/Product'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -55,7 +56,9 @@ const App = () => {
     }
   }, []);
   return (
-    <RouterProvider router={router} />
+    <Suspense fallback={<Loader />}>
+      <RouterProvider router={router} />
+    </Suspense>
   );
 };
 

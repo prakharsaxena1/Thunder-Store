@@ -31,57 +31,58 @@ const UserDetails: FC<any> = ({ details }) => {
       });
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
-    <>
-      {isLoading && <Loader />}
-      <Box
-        sx={{
-          p: 1,
-          width: { sm: '90%', md: '50%', lg: '40%' },
-          m: '1rem auto',
-        }}
-      >
-        <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="body1" component="p">Basic details</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Stack direction="column" spacing={3} sx={{ mb: 2 }}>
-              <Stack direction="row" justifyContent="space-between">
-                <Typography variant="body1">Name:</Typography>
-                <Typography variant="body1">{details.username}</Typography>
-              </Stack>
-              <Stack direction="row" justifyContent="space-between">
-                <Typography variant="body1">Email:</Typography>
-                <Typography variant="body1">{details.email}</Typography>
-              </Stack>
-            </Stack>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="body1" component="p">Danger zone</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
+    <Box
+      sx={{
+        p: 1,
+        width: { sm: '90%', md: '50%', lg: '40%' },
+        m: '1rem auto',
+      }}
+    >
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography variant="body1" component="p">Basic details</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Stack direction="column" spacing={3} sx={{ mb: 2 }}>
             <Stack direction="row" justifyContent="space-between">
-              <Typography variant="body1">Delete account:</Typography>
-              <Button variant="contained" color="error" onClick={() => setPopupOpen(true)}>Delete account</Button>
+              <Typography variant="body1">Name:</Typography>
+              <Typography variant="body1">{details.username}</Typography>
             </Stack>
-          </AccordionDetails>
-        </Accordion>
-        {popupOpen && (
-          <Confirmation
-            open={popupOpen}
-            onClose={() => setPopupOpen(false)}
-            onConfirm={handleDeleteAccount}
-            message="Are you sure you want to delete your account?"
-            confirmLabel="Yes"
-          >
-            <Typography variant="caption" color="error">This action is permanent</Typography>
-          </Confirmation>
-        )}
-      </Box>
-    </>
+            <Stack direction="row" justifyContent="space-between">
+              <Typography variant="body1">Email:</Typography>
+              <Typography variant="body1">{details.email}</Typography>
+            </Stack>
+          </Stack>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography variant="body1" component="p">Danger zone</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography variant="body1">Delete account:</Typography>
+            <Button variant="contained" color="error" onClick={() => setPopupOpen(true)}>Delete account</Button>
+          </Stack>
+        </AccordionDetails>
+      </Accordion>
+      {popupOpen && (
+        <Confirmation
+          open={popupOpen}
+          onClose={() => setPopupOpen(false)}
+          onConfirm={handleDeleteAccount}
+          message="Are you sure you want to delete your account?"
+          confirmLabel="Yes"
+        >
+          <Typography variant="caption" color="error">This action is permanent</Typography>
+        </Confirmation>
+      )}
+    </Box>
   );
 };
 

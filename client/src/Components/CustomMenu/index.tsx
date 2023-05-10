@@ -1,86 +1,43 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { FC } from 'react';
-import {
-  Grow, Popper, Paper, ClickAwayListener,
-  MenuList, MenuItem, ListItemIcon, Divider,
-} from '@mui/material';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { useNavigate } from 'react-router-dom';
-import { logoutUser } from '../../redux/slices/user/userSlice';
-import { emptyCart } from '../../redux/slices/cart/cartSlice';
-import { writeLS } from '../../utils/helper';
-import AccountApis from '../../redux/apis/Account/account.api';
-import { useAppDispatch } from '../../redux/hooks';
+import { Menu } from '@mui/material';
 
-const CustomMenu: FC<any> = ({ anchorEl, handleClose }) => {
-  const open = Boolean(anchorEl);
-  const dispatch = useAppDispatch();
-  const [LogoutTrigger] = AccountApis.useLazyLogoutQuery();
-  const navigate = useNavigate();
-  const navigateTo = (link: string) => {
-    navigate(link);
-    handleClose(false);
-  };
-  return (
-    <Popper
-      sx={{ zIndex: '100' }}
-      open={open}
-      anchorEl={anchorEl}
-      placement="bottom-start"
-      transition
-    >
-      {({ TransitionProps, placement }) => (
-        <Grow
-          {...TransitionProps}
-          style={{
-            transformOrigin:
-              placement === 'bottom-start' ? 'left top' : 'left bottom',
-          }}
-        >
-          <Paper>
-            <ClickAwayListener onClickAway={handleClose}>
-              <MenuList autoFocusItem={open}>
-                <MenuItem onClick={() => {
-                  handleClose();
-                  navigateTo('/orders');
-                }}
-                >
-                  <ListItemIcon><LocalShippingIcon fontSize="small" /></ListItemIcon>
-                  Your orders
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    handleClose();
-                    navigateTo('/settings');
-                  }}
-                >
-                  <ListItemIcon><Settings fontSize="small" /></ListItemIcon>
-                  Settings
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={() => {
-                  LogoutTrigger({}).unwrap().then(() => {
-                    dispatch(logoutUser());
-                    dispatch(emptyCart());
-                    handleClose(false);
-                    window.localStorage.clear();
-                    writeLS('cart', []);
-                    navigate('/', { replace: true });
-                  });
-                }}
-                >
-                  <ListItemIcon><Logout fontSize="small" /></ListItemIcon>
-                  Logout
-                </MenuItem>
-              </MenuList>
-            </ClickAwayListener>
-          </Paper>
-        </Grow>
-      )}
-    </Popper>
-  );
-};
+const CustomMenu: FC<any> = ({ anchor, setAnchor, children }) => (
+  <Menu
+    disableScrollLock
+    anchorEl={anchor}
+    open={Boolean(anchor)}
+    onClose={() => setAnchor(null)}
+    PaperProps={{
+      elevation: 0,
+      sx: {
+        overflow: 'visible',
+        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+        mt: 1.5,
+        '& .MuiAvatar-root': {
+          width: 32,
+          height: 32,
+          ml: -0.5,
+          mr: 1,
+        },
+        '&:before': {
+          content: '""',
+          display: 'block',
+          position: 'absolute',
+          top: 0,
+          right: 14,
+          width: 10,
+          height: 10,
+          bgcolor: 'background.paper',
+          transform: 'translateY(-50%) rotate(45deg)',
+          zIndex: 0,
+        },
+      },
+    }}
+    transformOrigin={{ horizontal: 'center', vertical: 'top' }}
+    anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+  >
+    {children}
+  </Menu>
+);
 
 export default CustomMenu;
