@@ -6,6 +6,8 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import dayjs from 'dayjs';
 import { maskCardNumber } from '../../utils/helper';
+import TitleBrandDisplay from '../../Components/Product/TitleBrandDisplay';
+import ImageDisplay from '../../Components/Product/ImageDisplay';
 
 const OrderItem: FC<any> = ({ order }) => {
   const deliveryStatus = order.dateDelivered ? `Delivered ${order.dateDelivered}` : 'Not delivered';
@@ -50,26 +52,14 @@ const OrderItem: FC<any> = ({ order }) => {
                 {products.map((prod: any, i: number) => {
                   const { product } = prod;
                   return (
-                    <TableRow
-                      key={i}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
+                    <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                       <TableCell>
                         <Grid container spacing={2}>
                           <Grid item xs={12} sm={12} md={2} lg={2}>
-                            <div style={{ maxWidth: '120px', maxHeight: '180px' }}>
-                              <img
-                                src={product.images[0]}
-                                alt="first"
-                                style={{
-                                  maxHeight: '100%',
-                                  maxWidth: '100%',
-                                }}
-                              />
-                            </div>
+                            <ImageDisplay image={product.images[0]} />
                           </Grid>
                           <Grid item xs={12} sm={12} md={10} lg={10}>
-                            <Typography variant="body1" component="p">{product.title}</Typography>
+                            <TitleBrandDisplay productTitle={product.title} />
                           </Grid>
                         </Grid>
                       </TableCell>

@@ -5,11 +5,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import PriceDisplay from './PriceDisplay';
 import RatingWrapper from '../RatingWrapper';
-
-const imgStyles = {
-  maxHeight: '100%',
-  maxWidth: '100%',
-};
+import TitleBrandDisplay from './TitleBrandDisplay';
+import ImageDisplay from './ImageDisplay';
 
 const ProductItem: FC<any> = ({ product }) => {
   const image = product.images.length !== 0 ? product.images[0] : '/imgs/No-Image-Placeholder.png';
@@ -28,15 +25,13 @@ const ProductItem: FC<any> = ({ product }) => {
       }}
       onClick={() => navigate(`/product/${product._id}`)}
     >
-      <Grid container>
+      <Grid container spacing={2}>
         <Grid item xs={3} sm={3} md={3} lg={2}>
-          <div style={{ maxWidth: '120px', height: '180px' }}>
-            <img src={image} alt="first" style={imgStyles} />
-          </div>
+          <ImageDisplay image={image} />
         </Grid>
         <Grid item xs={9} sm={9} md={9} lg={10}>
           <Stack direction="column" spacing={1}>
-            <Typography variant="body1">{product.title}</Typography>
+            <TitleBrandDisplay productTitle={product.title} />
             <Stack direction="row" alignItems="center" spacing={1}>
               <RatingWrapper rateValue={product.rating.rate / product.rating.count} />
               <Typography variant="body2">{`(${product.rating.count})`}</Typography>

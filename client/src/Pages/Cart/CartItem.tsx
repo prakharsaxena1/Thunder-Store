@@ -11,6 +11,8 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { decrementQuantity, incrementQuantity } from '../../redux/slices/cart/cartSlice';
 import { getPrice } from '../../utils/helper';
 import UserApis from '../../redux/apis/User/user.api';
+import TitleBrandDisplay from '../../Components/Product/TitleBrandDisplay';
+import ImageDisplay from '../../Components/Product/ImageDisplay';
 
 const CartItem: FC<any> = ({ data }) => {
   const cartData = useAppSelector(cartSelector);
@@ -34,19 +36,11 @@ const CartItem: FC<any> = ({ data }) => {
     <Paper sx={{ p: 1, m: 1 }}>
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item sm={3} md={2} lg={2}>
-          <div style={{ width: '90px', height: '120px', margin: 'auto' }}>
-            <img src={data.image} alt="first" style={{ maxHeight: '100%', width: '100%' }} />
-          </div>
+          <ImageDisplay image={data.image} />
         </Grid>
         {/* Text */}
         <Grid item sm={8} md={6} lg={7}>
-          <Typography
-            variant="h6"
-            component="h6"
-            align="center"
-          >
-            {data.title}
-          </Typography>
+          <TitleBrandDisplay productTitle={data.title} />
         </Grid>
         {/* Price */}
         <Grid item sm={3} md={1} lg={1}>

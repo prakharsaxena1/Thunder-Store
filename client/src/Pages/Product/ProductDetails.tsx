@@ -11,6 +11,7 @@ import { addItemToCart } from '../../redux/slices/cart/cartSlice';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import { colors } from '../../Constants/constants';
 import UserApis from '../../redux/apis/User/user.api';
+import TitleBrandDisplay from '../../Components/Product/TitleBrandDisplay';
 
 const ProductDetails: FC<any> = ({ product }) => {
   const dispatch = useAppDispatch();
@@ -38,7 +39,7 @@ const ProductDetails: FC<any> = ({ product }) => {
       </Grid>
       <Grid item xs={10} sm={6} md={7}>
         <Stack direction="column" spacing={1}>
-          <Typography variant="h5">{product.title}</Typography>
+          <TitleBrandDisplay productTitle={product.title} single />
           <Stack direction="row" alignItems="center" spacing={1}>
             <RatingWrapper rateValue={product.rating.rate / product.rating.count} />
             <Typography variant="body2">{`(${product.rating.count})`}</Typography>

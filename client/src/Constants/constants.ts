@@ -16,6 +16,7 @@ export const colors = {
   primary: 'rgb(241 241 241 / 34%)',
   stockLeft: '#FFA400',
   outOfStock: '#CF000F',
+  caption: '#757D75',
 };
 
 export const apiUrls = {
