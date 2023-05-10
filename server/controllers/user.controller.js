@@ -1,4 +1,6 @@
-const { User } = require('../models/user.model');
+const User = require('../models/user.model');
+const Review = require('../models/Review.model');
+const Product = require('../models/Product.model');
 const auth = require('../auth/auth');
 
 const userLogin = async (req, res) => {
@@ -68,6 +70,15 @@ const deleteUser = async (req, res) => {
     try {
         const { id } = req.body;
         if (id) {
+            // Delete all reviews
+            const reviewsByUser = await Review.find({ userID: id });
+            for (let review of reviewsByUser) {
+                const productData = await Product.findById(review.productID);
+                productData.rating.rate -= review.rating;
+                productData.rating.count -= 1;
+                productData.save();
+                review.remove();
+            }
             await User.findByIdAndDelete(id);
         }
         return res.status(200).json({ success: true, message: 'Account deleted' });

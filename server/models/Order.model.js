@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { addressSchema } = require('./user.model');
 mongoose.set('strictQuery', true);
 
 const orderSchema = new mongoose.Schema({

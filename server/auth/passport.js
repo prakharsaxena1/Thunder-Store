@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const JwtStrategy = require('passport-jwt').Strategy;
-const { User } = require('../models/user.model');
+const User = require('../models/user.model');
 const { createKeysIfNotExist } = require('./auth');
 
 createKeysIfNotExist();
