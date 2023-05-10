@@ -1,14 +1,8 @@
-import React, {
-  FC, useState, useRef,
-} from 'react';
+import React, { FC, useState, useRef } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import {
-  Badge,
-} from '@mui/material';
+import { Badge } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import {
-  useAppSelector,
-} from '../../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
 import NavBtn from './NavBtn';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
@@ -35,11 +29,6 @@ const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
               icon={<AccountCircleIcon />}
               onClick={handleToggle}
             />
-            {/* <Button ref={anchorRef} onClick={handleToggle}>
-              {userData.username}
-              &nbsp;
-              <AccountCircleIcon />
-            </Button> */}
             <ProfileDropdown
               open={open}
               setOpen={setOpen}
