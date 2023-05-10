@@ -12,6 +12,7 @@ const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 const Checkout: FC = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [ID, setID] = useState('');
   const [address, setAddress] = useState({
     name: '',
     address: '',
@@ -35,7 +36,10 @@ const Checkout: FC = () => {
     setPayment(obj);
   };
 
-  const handleNext = () => {
+  const handleNext = (id: string = '') => {
+    if (id !== '') {
+      setID(id);
+    }
     setActiveStep(activeStep + 1);
   };
 
@@ -57,9 +61,7 @@ const Checkout: FC = () => {
             Thank you for your order!!
           </Typography>
           <Typography variant="subtitle1">
-            Your order number is #2001539. We have emailed your order
-            confirmation, and will send you an update when your order has
-            shipped.
+            {`Your order number is #${ID}. We have emailed your order confirmation, and will send you an update when your order has shipped.`}
           </Typography>
         </>
       ) : (

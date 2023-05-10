@@ -7,7 +7,7 @@ const addOrder = async (req, res) => {
     const errorOrderProducts = [];
     for (let orderProduct of req.body.products) {
       const productData = await Product.findById(orderProduct.product)
-        .select('-category -description -discount -keywords -rating');
+        .select('-category -description -keywords');
       if (orderProduct.qty > productData.stock) {
         errorOrderProducts.push(productData);
       }

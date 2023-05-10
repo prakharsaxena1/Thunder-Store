@@ -14,6 +14,7 @@ const SearchBar: FC = () => {
         size="small"
         variant="outlined"
         placeholder="Search"
+        autoComplete="off"
         onKeyPress={(e: any) => {
           if (e.key === 'Enter') {
             navigate(`/search/${text}`);
