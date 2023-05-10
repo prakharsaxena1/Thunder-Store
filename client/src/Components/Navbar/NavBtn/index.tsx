@@ -9,14 +9,15 @@ interface RouterLinkProps {
   type?: 'Menu' | 'Link' | 'Popup';
   onClick?: any;
   icon?: React.ReactNode;
+  refference?: any;
 }
 
 const NavBtn: FC<RouterLinkProps> = ({
-  href = '/', title, type = 'Link', onClick = () => {}, icon,
+  refference, title, href = '/', type = 'Link', onClick = () => {}, icon,
 }) => {
   if (type === 'Menu' || type === 'Popup') {
     return (
-      <Button variant="text" color="inherit" onClick={onClick}>
+      <Button variant="text" color="inherit" onClick={onClick} ref={refference}>
         {title}
         &nbsp;
         {icon}
