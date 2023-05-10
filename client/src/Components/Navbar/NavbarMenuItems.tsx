@@ -1,67 +1,52 @@
 /* eslint-disable max-len */
-import React, { FC, useState } from 'react';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import React, { FC } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useNavigate } from 'react-router-dom';
-import { MenuItem, ListItemIcon, Divider } from '@mui/material';
-import { logoutUser } from '../../redux/slices/user/userSlice';
-import AccountApis from '../../redux/apis/Account/account.api';
+import { Badge } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CustomMenu from '../CustomMenu';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
 import NavBtn from './NavBtn';
-import { emptyCart } from '../../redux/slices/cart/cartSlice';
-import { writeLS } from '../../utils/helper';
+
+import { cartSelector } from '../../redux/slices/cart/cart.selector';
 
 const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
-  const [userMenu, setUserMenu] = useState<null | HTMLElement>(null);
-  const userData = useAppSelector(userSelector);
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const [LogoutTrigger] = AccountApis.useLazyLogoutQuery();
-  const navigateTo = (link: string) => {
-    navigate(link);
-    setUserMenu(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
   };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const userData = useAppSelector(userSelector);
+  const cartData = useAppSelector(cartSelector);
+
   return (
     <>
       {userData && userData.username !== ''
         ? (
           <>
-            <NavBtn type="Menu" title={userData.username} onClick={(event: React.MouseEvent<HTMLElement>) => setUserMenu(event.currentTarget)} />
-            <CustomMenu anchor={userMenu} setAnchor={setUserMenu}>
-              <MenuItem onClick={() => navigateTo('/orders')}>
-                <ListItemIcon><LocalShippingIcon fontSize="small" /></ListItemIcon>
-                Your orders
-              </MenuItem>
-              <MenuItem onClick={() => navigateTo('/settings')}>
-                <ListItemIcon><Settings fontSize="small" /></ListItemIcon>
-                Settings
-              </MenuItem>
-              <Divider />
-              <MenuItem onClick={() => {
-                LogoutTrigger({}).unwrap().then(() => {
-                  dispatch(logoutUser());
-                  dispatch(emptyCart());
-                  setUserMenu(null);
-                  window.localStorage.clear();
-                  writeLS('cart', []);
-                  navigate('/', { replace: true });
-                });
-              }}
-              >
-                <ListItemIcon><Logout fontSize="small" /></ListItemIcon>
-                Logout
-              </MenuItem>
-            </CustomMenu>
+            <NavBtn
+              type="Menu"
+              title={userData.username}
+              onClick={handleClick}
+              icon={<AccountCircleIcon />}
+            />
+            <CustomMenu anchorEl={anchorEl} handleClose={handleClose} />
           </>
         )
         : (
           <NavBtn href="/login" title="Login" />
         )}
-      <NavBtn type="Popup" title="Cart" onClick={() => setShowCart(true)} icon={<ShoppingCartIcon sx={{ fontSize: '1rem' }} />} />
+      <Badge badgeContent={cartData.cart.length} color="secondary">
+        <NavBtn
+          type="Popup"
+          title="Cart"
+          onClick={() => setShowCart(true)}
+          icon={<ShoppingCartIcon sx={{ fontSize: '1rem' }} />}
+        />
+      </Badge>
+
     </>
   );
 };

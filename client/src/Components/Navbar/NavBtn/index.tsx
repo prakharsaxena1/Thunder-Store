@@ -14,7 +14,7 @@ interface RouterLinkProps {
 const NavBtn: FC<RouterLinkProps> = ({
   href = '/', title, type = 'Link', onClick = () => {}, icon,
 }) => {
-  if (type === 'Menu') {
+  if (type === 'Menu' || type === 'Popup') {
     return (
       <Button variant="text" color="inherit" onClick={onClick}>
         {title}
@@ -22,9 +22,6 @@ const NavBtn: FC<RouterLinkProps> = ({
         {icon}
       </Button>
     );
-  }
-  if (type === 'Popup') {
-    return <Button variant="text" color="inherit" onClick={onClick}>{title}</Button>;
   }
   return <Button variant="text" color="inherit" component={Link} to={href}>{title}</Button>;
 };
