@@ -13,10 +13,11 @@ export const urls = {
 };
 
 export const colors = {
-  primary: 'rgb(241 241 241 / 34%)',
+  primary: 'rgb(241 241 241 / 74%)',
   stockLeft: '#FFA400',
   outOfStock: '#CF000F',
-  caption: '#757D75',
+  caption: '#F7CA18',
+  text: '#fff',
 };
 
 export const apiUrls = {

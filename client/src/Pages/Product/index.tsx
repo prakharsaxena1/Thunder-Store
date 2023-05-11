@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Stack } from '@mui/material';
+import { Stack, Box } from '@mui/material';
 import ProductApis from '../../redux/apis/Product/product.api';
 import Loader from '../../Components/Loader';
 import ProductDetails from './ProductDetails';
@@ -20,12 +20,20 @@ const Product: FC = () => {
     return <Loader />;
   }
   return (
-    <Stack spacing={3} sx={{ p: '1.5rem' }}>
-      {/* PRODUCT DETAILS */}
-      <ProductDetails product={data?.product} />
-      {/* REVIEWS */}
-      <ReviewDetails reviews={reviewData.reviews || []} />
-    </Stack>
+    <Box
+      sx={{
+        p: 2,
+        width: { sm: '90%', md: '80%', lg: '70%' },
+        m: '1rem auto',
+      }}
+    >
+      <Stack spacing={3}>
+        {/* PRODUCT DETAILS */}
+        <ProductDetails product={data?.product} />
+        {/* REVIEWS */}
+        <ReviewDetails reviews={reviewData.reviews || []} />
+      </Stack>
+    </Box>
   );
 };
 

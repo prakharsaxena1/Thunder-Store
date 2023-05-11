@@ -1,13 +1,21 @@
 /* eslint-disable max-len */
 import React, { FC, useEffect, useState } from 'react';
 import {
-  Stack, Typography, Button, Divider,
+  Stack, Typography, Button, Divider, Box, Paper,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import Review from '../../Components/Review';
 import ReviewPopup from '../../Components/Review/ReviewPopup';
 import { useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
+
+const EmptyReviews: FC<any> = () => {
+  return (
+    <Box sx={{ p: 2 }} component={Paper}>
+      <Typography variant="h5" align="center">No reviews</Typography>
+    </Box>
+  );
+};
 
 const ReviewDetails: FC<any> = ({ reviews }) => {
   const { id } = useParams();
@@ -35,12 +43,12 @@ const ReviewDetails: FC<any> = ({ reviews }) => {
         <Typography variant="h4">Reviews</Typography>
         {canReview && (
           <Button
-            variant="text"
+            variant="contained"
             color="primary"
             size="small"
             onClick={() => setShowModal(true)}
           >
-            Write a review
+            Add a review
           </Button>
         )}
       </Stack>
@@ -50,7 +58,7 @@ const ReviewDetails: FC<any> = ({ reviews }) => {
           ? sortedReviews.map((review: any, i: number) => (
             <Review data={review} key={i} setData={setData} setShowModal={setShowModal} />
           ))
-          : <Typography variant="h6" align="center" gutterBottom sx={{ color: 'gray' }}>No reviews</Typography>}
+          : <EmptyReviews />}
       </Stack>
       {showModal && (
         <ReviewPopup

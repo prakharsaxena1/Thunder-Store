@@ -49,7 +49,6 @@ const userRegister = async (req, res) => {
                     email: user.email,
                     id: user._id,
                     cart: user.cart,
-                    address: user.address,
                     profilePhoto: user.profilePhoto,
                 },
                 token: res.token,

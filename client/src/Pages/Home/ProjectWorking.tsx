@@ -70,9 +70,9 @@ const ProjectWorking: FC = () => {
             ))}
           </Stepper>
           {activeStep === steps.length && (
-            <Paper square elevation={0} sx={{ p: 3 }}>
+            <Paper square elevation={0} sx={{ p: 3, backgroundColor: '#ffffff00' }}>
               <Typography>Wanna go again?</Typography>
-              <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>Reset</Button>
+              <Button variant="contained" onClick={handleReset} sx={{ mt: 1, mr: 1 }}>Reset</Button>
             </Paper>
           )}
         </Grid>

@@ -14,9 +14,11 @@ const PopupModal: FC<any> = ({
         sx={{
           background: 'linear-gradient(45deg,rgb(19, 19, 19, 0.1),rgba(28, 28, 28, 0.2))',
           overflow: 'hidden',
+          backdropFilter: 'blur(4px)',
           zIndex: 100,
         }}
         open={showModal}
+        transitionDuration={400}
       >
         <ClickAwayListener
           onClickAway={() => {

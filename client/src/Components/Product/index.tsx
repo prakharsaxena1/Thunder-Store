@@ -19,7 +19,6 @@ const ProductItem: FC<any> = ({ product }) => {
       spacing={2}
       sx={{
         overflow: 'hidden',
-        border: '1px solid #D1D1D1',
         borderRadius: '0.5rem',
         cursor: 'pointer',
       }}

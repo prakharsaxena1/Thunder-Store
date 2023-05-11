@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
-  Grid, Typography,
+  Box, Grid, Paper, Typography,
 } from '@mui/material';
 import ProductApis from '../../redux/apis/Product/product.api';
 import Loader from '../../Components/Loader';
@@ -24,25 +24,30 @@ const Search = () => {
   }
 
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{
-        width: '90vw',
-        margin: 'auto',
-        height: '100%',
-      }}
-    >
-      {data && data.total !== 0
-        ? data.products.map((product: any, i: number) => (
-          <Grid item xs={12} sm={12} md={6} lg={6} key={i}>
-            <ProductItem product={product} />
-          </Grid>
-        ))
-        : (
-          <Typography variant="h2" sx={{ margin: '5rem auto' }}>Sorry, your search didn&apos;t return any results</Typography>
-        )}
-    </Grid>
+    <Box sx={{ p: 2 }}>
+      <Grid
+        container
+        gap={1}
+        justifyContent="center"
+        sx={{
+          width: '90vw',
+          margin: 'auto',
+          height: '100%',
+        }}
+      >
+        {/* <Grid item xs={12} sm={12} md={10} lg={9} key={i}>
+        </Grid> */}
+        {data && data.total !== 0
+          ? data.products.map((product: any, i: number) => (
+            <Grid item xs={12} sm={12} md={9} lg={8} key={i} component={Paper}>
+              <ProductItem product={product} />
+            </Grid>
+          ))
+          : (
+            <Typography variant="h2" sx={{ margin: '5rem auto' }}>Sorry, your search didn&apos;t return any results</Typography>
+          )}
+      </Grid>
+    </Box>
   );
 };
 

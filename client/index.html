@@ -13,6 +13,9 @@
     <link rel="manifest" href="/manifest.json" />
     <title>Thunder Store</title>
     <style>
+      html {
+        scroll-behavior: smooth;
+      }
       /* width */
       ::-webkit-scrollbar {
         width: 10px;
@@ -31,6 +34,10 @@
       /* Handle on hover */
       ::-webkit-scrollbar-thumb:hover {
         background: #555;
+      }
+      #root {
+        background: linear-gradient(to top right, #d5d5d5d0, #ffffff9c), url("/imgs/bg_img.jpg");
+        background-attachment: fixed;
       }
     </style>
   </head>

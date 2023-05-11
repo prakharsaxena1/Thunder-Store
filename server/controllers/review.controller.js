@@ -57,7 +57,6 @@ const editReviewWithID = async (req, res) => {
   try {
     const { reviewId } = req.params;
     const review = await Review.findById(reviewId);
-    console.log({ review, reviewId, userID: req.user._id });
     if (review && review.userID.equals(req.user._id)) {
       const ratingDiff = req.body.rating - review.rating;
       review.rating = req.body.rating;
@@ -83,7 +82,6 @@ const deleteReviewWithID = async (req, res) => {
     if (!review) {
       return res.status(404).json({ success: false, message: 'Review not found' });
     }
-    console.log(review);
     if (review.userID.equals(req.user._id)) {
       productData.rating.rate -= review.rating;
       productData.rating.count -= 1;

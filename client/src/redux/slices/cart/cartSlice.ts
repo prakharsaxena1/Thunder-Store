@@ -15,12 +15,14 @@ interface InitialStateType {
   cart: CartI[];
   cartId: Record<string, number>;
   cartValue: number;
+  cartItemCount: number;
 }
 
 const initialState: InitialStateType = {
   cart: [],
   cartId: {},
   cartValue: 0,
+  cartItemCount: 0,
 };
 
 const cartItemLS = (item: CartI, action = 'add', id = null) => {
@@ -57,16 +59,19 @@ const cartSlice = createSlice({
       state.cartId = cartID;
       state.cart = tempCart.filter((product, index, self) => index === self.findIndex((p) => p.productID === product.productID));
       state.cartValue = temp;
+      state.cartItemCount = tempCart.length;
       writeLS('cart', tempCart);
     },
     addItemToCart: (state, action) => {
       state.cartId[action.payload.productID] = 1;
       state.cart.push(action.payload);
+      state.cartItemCount += 1;
       state.cartValue += getPrice(action.payload.price, action.payload.discount);
       cartItemLS(action.payload);
     },
     incrementQuantity: (state, action) => {
       state.cartId[action.payload.productID] += 1;
+      state.cartItemCount += 1;
       state.cartValue += getPrice(action.payload.price, action.payload.discount);
       cartItemLS(action.payload);
     },
@@ -81,6 +86,7 @@ const cartSlice = createSlice({
         state.cartId[action.payload.productID] -= 1;
       }
       cartItemLS(action.payload, 'remove', action.payload.productID);
+      state.cartItemCount -= 1;
       state.cartValue -= getPrice(action.payload.price, action.payload.discount);
     },
     emptyCart: () => {

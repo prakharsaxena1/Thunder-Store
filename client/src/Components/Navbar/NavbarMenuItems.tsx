@@ -1,12 +1,21 @@
 import React, { FC, useState, useRef } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Badge } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Badge, BadgeProps, styled } from '@mui/material';
 import { useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
-import NavBtn from './NavBtn';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
+import NavBtn from './NavBtn';
 import ProfileDropdown from './ProfileDropdown';
+
+const CartBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
 
 const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
   const userData = useAppSelector(userSelector);
@@ -39,15 +48,14 @@ const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
         : (
           <NavBtn href="/login" title="Login" />
         )}
-      <Badge badgeContent={cartData.cart.length} color="secondary">
+      <CartBadge badgeContent={cartData.cartItemCount} color="warning">
         <NavBtn
           type="Popup"
           title="Cart"
           onClick={() => setShowCart(true)}
           icon={<ShoppingCartIcon sx={{ fontSize: '1rem' }} />}
         />
-      </Badge>
-
+      </CartBadge>
     </>
   );
 };

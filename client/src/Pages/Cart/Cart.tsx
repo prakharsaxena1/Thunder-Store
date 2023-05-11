@@ -16,13 +16,13 @@ const Cart: FC<any> = ({ setShowCheckout, setShowCart }) => {
   return (
     <>
       <Stack direction="row" justifyContent="space-around" sx={{ p: 1 }} alignItems="center">
-        <Typography variant="body1">{`Items: ${cartData.cart.length}`}</Typography>
+        <Typography variant="body1">{`Items: ${cartData.cartItemCount}`}</Typography>
         <Typography variant="body1">{`Amount: ${cartData.cartValue}`}</Typography>
-        {cartData.cart.length !== 0 && <Button variant="contained" size="small" onClick={handleCheckout}>Checkout</Button>}
+        {cartData.cartItemCount !== 0 && <Button variant="contained" size="small" onClick={handleCheckout}>Checkout</Button>}
       </Stack>
       <Divider />
       <Box sx={{ maxHeight: '60vh', overflow: 'auto' }}>
-        {cartData.cart.length === 0
+        {cartData.cartItemCount === 0
           ? (
             <Typography variant="h4" component="h4" align="center" sx={{ p: 3 }}>
               Cart is empty
