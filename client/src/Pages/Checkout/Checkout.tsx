@@ -4,9 +4,12 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
+import { Navigate } from 'react-router-dom';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import { useAppSelector } from '../../redux/hooks';
+import { userSelector } from '../../redux/slices/user/user.selector';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -27,6 +30,7 @@ const Checkout: FC = () => {
     expiry: '',
     cvv: '',
   });
+  const userData = useAppSelector(userSelector);
 
   const addressHandler = (obj: any) => {
     setAddress(obj);
@@ -46,6 +50,11 @@ const Checkout: FC = () => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  if (!userData.id) {
+    return (
+      <Navigate to="/login" />
+    );
+  }
   return (
     <div>
       <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>

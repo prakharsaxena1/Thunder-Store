@@ -10,6 +10,7 @@ import Loader from './Components/Loader';
 
 // Components
 const RootLayout = React.lazy(() => import('./Components/RootLayout'));
+const ProtectedRoutes = React.lazy(() => import('./Pages/ProtectedRoutes'));
 const Search = React.lazy(() => import('./Pages/Search'));
 const Order = React.lazy(() => import('./Pages/Order'));
 const Home = React.lazy(() => import('./Pages/Home'));
@@ -27,8 +28,10 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route element={<Search />} path="search/:searchQuery" />
         <Route element={<Product />} path="/product/:id" />
-        <Route element={<Order />} path="/orders" />
-        <Route element={<UserProfile />} path="/settings" />
+        <Route element={<ProtectedRoutes />}>
+          <Route element={<Order />} path="/orders" />
+          <Route element={<UserProfile />} path="/settings" />
+        </Route>
         <Route element={<NotFound404 />} path="*" />
       </Route>
       <Route element={<Login />} path="login" />
@@ -52,8 +55,8 @@ const App = () => {
         email: foundUser.email,
         profilePhoto: foundUser.profilePhoto,
       }));
-      dispatch(setCartItems([]));
     }
+    dispatch(setCartItems([]));
   }, []);
   return (
     <Suspense fallback={<Loader />}>

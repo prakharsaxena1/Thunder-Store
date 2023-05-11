@@ -13,23 +13,29 @@ import { getPrice } from '../../utils/helper';
 import UserApis from '../../redux/apis/User/user.api';
 import TitleBrandDisplay from '../../Components/Product/TitleBrandDisplay';
 import ImageDisplay from '../../Components/Product/ImageDisplay';
+import { userSelector } from '../../redux/slices/user/user.selector';
 
 const CartItem: FC<any> = ({ data }) => {
   const cartData = useAppSelector(cartSelector);
+  const userData = useAppSelector(userSelector);
   const dispatch = useAppDispatch();
   const [CartTrigger] = UserApis.useAddItemToCartMutation();
   const handleQtyIncrement = () => {
-    CartTrigger({
-      productId: data.productID,
-      operation: 'add',
-    });
+    if (userData.id) {
+      CartTrigger({
+        productId: data.productID,
+        operation: 'add',
+      });
+    }
     dispatch(incrementQuantity(data));
   };
   const handleQtyDecrement = () => {
-    CartTrigger({
-      productId: data.productID,
-      operation: 'delete',
-    });
+    if (userData.id) {
+      CartTrigger({
+        productId: data.productID,
+        operation: 'delete',
+      });
+    }
     dispatch(decrementQuantity(data));
   };
   return (

@@ -18,7 +18,6 @@ const Login: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
-
   const [loginTrigger, { isLoading }] = AccountApis.useLoginMutation();
   const attemptLogin = () => {
     if (email && pass) {

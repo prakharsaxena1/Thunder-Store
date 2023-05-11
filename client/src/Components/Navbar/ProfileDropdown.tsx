@@ -10,9 +10,10 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../redux/slices/user/userSlice';
 import { emptyCart } from '../../redux/slices/cart/cartSlice';
-import { writeLS } from '../../utils/helper';
+import { getFromLS, writeLS } from '../../utils/helper';
 import { useAppDispatch } from '../../redux/hooks';
 import AccountApis from '../../redux/apis/Account/account.api';
+import UserApis from '../../redux/apis/User/user.api';
 
 const ProfileDropdown: FC<any> = ({
   open, anchorRef, setOpen,
@@ -20,6 +21,7 @@ const ProfileDropdown: FC<any> = ({
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [LogoutTrigger] = AccountApis.useLazyLogoutQuery();
+  const [CartTrigger] = UserApis.useAddItemToCartMutation();
   const handleClose = (event: Event | React.SyntheticEvent) => {
     if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
@@ -82,6 +84,11 @@ const ProfileDropdown: FC<any> = ({
                     </MenuItem>
                     <Divider />
                     <MenuItem onClick={() => {
+                      const cart = getFromLS('cart', []);
+                      CartTrigger({
+                        productId: cart.map((item: any) => item.productID),
+                        operation: 'add',
+                      });
                       LogoutTrigger({}).unwrap().then(() => {
                         dispatch(logoutUser());
                         dispatch(emptyCart());

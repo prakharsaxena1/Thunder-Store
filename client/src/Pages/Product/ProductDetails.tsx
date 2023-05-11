@@ -12,16 +12,20 @@ import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import { colors } from '../../Constants/constants';
 import UserApis from '../../redux/apis/User/user.api';
 import TitleBrandDisplay from '../../Components/Product/TitleBrandDisplay';
+import { userSelector } from '../../redux/slices/user/user.selector';
 
 const ProductDetails: FC<any> = ({ product }) => {
   const dispatch = useAppDispatch();
   const cartData = useAppSelector(cartSelector);
+  const userData = useAppSelector(userSelector);
   const [CartTrigger] = UserApis.useAddItemToCartMutation();
   const addToCart = () => {
-    CartTrigger({
-      productId: product._id,
-      operation: 'add',
-    });
+    if (userData.id) {
+      CartTrigger({
+        productId: product._id,
+        operation: 'add',
+      });
+    }
     dispatch(addItemToCart({
       productID: product._id,
       title: product.title,

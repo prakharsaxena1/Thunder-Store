@@ -145,17 +145,22 @@ const updateCart = async (req, res) => {
         if (!user) {
             return res.status(400).json({ success: false, message: 'Invalid user' });
         }
-        const cart = [...user.cart]
+        let cart = [...user.cart]
         if (req.body.operation === 'delete') {
             const index = cart.findIndex(item => item.productId === req.body.productId);
             cart.splice(index, 1);
         } else if (req.body.operation === 'add') {
-            cart.push(req.body.productId);
+            if (Array.isArray(req.body.productId)) {
+                cart = req.body.productId;
+            } else {
+                cart.push(req.body.productId);
+            }
         }
         user.cart = cart;
         await user.save();
         return res.status(200).json({ success: true, data: [...user.cart] });
     } catch (err) {
+        console.log(err);
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
