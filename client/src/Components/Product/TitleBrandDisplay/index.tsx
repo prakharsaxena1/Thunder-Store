@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Typography } from '@mui/material';
 import { colors } from '../../../Constants/constants';
 
-const splitProductTitle = (title: string) => {
+export const splitProductTitle = (title: string) => {
   const splitIndex = title.indexOf('[');
   if (splitIndex !== -1) {
     const gameTitle = title.slice(0, splitIndex).trim();

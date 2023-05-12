@@ -16,7 +16,7 @@ export const colors = {
   primary: 'rgb(241 241 241 / 74%)',
   stockLeft: '#FFA400',
   outOfStock: '#CF000F',
-  caption: '#F7CA18',
+  caption: '#757D75',
   text: '#fff',
 };
 
@@ -33,7 +33,6 @@ export const apiUrls = {
   },
   products: {
     product: '/product',
-    productByCategory: '/product/category/',
   },
   reviews: {
     productReview: '/review/product',

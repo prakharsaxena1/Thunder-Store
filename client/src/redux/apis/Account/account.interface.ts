@@ -25,11 +25,6 @@ export interface LoginRegisterResponse {
   token: string;
 }
 
-export interface LogoutResponse {
-  message: string;
-  success: boolean;
-}
-
 export interface RegisterRequest {
   email: string;
   password: string;

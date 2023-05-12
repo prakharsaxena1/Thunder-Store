@@ -13,7 +13,7 @@ const addOrder = async (req, res) => {
       }
     }
     if (errorOrderProducts.length > 0) {
-      return res.status(200).json({ success: false, message: 'Some products are not available', data: errorOrderProducts });
+      return res.status(200).json({ success: false, data: errorOrderProducts });
     }
     // Else
     for (let orderProduct of req.body.products) {
@@ -37,24 +37,15 @@ const addOrder = async (req, res) => {
 const getOrdersByUser = async (req, res) => {
   const user = req.user._id;
   let orders = [];
-  orders = await Order.find({ user }).populate('products.product');
+  orders = await Order.find({ user })
+    .populate({
+      path: 'products.product',
+      select: '-price -description -category -stock -discount -rating -keywords'
+    })
   return res.status(200).json({ success: true, orders });
-};
-
-const getOrderById = async (req, res) => {
-  const orderID = req.params.id;
-  if (orderID) {
-    const order = await Order.findById(orderID);
-    if (order) {
-      return res.status(200).json({ success: true, order });
-    }
-    return res.status(400).json({ success: false, message: 'Order not found' });
-  }
-  return res.status(400).json({ success: false, message: 'Invalid order id' });
 };
 
 module.exports = {
   addOrder,
   getOrdersByUser,
-  getOrderById,
 };

@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import { Box, TextField, Typography } from '@mui/material';
+import {
+  Box, TextField, Typography, Paper,
+} from '@mui/material';
 
 const dataToString = (data: any, textOnly = false) => {
   let str = '';
@@ -27,7 +29,8 @@ const RadioSelectWrapper: FC<any> = ({ data, textOnly }) => {
   const [stringData, maxRows] = dataToString(data, textOnly);
   return (
     <Box
-      sx={textOnly ? textOnlyProps : { p: 1 }}
+      sx={textOnly ? textOnlyProps : { p: 1, mb: 2 }}
+      component={Paper}
     >
       {textOnly
         ? (<Typography variant="body1">{stringData}</Typography>)

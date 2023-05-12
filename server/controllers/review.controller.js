@@ -1,6 +1,11 @@
 const Review = require('../models/Review.model');
 const Product = require('../models/Product.model');
 
+const userPopulate = {
+  path: 'userID',
+  select: '-password -cart -address -createdAt -updatedAt -__v -email -profilePhoto'
+}
+
 const getReviews = async (req, res) => {
   try {
     const { productId } = req.params;
@@ -8,10 +13,7 @@ const getReviews = async (req, res) => {
     if (productId) {
       reviews = await Review.find({ productID: productId })
         .select('-createdAt -__v')
-        .populate({
-          path: 'userID',
-          select: '-password -cart -address -createdAt -updatedAt -__v -email -profilePhoto'
-        });
+        .populate(userPopulate);
     }
     return res.status(200).json({ success: true, reviews });
   } catch (err) {
@@ -23,17 +25,23 @@ const addReview = async (req, res) => {
   const { productId } = req.params;
   try {
     const productData = await Product.findById(productId);
-    productData.rating.rate += req.body.rating;
-    productData.rating.count += 1;
-    const review = await Review.create({
-      rating: req.body.rating,
-      title: req.body.title,
-      description: req.body.description,
-      userID: req.user._id,
-      productID: productId,
-    });
-    await productData.save();
-    return res.status(200).json({ success: true, review });
+    if (productData) {
+      productData.rating.rate += req.body.rating;
+      productData.rating.count += 1;
+      const addReview = await Review.create({
+        rating: req.body.rating,
+        title: req.body.title,
+        description: req.body.description,
+        userID: req.user._id,
+        productID: productId,
+      });
+      const review = await Review.findById(addReview._id)
+        .select('-createdAt -__v')
+        .populate(userPopulate);
+        await productData.save();
+        return res.status(200).json({ success: true, review });
+    }
+    return res.status(200).json({ success: false, message: 'Invalid Product' });
   } catch (err) {
     return res.status(500).json({ success: false, message: 'Internal server error' });
   }
@@ -42,21 +50,24 @@ const addReview = async (req, res) => {
 const getReviewWithID = async (req, res) => {
   const { reviewId } = req.params;
   try {
-    const review = await Review.findById(reviewId);
+    const review = await Review.findById(reviewId)
+      .select('-createdAt -__v')
+      .populate(userPopulate);
     if (review) {
       return res.status(200).json({ success: true, review });
     }
-    return res.status(200).json({ success: false, message: 'review not found' });
+    return res.status(200).json({ success: false, review: {} });
   } catch (err) {
     return res.status(500).json({ success: false, message: 'Internal server error' });
-
   }
 };
 
 const editReviewWithID = async (req, res) => {
   try {
     const { reviewId } = req.params;
-    const review = await Review.findById(reviewId);
+    const review = await Review.findById(reviewId)
+      .select('-createdAt -__v')
+      .populate(userPopulate);
     if (review && review.userID.equals(req.user._id)) {
       const ratingDiff = req.body.rating - review.rating;
       review.rating = req.body.rating;
@@ -87,7 +98,7 @@ const deleteReviewWithID = async (req, res) => {
       productData.rating.count -= 1;
       await productData.save();
       await review.remove();
-      return res.status(204).json({ success: true, message: 'Review deleted' });
+      return res.sendStatus(204);
     }
     return res.status(401).json({ success: false, message: 'Invalid user' });
   } catch (error) {

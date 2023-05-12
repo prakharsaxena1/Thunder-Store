@@ -89,7 +89,7 @@ const ProfileDropdown: FC<any> = ({
                         productId: cart.map((item: any) => item.productID),
                         operation: 'add',
                       });
-                      LogoutTrigger({}).unwrap().then(() => {
+                      LogoutTrigger(null).unwrap().then(() => {
                         dispatch(logoutUser());
                         dispatch(emptyCart());
                         window.localStorage.clear();

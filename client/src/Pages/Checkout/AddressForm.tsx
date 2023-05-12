@@ -34,9 +34,9 @@ const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
   };
 
   useEffect(() => {
-    addressTrigger({}, true)
+    addressTrigger(null, true)
       .unwrap().then((res) => {
-        setDataList([...res.data]);
+        setDataList([...res.data!]);
       });
   }, []);
 

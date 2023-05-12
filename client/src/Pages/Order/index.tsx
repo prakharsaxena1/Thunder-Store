@@ -10,7 +10,7 @@ import Loader from '../../Components/Loader';
 const Order: React.FC = () => {
   const [OrderListTrigger, { data, isLoading, isFetching }] = OrderApis.useLazyGetOrdersByUserQuery();
   useEffect(() => {
-    OrderListTrigger({}, true);
+    OrderListTrigger(null, true);
   }, []);
 
   return (

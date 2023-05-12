@@ -1,9 +1,15 @@
+/* eslint-disable max-len */
 import baseApi from '../baseQuery';
 import { apiUrls } from '../../../Constants/constants';
+import {
+  AddOrderRequest,
+  AddOrderResponse,
+  GetOrderResponse,
+} from './orders.interface';
 
 export const OrderApis = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    addOrder: build.mutation<any, any>({
+    addOrder: build.mutation<AddOrderResponse, AddOrderRequest>({
       query: (params) => ({
         url: apiUrls.orders.order,
         method: 'POST',
@@ -11,16 +17,11 @@ export const OrderApis = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['order'],
     }),
-    getOrdersByUser: build.query<any, any>({
+    getOrdersByUser: build.query<GetOrderResponse, null>({
       query: () => ({
         url: apiUrls.orders.order,
       }),
       providesTags: ['order'],
-    }),
-    getOrderById: build.query<any, any>({
-      query: ({ orderID }) => ({
-        url: `${apiUrls.orders.order}/${orderID}`,
-      }),
     }),
   }),
 });

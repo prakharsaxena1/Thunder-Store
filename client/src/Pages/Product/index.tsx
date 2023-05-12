@@ -13,8 +13,8 @@ const Product: FC = () => {
   const [GetReviewTrigger, { data: reviewData, isLoading: reviewLoading, isFetching: reviewFetch }] = ReviewApis.useLazyGetAllReviewQuery();
   const [ProductTrigger, { data, isLoading, isFetching }] = ProductApis.useLazyGetProductWithIDQuery();
   useEffect(() => {
-    ProductTrigger({ id }, true);
-    GetReviewTrigger({ productID: id }, true);
+    ProductTrigger({ id: (id as string) }, true);
+    GetReviewTrigger({ productID: (id as string) }, true);
   }, [id]);
   if (reviewLoading || reviewFetch || isLoading || isFetching || !data) {
     return <Loader />;
@@ -31,7 +31,7 @@ const Product: FC = () => {
         {/* PRODUCT DETAILS */}
         <ProductDetails product={data?.product} />
         {/* REVIEWS */}
-        <ReviewDetails reviews={reviewData.reviews || []} />
+        <ReviewDetails reviews={reviewData?.reviews || []} />
       </Stack>
     </Box>
   );

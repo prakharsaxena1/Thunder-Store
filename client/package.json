@@ -36,7 +36,8 @@
     "serve": "vite preview",
     "test": "vite test",
     "eject": "vite eject",
-    "lint": "eslint . --ext .tsx,.ts --fix"
+    "lint": "eslint . --ext .tsx,.ts --fix",
+    "tsok": "tsc --noEmit && eslint . --ext .tsx,.ts --fix"
   },
   "eslintConfig": {
     "extends": [

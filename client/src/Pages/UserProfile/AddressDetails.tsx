@@ -26,9 +26,9 @@ const AddressDetails: FC = () => {
   };
 
   useEffect(() => {
-    addressTrigger({}, true)
+    addressTrigger(null, true)
       .unwrap().then((res) => {
-        setDataList([...res.data]);
+        setDataList([...res.data!]);
         setShow(false);
       });
   }, []);

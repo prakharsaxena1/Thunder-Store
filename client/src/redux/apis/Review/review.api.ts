@@ -1,9 +1,17 @@
 import baseApi from '../baseQuery';
 import { apiUrls } from '../../../Constants/constants';
+import {
+  OneReviewResponse,
+  ReviewsRequest,
+  ReviewsResponse,
+  ReviewIDRequest,
+  UpdateReviewRequest,
+  AddReviewRequest,
+} from './review.interface';
 
 export const ReviewApis = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    addReview: build.mutation<any, any>({
+    addReview: build.mutation<OneReviewResponse, AddReviewRequest>({
       query: ({ productID, ...rest }) => ({
         url: `${apiUrls.reviews.productReview}/${productID}`,
         method: 'POST',
@@ -11,7 +19,7 @@ export const ReviewApis = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['productReview'],
     }),
-    updateReview: build.mutation<any, any>({
+    updateReview: build.mutation<OneReviewResponse, UpdateReviewRequest>({
       query: ({ reviewId, ...rest }) => ({
         url: `${apiUrls.reviews.review}/${reviewId}`,
         method: 'PUT',
@@ -19,21 +27,21 @@ export const ReviewApis = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['productReview'],
     }),
-    deleteReview: build.mutation<any, any>({
+    deleteReview: build.mutation<null, ReviewIDRequest>({
       query: ({ reviewId }) => ({
         url: `${apiUrls.reviews.review}/${reviewId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['productReview'],
     }),
-    getAllReview: build.query<any, any>({
+    getAllReview: build.query<ReviewsResponse, ReviewsRequest>({
       query: ({ productID }) => ({
         url: `${apiUrls.reviews.productReview}/${productID}`,
         method: 'GET',
       }),
       providesTags: ['productReview'],
     }),
-    getOneReview: build.query<any, any>({
+    getOneReview: build.query<OneReviewResponse, ReviewIDRequest>({
       query: ({ reviewId }) => ({
         url: `${apiUrls.reviews.review}/${reviewId}`,
         method: 'GET',

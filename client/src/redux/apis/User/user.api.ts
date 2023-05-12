@@ -1,15 +1,22 @@
 import baseApi from '../baseQuery';
 import { apiUrls } from '../../../Constants/constants';
+import {
+  AddAddressResponse,
+  AddToCartRequest,
+  AddToCartResponse,
+  DeleteAddressResponse,
+  GetAddressesResponse, IAddress,
+} from './user.interface';
 
 export const UserApis = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getAddresses: build.query<any, any>({
+    getAddresses: build.query<GetAddressesResponse, null>({
       query: () => ({
         url: apiUrls.user.address,
       }),
       providesTags: ['address'],
     }),
-    deleteAddress: build.mutation<any, any>({
+    deleteAddress: build.mutation<null, DeleteAddressResponse>({
       query: (params) => ({
         url: apiUrls.user.address,
         method: 'DELETE',
@@ -17,7 +24,7 @@ export const UserApis = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['address'],
     }),
-    addAddress: build.mutation<any, any>({
+    addAddress: build.mutation<AddAddressResponse, IAddress>({
       query: (params) => ({
         url: apiUrls.user.address,
         method: 'POST',
@@ -25,7 +32,7 @@ export const UserApis = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['address'],
     }),
-    addItemToCart: build.mutation<any, any>({
+    addItemToCart: build.mutation<AddToCartResponse, AddToCartRequest>({
       query: (params) => ({
         url: apiUrls.user.cart,
         method: 'PUT',

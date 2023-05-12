@@ -35,7 +35,7 @@ const Review: FC<any> = ({ data, setData, setShowModal }) => {
   return (
     <Paper>
       <Grid container sx={{ position: 'relative' }}>
-        <Grid item xs={12} sm={4} md={3} lg={2} sx={{ backgroundColor: colors.primary, p: '1rem' }}>
+        <Grid item xs={12} sm={4} md={3} lg={3} sx={{ backgroundColor: colors.primary, p: '1rem' }}>
           <Stack direction="column">
             <Stack direction="row" spacing={1}>
               <AccountCircleIcon />
@@ -45,7 +45,7 @@ const Review: FC<any> = ({ data, setData, setShowModal }) => {
             <Typography variant="body1">{dayjs(data?.updatedAt).format('DD MMM YYYY')}</Typography>
           </Stack>
         </Grid>
-        <Grid item xs={12} sm={8} md={9} lg={10}>
+        <Grid item xs={12} sm={8} md={9} lg={9}>
           <Stack direction="column" sx={{ maxWidth: '95%', m: '8px auto' }}>
             <Typography variant="h6">{data?.title}</Typography>
             <Typography variant="body2">{data?.description}</Typography>

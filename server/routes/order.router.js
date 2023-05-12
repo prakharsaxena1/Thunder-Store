@@ -9,7 +9,6 @@ const authMiddleware = passport.authenticate('jwt', { session: false });
 router.route('/')
   .get(authMiddleware, orderController.getOrdersByUser)
   .post(authMiddleware, orderController.addOrder);
-router.route('/:orderId').get(authMiddleware, orderController.getOrderById);
 
 // Exports
 module.exports = router;

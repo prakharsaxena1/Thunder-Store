@@ -98,7 +98,7 @@ const deleteAddress = async (req, res) => {
     try {
         const addressID = req.body.addressID;
         await User.findByIdAndUpdate(req.user._id, { $pull: { address: { _id: addressID } } }, { new: true });
-        return res.status(200).json({ success: true, message: 'Removed address' });
+        return res.sendStatus(204);
     } catch (err) {
         console.log(err.message);
         return res.status(500).json({ success: false, message: 'Internal server error' });
@@ -120,7 +120,7 @@ const addAddress = async (req, res) => {
             pin: req.body.pin,
         });
         await user.save();
-        return res.status(200).json({ success: true, data: [...user.address] });
+        return res.status(201).json({ success: true, data: [...user.address] });
     } catch (err) {
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }

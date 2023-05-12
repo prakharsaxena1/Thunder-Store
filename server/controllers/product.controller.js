@@ -9,7 +9,7 @@ const getProducts = async (req, res) => {
         { category: { $regex: search, $options: 'i' } },
         { keywords: { $regex: search, $options: 'i' } },
       ],
-    });
+    }).select('-description -stock -keywords -__v');
     return res.status(200).json({
       success: true, products: productsArray, total: productsArray.length,
     });
@@ -21,7 +21,7 @@ const getProducts = async (req, res) => {
 const getProductWithID = async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await Product.findById(id);
+    const product = await Product.findById(id).select('-keywords -__v');
     if (product) {
       return res.status(200).json({ success: true, product });
     } else {
@@ -31,21 +31,20 @@ const getProductWithID = async (req, res) => {
     return res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };
-const getTopSellingFromCategory = async (req, res) => {
-  const { category } = req.params;
-  try {
-    const productsArray = await Product.find({ category: category });
-    return res.status(200).json({
-      products: productsArray, total: productsArray.length,
-    });
-  } catch (err) {
-    return res.status(403).json({ success: false, message: 'Internal server error' });
-  }
 
-};
+// const getTopSellingFromCategory = async (req, res) => {
+//   const { category } = req.params;
+//   try {
+//     const productsArray = await Product.find({ category: category });
+//     return res.status(200).json({
+//       products: productsArray, total: productsArray.length,
+//     });
+//   } catch (err) {
+//     return res.status(403).json({ success: false, message: 'Internal server error' });
+//   }
+// };
 
 module.exports = {
   getProducts,
   getProductWithID,
-  getTopSellingFromCategory,
 }

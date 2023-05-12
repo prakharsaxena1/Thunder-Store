@@ -11,6 +11,8 @@ import { getPrice, maskCardNumber } from '../../utils/helper';
 import FailedOrder from './FailedOrder';
 import PopupModal from '../../Components/PopupModal';
 import { colors } from '../../Constants/constants';
+import { splitProductTitle } from '../../Components/Product/TitleBrandDisplay';
+import { IErrorProductResponse } from '../../redux/apis/Order/orders.interface';
 
 const getAddressString = (addressObj: Record<string, string>) => {
   return `${addressObj?.name},\n${addressObj?.address},\n${addressObj?.city}, ${addressObj?.state}, ${addressObj?.country}\n${addressObj?.pin}`;
@@ -26,7 +28,7 @@ const SecondaryInfo: FC<any> = ({ cartId, product }) => (
 const Review: FC<any> = ({ data, handleBack, handleNext }) => {
   const { address, payment } = data;
   const [showModal, setShowModal] = useState(false);
-  const [errorItems, setErrorItems] = useState([]);
+  const [errorItems, setErrorItems] = useState<IErrorProductResponse[]>([]);
   const cartData = useAppSelector(cartSelector);
   const dispatch = useAppDispatch();
   const [orderTrigger, { isLoading }] = OrderApis.useAddOrderMutation();
@@ -53,10 +55,12 @@ const Review: FC<any> = ({ data, handleBack, handleNext }) => {
       .unwrap().then((res) => {
         if (res.success) {
           dispatch(emptyCart());
-          handleNext(res.order._id);
+          handleNext(res.order!._id);
         } else {
           setShowModal(true);
-          setErrorItems(res.data);
+          if (res.data) {
+            setErrorItems(res.data);
+          }
         }
       });
   };
@@ -69,7 +73,7 @@ const Review: FC<any> = ({ data, handleBack, handleNext }) => {
           {cartData.cart.map((product) => (
             <ListItem key={product.title} sx={{ py: 1, px: 0 }}>
               <ListItemText
-                primary={product.title}
+                primary={splitProductTitle(product.title)[0]}
                 secondary={<SecondaryInfo cartId={cartData.cartId} product={product} />}
               />
               <Typography variant="body2">{cartData.cartId[product.productID] * product.price}</Typography>

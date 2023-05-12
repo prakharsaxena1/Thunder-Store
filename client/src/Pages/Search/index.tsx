@@ -15,7 +15,7 @@ const Search = () => {
   const [searchTrigger, { data, isLoading, isFetching }] = ProductApis.useLazyGetProductsQuery();
   useEffect(() => {
     searchTrigger({
-      searchQuery,
+      searchQuery: (searchQuery as string),
     }, true);
   }, [searchQuery]);
 

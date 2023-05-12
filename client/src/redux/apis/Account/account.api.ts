@@ -3,7 +3,6 @@ import { apiUrls } from '../../../Constants/constants';
 import {
   LoginRequest,
   LoginRegisterResponse,
-  LogoutResponse,
   RegisterRequest,
   DeactivateRequest,
   GeneralResponse,
@@ -20,7 +19,7 @@ export const AccountApis = baseApi.injectEndpoints({
         body: params,
       }),
     }),
-    logout: build.query<GeneralResponse, LogoutResponse>({
+    logout: build.query<GeneralResponse, null>({
       query: () => ({
         url: apiUrls.account.logout,
         method: 'GET',
