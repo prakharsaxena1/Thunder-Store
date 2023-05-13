@@ -5,10 +5,10 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import Navbar from '../Navbar';
 import { colors, urls } from '../../Constants/constants';
 import { CopyrightText } from '../BrandText';
 
+const Navbar = React.lazy(() => import('../Navbar'));
 const newTabOpenUrl = (url: string) => {
   window.open(url, '_blank');
 };

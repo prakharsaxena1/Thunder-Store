@@ -3,11 +3,11 @@ import { AppBar, Toolbar, Grid } from '@mui/material';
 import { BrandText } from '../BrandText';
 import { colors } from '../../Constants/constants';
 import PopupModal from '../PopupModal';
-import SearchBar from './SearchBar';
 import NavbarMenuItems from './NavbarMenuItems';
-import Cart from '../../Pages/Cart/Cart';
 import Checkout from '../../Pages/Checkout/Checkout';
+import SearchBar from './SearchBar';
 
+const Cart = React.lazy(() => import('../../Pages/Cart/Cart'));
 const Navbar: FC = () => {
   const [showCart, setShowCart] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
