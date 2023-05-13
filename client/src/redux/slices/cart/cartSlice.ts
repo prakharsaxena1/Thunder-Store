@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getFromLS, getPrice, writeLS } from '../../../utils/helper';
 
-interface CartI {
+export interface CartI {
   productID: string;
   title: string;
   price: number;

@@ -1,7 +1,5 @@
-import {
-  Box, Tab, Tabs,
-} from '@mui/material';
 import React, { FC } from 'react';
+import { Box, Tab, Tabs } from '@mui/material';
 import ImageBox from './ImageBox';
 import UserDetails from './UserDetails';
 import AddressDetails from './AddressDetails';
@@ -23,7 +21,7 @@ const UserProfile: FC = () => {
           <Tab label="Delivery details" />
         </Tabs>
         {currentTab === 0 && (
-          <UserDetails details={userData} />
+          <UserDetails />
         )}
         {currentTab === 1 && (
           <AddressDetails />

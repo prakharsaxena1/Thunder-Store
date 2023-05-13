@@ -1,3 +1,5 @@
+import { IProductList } from '../Product/product.interface';
+
 interface IProducts {
   product: string;
   pricePaid: number;
@@ -10,7 +12,7 @@ interface IPaymentInfo {
 }
 
 interface IOrderProductsList {
-  product: string;
+  product: string | IProductList;
   pricePaid: number;
   qty: number;
   _id: string;
@@ -23,7 +25,7 @@ export interface AddOrderRequest {
   totalAmount: number;
 }
 
-interface IOrder {
+export interface IOrder {
   user: string;
   shipTo: string;
   products: IOrderProductsList[];

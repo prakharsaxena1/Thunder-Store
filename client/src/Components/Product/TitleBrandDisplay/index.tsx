@@ -12,15 +12,16 @@ export const splitProductTitle = (title: string) => {
   return [title];
 };
 
-const TitleBrandDisplay: FC<any> = ({ productTitle, single }) => {
+interface ITitleBrandDisplay {
+  productTitle: string;
+  single?: boolean;
+}
+
+const TitleBrandDisplay: FC<ITitleBrandDisplay> = ({ productTitle, single }) => {
   const [title, brand] = splitProductTitle(productTitle);
   return (
     <>
-      <Typography
-        component="h1"
-        variant="body1"
-        fontSize={single ? 40 : 24}
-      >
+      <Typography component="h1" variant="body1" fontSize={single ? 40 : 24}>
         {title}
       </Typography>
       <Typography

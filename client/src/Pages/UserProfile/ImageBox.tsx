@@ -11,7 +11,12 @@ const imgWrapperStyles = {
   border: '0.5rem solid #F2F1EF',
 };
 
-const ImageBox: FC<any> = ({ photo, username }) => {
+interface ImageBoxProps {
+  photo: string;
+  username: string;
+}
+
+const ImageBox: FC<ImageBoxProps> = ({ photo, username }) => {
   return (
     <Box
       sx={{

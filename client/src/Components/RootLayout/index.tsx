@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 import { IconButton, Typography } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -13,7 +13,7 @@ const newTabOpenUrl = (url: string) => {
   window.open(url, '_blank');
 };
 
-const RootLayout = () => {
+const RootLayout: FC = () => {
   return (
     <div
       style={{

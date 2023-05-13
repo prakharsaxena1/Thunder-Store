@@ -1,4 +1,4 @@
-interface IReview {
+export interface IReview {
   _id: string;
   rating: number;
   title: string;

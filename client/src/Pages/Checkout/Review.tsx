@@ -13,25 +13,28 @@ import PopupModal from '../../Components/PopupModal';
 import { colors } from '../../Constants/constants';
 import { splitProductTitle } from '../../Components/Product/TitleBrandDisplay';
 import { IErrorProductResponse } from '../../redux/apis/Order/orders.interface';
+import { IReviewForm, ISecondaryInfo } from './checkout.interface';
+import { IAddress } from '../../redux/apis/User/user.interface';
 
-const getAddressString = (addressObj: Record<string, string>) => {
+const getAddressString = (addressObj: IAddress) => {
   return `${addressObj?.name},\n${addressObj?.address},\n${addressObj?.city}, ${addressObj?.state}, ${addressObj?.country}\n${addressObj?.pin}`;
 };
 
-const SecondaryInfo: FC<any> = ({ cartId, product }) => (
+const SecondaryInfo: FC<ISecondaryInfo> = ({ cartId, product }) => (
   <Stack spacing={2} direction="row">
     <Typography variant="caption">{`Qty: ${cartId[product.productID]}`}</Typography>
     <Typography variant="caption">{`Discount: ${product.discount}%`}</Typography>
   </Stack>
 );
 
-const Review: FC<any> = ({ data, handleBack, handleNext }) => {
+const Review: FC<IReviewForm> = ({ data, handleBack, handleNext }) => {
   const { address, payment } = data;
   const [showModal, setShowModal] = useState(false);
   const [errorItems, setErrorItems] = useState<IErrorProductResponse[]>([]);
   const cartData = useAppSelector(cartSelector);
   const dispatch = useAppDispatch();
   const [orderTrigger, { isLoading }] = OrderApis.useAddOrderMutation();
+
   const placeOrder = () => {
     const uniqueKeys = Object.keys(cartData.cartId);
     const products = uniqueKeys.map((key) => {

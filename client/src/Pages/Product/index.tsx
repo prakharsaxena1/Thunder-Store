@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Stack, Box } from '@mui/material';
@@ -10,13 +9,19 @@ import ReviewApis from '../../redux/apis/Review/review.api';
 
 const Product: FC = () => {
   const { id } = useParams();
-  const [GetReviewTrigger, { data: reviewData, isLoading: reviewLoading, isFetching: reviewFetch }] = ReviewApis.useLazyGetAllReviewQuery();
-  const [ProductTrigger, { data, isLoading, isFetching }] = ProductApis.useLazyGetProductWithIDQuery();
+  const [GetReviewTrigger,
+    { data: reviewData, isLoading: reviewLoading, isFetching: reviewFetch },
+  ] = ReviewApis.useLazyGetAllReviewQuery();
+  const [ProductTrigger,
+    { data, isLoading, isFetching },
+  ] = ProductApis.useLazyGetProductWithIDQuery();
+
   useEffect(() => {
     ProductTrigger({ id: (id as string) }, true);
     GetReviewTrigger({ productID: (id as string) }, true);
   }, [id]);
-  if (reviewLoading || reviewFetch || isLoading || isFetching || !data) {
+
+  if (reviewLoading || reviewFetch || isLoading || isFetching || !data || !reviewData) {
     return <Loader />;
   }
   return (
@@ -29,9 +34,9 @@ const Product: FC = () => {
     >
       <Stack spacing={3}>
         {/* PRODUCT DETAILS */}
-        <ProductDetails product={data?.product} />
+        <ProductDetails product={data.product} />
         {/* REVIEWS */}
-        <ReviewDetails reviews={reviewData?.reviews || []} />
+        <ReviewDetails reviews={reviewData.reviews || []} />
       </Stack>
     </Box>
   );

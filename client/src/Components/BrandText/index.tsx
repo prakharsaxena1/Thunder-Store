@@ -13,10 +13,7 @@ const defaultStyles = {
   color: 'inherit',
 };
 
-export const BrandText: FC<IText> = ({
-  styles,
-  size = 28,
-}) => (
+export const BrandText: FC<IText> = ({ styles, size = 28 }) => (
   <Typography
     variant="h6"
     component={Link}
@@ -34,10 +31,7 @@ export const BrandText: FC<IText> = ({
   </Typography>
 );
 
-export const CopyrightText: FC<IText> = ({
-  styles,
-  size = 16,
-}) => (
+export const CopyrightText: FC<IText> = ({ styles, size = 16 }) => (
   <Typography
     variant="body1"
     sx={{

@@ -8,27 +8,28 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import dayjs from 'dayjs';
 import RatingWrapper from '../RatingWrapper';
-import { colors } from '../../Constants/constants';
+import { colors, dateFormat } from '../../Constants/constants';
 import ReviewApis from '../../redux/apis/Review/review.api';
 import Loader from '../Loader';
 import { useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
 import Confirmation from '../Confirmation';
+import { IReviewProps } from './review.interface';
 
-const Review: FC<any> = ({ data, setData, setShowModal }) => {
+const Review: FC<IReviewProps> = ({ review, setData, setShowModal }) => {
   const [popupOpen, setPopupOpen] = useState(false);
   const userData = useAppSelector(userSelector);
   const [GetReviewTrigger, { isLoading: reviewLoading, isFetching: reviewFetching }] = ReviewApis.useLazyGetOneReviewQuery();
   const [DeleteReviewTrigger, { isLoading: reviewDeleting }] = ReviewApis.useDeleteReviewMutation();
   const handleEditOpen = () => {
-    GetReviewTrigger({ reviewId: data._id }, true)
+    GetReviewTrigger({ reviewId: review._id }, true)
       .unwrap().then((res) => {
         setData(res);
         setShowModal(true);
       });
   };
   const handleDelete = () => {
-    DeleteReviewTrigger({ reviewId: data._id })
+    DeleteReviewTrigger({ reviewId: review._id })
       .unwrap().then(() => setData(null));
     setPopupOpen(false);
   };
@@ -39,19 +40,19 @@ const Review: FC<any> = ({ data, setData, setShowModal }) => {
           <Stack direction="column">
             <Stack direction="row" spacing={1}>
               <AccountCircleIcon />
-              <Typography variant="body1">{data?.userID.username}</Typography>
+              <Typography variant="body1">{review?.userID.username}</Typography>
             </Stack>
-            <RatingWrapper rateValue={data?.rating} />
-            <Typography variant="body1">{dayjs(data?.updatedAt).format('DD MMM YYYY')}</Typography>
+            <RatingWrapper rateValue={review?.rating} />
+            <Typography variant="body1">{dayjs(review?.updatedAt).format(dateFormat.dateOnly)}</Typography>
           </Stack>
         </Grid>
         <Grid item xs={12} sm={8} md={9} lg={9}>
           <Stack direction="column" sx={{ maxWidth: '95%', m: '8px auto' }}>
-            <Typography variant="h6">{data?.title}</Typography>
-            <Typography variant="body2">{data?.description}</Typography>
+            <Typography variant="h6">{review?.title}</Typography>
+            <Typography variant="body2">{review?.description}</Typography>
           </Stack>
         </Grid>
-        {userData.id === data?.userID._id && (
+        {userData.id === review?.userID._id && (
           <Box
             sx={{
               position: 'absolute',

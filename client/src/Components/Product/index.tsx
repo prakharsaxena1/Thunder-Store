@@ -7,8 +7,14 @@ import PriceDisplay from './PriceDisplay';
 import RatingWrapper from '../RatingWrapper';
 import TitleBrandDisplay from './TitleBrandDisplay';
 import ImageDisplay from './ImageDisplay';
+import { IProductList } from '../../redux/apis/Product/product.interface';
+import { IErrorProductResponse } from '../../redux/apis/Order/orders.interface';
 
-const ProductItem: FC<any> = ({ product }) => {
+interface IProductItem {
+  product: IProductList | IErrorProductResponse;
+}
+
+const ProductItem: FC<IProductItem> = ({ product }) => {
   const image = product.images.length !== 0 ? product.images[0] : '/imgs/No-Image-Placeholder.png';
   const navigate = useNavigate();
   return (

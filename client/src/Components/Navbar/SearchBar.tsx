@@ -49,7 +49,7 @@ export const SearchBarNew: FC = () => {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        onKeyPress={(e: any) => {
+        onKeyPress={(e) => {
           if (e.key === 'Enter' && text !== '') {
             navigate(`/search/${text}`);
           }

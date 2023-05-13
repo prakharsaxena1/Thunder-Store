@@ -7,21 +7,23 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from 'react-router-dom';
 import AccountApis from '../../redux/apis/Account/account.api';
 import Loader from '../../Components/Loader';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { logoutUser } from '../../redux/slices/user/userSlice';
 import { emptyCart } from '../../redux/slices/cart/cartSlice';
 import { writeLS } from '../../utils/helper';
 import Confirmation from '../../Components/Confirmation';
+import { userSelector } from '../../redux/slices/user/user.selector';
 
-const UserDetails: FC<any> = ({ details }) => {
+const UserDetails: FC = () => {
   const [popupOpen, setPopupOpen] = useState(false);
+  const userData = useAppSelector(userSelector);
   const [DeleteTrigger, { isLoading }] = AccountApis.useDeactivateAccountMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleDeleteAccount = () => {
     setPopupOpen(false);
-    DeleteTrigger({ id: details.id })
+    DeleteTrigger({ id: userData.id })
       .unwrap().then(() => {
         dispatch(logoutUser());
         dispatch(emptyCart());
@@ -51,11 +53,11 @@ const UserDetails: FC<any> = ({ details }) => {
           <Stack direction="column" spacing={3} sx={{ mb: 2 }}>
             <Stack direction="row" justifyContent="space-between">
               <Typography variant="body1">Name:</Typography>
-              <Typography variant="body1">{details.username}</Typography>
+              <Typography variant="body1">{userData.username}</Typography>
             </Stack>
             <Stack direction="row" justifyContent="space-between">
               <Typography variant="body1">Email:</Typography>
-              <Typography variant="body1">{details.email}</Typography>
+              <Typography variant="body1">{userData.email}</Typography>
             </Stack>
           </Stack>
         </AccordionDetails>

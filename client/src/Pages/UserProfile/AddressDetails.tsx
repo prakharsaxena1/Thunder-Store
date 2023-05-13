@@ -9,6 +9,7 @@ import PopupModal from '../../Components/PopupModal';
 import AddressWrapper from '../../Components/AddressWrapper';
 import UserApis from '../../redux/apis/User/user.api';
 import Loader from '../../Components/Loader';
+import { IAddress, IAddressReturn } from '../../redux/apis/User/user.interface';
 
 const AddressDetails: FC = () => {
   const [show, setShow] = useState(false);
@@ -16,12 +17,14 @@ const AddressDetails: FC = () => {
   const [addressTrigger, { isLoading, isFetching }] = UserApis.useLazyGetAddressesQuery();
   const [addAddressTrigger, { isLoading: addLoading }] = UserApis.useAddAddressMutation();
 
-  const [dataList, setDataList] = useState<any[]>();
+  const [dataList, setDataList] = useState<IAddressReturn[]>([]);
 
-  const handleDeleteAddress = (data: any) => {
+  const handleDeleteAddress = (data: IAddressReturn) => {
     deleteAddressTrigger({ addressID: data._id })
       .unwrap().then(() => {
-        setDataList((prev: any) => prev.filter((item: any) => item._id !== data._id));
+        if (dataList.length !== 0) {
+          setDataList((prev) => prev.filter((item) => item._id !== data._id));
+        }
       });
   };
 
@@ -33,10 +36,10 @@ const AddressDetails: FC = () => {
       });
   }, []);
 
-  const actionHandler = (data: any) => {
+  const actionHandler = (data: IAddress) => {
     addAddressTrigger(data)
-      .unwrap().then(() => {
-        setDataList((prev: any) => [...prev, data]);
+      .unwrap().then((res) => {
+        setDataList(res.data);
       });
     setShow(false);
   };
@@ -54,7 +57,7 @@ const AddressDetails: FC = () => {
       >
         <Box sx={{ height: '36vh', overflow: 'auto' }}>
           {dataList && dataList.length > 0
-            ? (dataList.map((data: any, i: number) => (
+            ? (dataList.map((data, i: number) => (
               <Box sx={{ position: 'relative' }} key={i}>
                 <IconButton
                   onClick={() => handleDeleteAddress(data)}

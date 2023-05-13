@@ -15,7 +15,13 @@ import { useAppDispatch } from '../../redux/hooks';
 import AccountApis from '../../redux/apis/Account/account.api';
 import UserApis from '../../redux/apis/User/user.api';
 
-const ProfileDropdown: FC<any> = ({
+interface IProfileDropdownProps {
+  open: boolean;
+  anchorRef: React.RefObject<HTMLButtonElement>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const ProfileDropdown: FC<IProfileDropdownProps> = ({
   open, anchorRef, setOpen,
 }) => {
   const navigate = useNavigate();

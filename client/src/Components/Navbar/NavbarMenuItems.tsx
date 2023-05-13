@@ -8,6 +8,10 @@ import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import NavBtn from './NavBtn';
 import ProfileDropdown from './ProfileDropdown';
 
+interface INavbarMenuItemsProps {
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 const CartBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
@@ -17,7 +21,7 @@ const CartBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   },
 }));
 
-const NavbarMenuItems: FC<any> = ({ setShowCart }) => {
+const NavbarMenuItems: FC<INavbarMenuItemsProps> = ({ setShowCart }) => {
   const userData = useAppSelector(userSelector);
   const cartData = useAppSelector(cartSelector);
   const [open, setOpen] = useState(false);

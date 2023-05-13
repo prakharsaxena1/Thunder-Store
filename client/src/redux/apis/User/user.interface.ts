@@ -1,4 +1,4 @@
-interface IAddressReturn {
+export interface IAddressReturn {
   name: string;
   address: string;
   city: string;
@@ -6,6 +6,7 @@ interface IAddressReturn {
   country: string;
   pin: number;
   _id: string;
+  [key: string]: string | number;
 }
 
 export interface IAddress {
@@ -25,7 +26,7 @@ export interface GetAddressesResponse {
 
 export interface AddAddressResponse {
   success: boolean;
-  data: IAddress[];
+  data: IAddressReturn[];
 }
 
 export interface DeleteAddressResponse {

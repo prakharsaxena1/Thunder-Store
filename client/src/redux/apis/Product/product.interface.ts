@@ -1,17 +1,30 @@
+interface IRating {
+  rate: number;
+  count: number;
+}
+
+export interface IProduct {
+  rating: IRating;
+  _id: string;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  images: string[];
+  stock: number;
+  discount: number;
+}
 export interface GetProductsRequest {
   searchQuery: string;
 }
 
-interface IProductList {
+export interface IProductList {
+  _id: string;
   title: string;
   price: number;
   category: string;
   images: string[];
-  rating: {
-    rate: number;
-    count: number;
-  };
-  _id: string;
+  rating: IRating;
   discount: number;
 }
 
@@ -23,20 +36,7 @@ export interface GetProductsResponse {
 
 export interface GetProductWithIDResponse {
   success: true;
-  product: {
-    rating: {
-      rate: number;
-      count: number;
-    };
-    _id: string;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    images: string[];
-    stock: number;
-    discount: number;
-  };
+  product: IProduct;
 }
 
 export interface GetProductWithIDRequest {

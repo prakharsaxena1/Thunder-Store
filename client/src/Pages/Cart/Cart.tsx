@@ -7,7 +7,12 @@ import { useSelector } from 'react-redux';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import CartItem from './CartItem';
 
-const Cart: FC<any> = ({ setShowCheckout, setShowCart }) => {
+interface ICart {
+  setShowCheckout: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Cart: FC<ICart> = ({ setShowCheckout, setShowCart }) => {
   const cartData = useSelector(cartSelector);
   const handleCheckout = () => {
     setShowCheckout(true);
@@ -28,7 +33,7 @@ const Cart: FC<any> = ({ setShowCheckout, setShowCart }) => {
               Cart is empty
             </Typography>
           )
-          : cartData.cart.map((item: any) => <CartItem data={item} key={item.productID} />)}
+          : cartData.cart.map((item) => <CartItem item={item} key={item.productID} />)}
       </Box>
     </>
   );

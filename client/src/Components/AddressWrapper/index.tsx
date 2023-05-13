@@ -3,7 +3,11 @@ import {
   Grid, TextField, Button,
 } from '@mui/material';
 
-const AddressWrapper: FC<any> = ({ action }) => {
+interface IAddressWrapper {
+  action: Function;
+}
+
+const AddressWrapper: FC<IAddressWrapper> = ({ action }) => {
   const name = useRef<HTMLInputElement>(null);
   const address = useRef<HTMLInputElement>(null);
   const city = useRef<HTMLInputElement>(null);

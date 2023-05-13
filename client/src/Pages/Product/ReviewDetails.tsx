@@ -8,8 +8,9 @@ import Review from '../../Components/Review';
 import ReviewPopup from '../../Components/Review/ReviewPopup';
 import { useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
+import { IReview, OneReviewResponse } from '../../redux/apis/Review/review.interface';
 
-const EmptyReviews: FC<any> = () => {
+const EmptyReviews: FC = () => {
   return (
     <Box sx={{ p: 2 }} component={Paper}>
       <Typography variant="h5" align="center">No reviews</Typography>
@@ -17,17 +18,21 @@ const EmptyReviews: FC<any> = () => {
   );
 };
 
-const ReviewDetails: FC<any> = ({ reviews }) => {
+interface IReviewDetails {
+  reviews: IReview[];
+}
+
+const ReviewDetails: FC<IReviewDetails> = ({ reviews }) => {
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [canReview, setCanReview] = useState(false);
-  const [data, setData] = useState<any>(null);
-  const [sortedReviews, setSortedReviews] = useState<any>([]);
+  const [data, setData] = useState<OneReviewResponse | null>(null);
+  const [sortedReviews, setSortedReviews] = useState<IReview[]>([]);
   const userData = useAppSelector(userSelector);
   useEffect(() => {
     if (reviews && userData.id) {
-      const userReview = reviews.find((item: any) => item.userID._id === userData.id);
-      const filteredReviews = reviews.filter((item: any) => item.userID._id !== userData.id);
+      const userReview = reviews.find((item) => item.userID._id === userData.id);
+      const filteredReviews = reviews.filter((item) => item.userID._id !== userData.id);
       if (userReview !== null && userReview !== undefined) {
         setSortedReviews([userReview, ...filteredReviews]);
       } else {
@@ -55,8 +60,8 @@ const ReviewDetails: FC<any> = ({ reviews }) => {
       <Divider />
       <Stack direction="column" spacing={1} alignItems="stretch">
         {sortedReviews.length > 0
-          ? sortedReviews.map((review: any, i: number) => (
-            <Review data={review} key={i} setData={setData} setShowModal={setShowModal} />
+          ? sortedReviews.map((review, i: number) => (
+            <Review review={review} key={i} setData={setData} setShowModal={setShowModal} />
           ))
           : <EmptyReviews />}
       </Stack>
@@ -64,8 +69,8 @@ const ReviewDetails: FC<any> = ({ reviews }) => {
         <ReviewPopup
           showModal={showModal}
           setShowModal={setShowModal}
-          id={id}
-          data={data?.review || undefined}
+          id={id || ''}
+          data={data?.review || null}
         />
       )}
     </>

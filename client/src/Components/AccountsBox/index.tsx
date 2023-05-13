@@ -3,14 +3,12 @@ import { Box, Stack, Paper } from '@mui/material';
 import { BrandText, CopyrightText } from '../BrandText';
 import Loader from '../Loader';
 
-type IAccounts = {
-  children: JSX.Element | JSX.Element[],
-  isLoading: boolean
+interface IAccounts {
+  children: JSX.Element | JSX.Element[];
+  isLoading: boolean;
 }
 
-const AccountsBox: FC<IAccounts> = ({
-  children, isLoading,
-}) => (
+const AccountsBox: FC<IAccounts> = ({ children, isLoading }) => (
   <>
     <Box
       sx={{

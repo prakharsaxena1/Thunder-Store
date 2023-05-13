@@ -9,8 +9,8 @@ import Cart from '../../Pages/Cart/Cart';
 import Checkout from '../../Pages/Checkout/Checkout';
 
 const Navbar: FC = () => {
-  const [showCart, setShowCart] = useState<boolean>(false);
-  const [showCheckout, setShowCheckout] = useState<boolean>(false);
+  const [showCart, setShowCart] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
   return (
     <AppBar
       position="relative"

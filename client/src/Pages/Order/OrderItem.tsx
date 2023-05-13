@@ -8,9 +8,16 @@ import dayjs from 'dayjs';
 import { maskCardNumber } from '../../utils/helper';
 import TitleBrandDisplay from '../../Components/Product/TitleBrandDisplay';
 import ImageDisplay from '../../Components/Product/ImageDisplay';
+import { IOrder } from '../../redux/apis/Order/orders.interface';
+import { dateFormat } from '../../Constants/constants';
+import { IProductList } from '../../redux/apis/Product/product.interface';
 
-const OrderItem: FC<any> = ({ order }) => {
-  const deliveryStatus = order.dateDelivered ? `Delivered ${order.dateDelivered}` : 'Not delivered';
+interface IOrderItem {
+  order: IOrder;
+}
+
+const OrderItem: FC<IOrderItem> = ({ order }) => {
+  const deliveryStatus = order.status === 'delivered' ? `Delivered ${dayjs(order.updatedAt).format(dateFormat.full)}` : 'Not delivered';
   const { products } = order;
   return (
     <Box sx={{ m: 1 }}>
@@ -25,9 +32,9 @@ const OrderItem: FC<any> = ({ order }) => {
               <Typography variant="body2" component="p">{`Order #${order._id}`}</Typography>
             </Grid>
             <Grid item xs={12} sm={12} md={5} lg={5}>
-              <Typography variant="body2" component="p">{`Ordered on ${dayjs(order.createdAt).format('DD MMM YYYY [at] hh:mm A')}`}</Typography>
+              <Typography variant="body2" component="p">{`Ordered on ${dayjs(order.createdAt).format(dateFormat.full)}`}</Typography>
             </Grid>
-            <Grid item xs={12} sm={12} md={2} lg={2}>
+            <Grid item xs={12} sm={12} md={2} lg={3}>
               <Typography variant="body2" component="p">{deliveryStatus}</Typography>
             </Grid>
           </Grid>
@@ -49,8 +56,8 @@ const OrderItem: FC<any> = ({ order }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {products.map((prod: any, i: number) => {
-                  const { product } = prod;
+                {products.map((prod, i: number) => {
+                  const product = (prod.product as IProductList);
                   return (
                     <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                       <TableCell>

@@ -3,10 +3,9 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { Box, Button } from '@mui/material';
+import { IPaymentForm } from './checkout.interface';
 
-const PaymentForm: FC<any> = ({
-  paymentHandler, handleBack, handleNext,
-}) => {
+const PaymentForm: FC<IPaymentForm> = ({ paymentHandler, handleBack, handleNext }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [expiry, setExpiry] = useState('');

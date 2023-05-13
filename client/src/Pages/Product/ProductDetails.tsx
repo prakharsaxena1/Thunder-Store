@@ -13,8 +13,13 @@ import { colors } from '../../Constants/constants';
 import UserApis from '../../redux/apis/User/user.api';
 import TitleBrandDisplay from '../../Components/Product/TitleBrandDisplay';
 import { userSelector } from '../../redux/slices/user/user.selector';
+import { IProduct } from '../../redux/apis/Product/product.interface';
 
-const ProductDetails: FC<any> = ({ product }) => {
+interface IProductDetails {
+  product: IProduct;
+}
+
+const ProductDetails: FC<IProductDetails> = ({ product }) => {
   const dispatch = useAppDispatch();
   const cartData = useAppSelector(cartSelector);
   const userData = useAppSelector(userSelector);

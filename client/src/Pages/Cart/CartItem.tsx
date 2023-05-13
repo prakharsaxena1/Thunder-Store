@@ -8,14 +8,18 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import styles from './cart.module.css';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { decrementQuantity, incrementQuantity } from '../../redux/slices/cart/cartSlice';
+import { CartI, decrementQuantity, incrementQuantity } from '../../redux/slices/cart/cartSlice';
 import { getPrice } from '../../utils/helper';
 import UserApis from '../../redux/apis/User/user.api';
 import TitleBrandDisplay from '../../Components/Product/TitleBrandDisplay';
 import ImageDisplay from '../../Components/Product/ImageDisplay';
 import { userSelector } from '../../redux/slices/user/user.selector';
 
-const CartItem: FC<any> = ({ data }) => {
+interface ICartItem {
+  item: CartI;
+}
+
+const CartItem: FC<ICartItem> = ({ item }) => {
   const cartData = useAppSelector(cartSelector);
   const userData = useAppSelector(userSelector);
   const dispatch = useAppDispatch();
@@ -23,31 +27,31 @@ const CartItem: FC<any> = ({ data }) => {
   const handleQtyIncrement = () => {
     if (userData.id) {
       CartTrigger({
-        productId: data.productID,
+        productId: item.productID,
         operation: 'add',
       });
     }
-    dispatch(incrementQuantity(data));
+    dispatch(incrementQuantity(item));
   };
   const handleQtyDecrement = () => {
     if (userData.id) {
       CartTrigger({
-        productId: data.productID,
+        productId: item.productID,
         operation: 'delete',
       });
     }
-    dispatch(decrementQuantity(data));
+    dispatch(decrementQuantity(item));
   };
   return (
-    <Fade in={Boolean(cartData.cartId[data.productID])}>
+    <Fade in={Boolean(cartData.cartId[item.productID])}>
       <Paper sx={{ p: 1, m: 1 }}>
         <Grid container spacing={2} alignItems="center" justifyContent="center">
           <Grid item sm={3} md={2} lg={2}>
-            <ImageDisplay image={data.image} />
+            <ImageDisplay image={item.image} />
           </Grid>
           {/* Text */}
           <Grid item sm={8} md={6} lg={7}>
-            <TitleBrandDisplay productTitle={data.title} />
+            <TitleBrandDisplay productTitle={item.title} />
           </Grid>
           {/* Price */}
           <Grid item sm={3} md={1} lg={1}>
@@ -57,7 +61,7 @@ const CartItem: FC<any> = ({ data }) => {
               sx={{ fontWeight: 700 }}
               align="center"
             >
-              {getPrice(data.price, data.discount)}
+              {getPrice(item.price, item.discount)}
             </Typography>
           </Grid>
           {/* Qty */}
@@ -69,11 +73,11 @@ const CartItem: FC<any> = ({ data }) => {
               >
                 <RemoveCircleOutlineIcon />
               </IconButton>
-              <input name="quantity" type="text" className={styles.quantity__input} value={cartData.cartId[data.productID]} readOnly />
+              <input name="quantity" type="text" className={styles.quantity__input} value={cartData.cartId[item.productID]} readOnly />
               <IconButton
                 className={styles.quantity__plus}
                 onClick={handleQtyIncrement}
-                disabled={cartData.cartId[data.productID] + 1 > data.stock}
+                disabled={cartData.cartId[item.productID] + 1 > item.stock}
               >
                 <AddCircleOutlineIcon />
               </IconButton>

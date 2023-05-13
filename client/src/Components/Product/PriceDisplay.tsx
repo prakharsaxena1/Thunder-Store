@@ -2,7 +2,12 @@ import React, { FC } from 'react';
 import { Stack, Typography } from '@mui/material';
 import { getPrice } from '../../utils/helper';
 
-const PriceDisplay: FC<any> = ({ price, discount }) => {
+interface IPriceDisplay {
+  price: number;
+  discount: number;
+}
+
+const PriceDisplay: FC<IPriceDisplay> = ({ price, discount }) => {
   return (
     <Stack spacing={1} direction="row">
       <Typography variant="body1" component="p" sx={{ fontWeight: '600' }}>{`Rs. ${getPrice(price, discount)}`}</Typography>

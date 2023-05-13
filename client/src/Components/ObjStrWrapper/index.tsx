@@ -2,16 +2,18 @@ import React, { FC } from 'react';
 import {
   Box, TextField, Typography, Paper,
 } from '@mui/material';
+import { IRadioSelectWrapper } from './ObjWrapper.interface';
+import { IAddressReturn } from '../../redux/apis/User/user.interface';
 
-const dataToString = (data: any, textOnly = false) => {
+const dataToString = (data: IAddressReturn, textOnly = false) => {
   let str = '';
   const keys = Object.keys(data);
-  keys.forEach((key: string) => {
+  keys.forEach((key) => {
     if (key !== '_id' && key !== 'name') {
       if (textOnly) {
         str += `${data[key]}, `;
       } else {
-        str += `${key.toUpperCase()}: ${data[key]}\n`;
+        str += `${key.toUpperCase()}: ${data[key] as string}\n`;
       }
     }
   });
@@ -25,7 +27,7 @@ const textOnlyProps = {
   border: '1px solid grey',
 };
 
-const RadioSelectWrapper: FC<any> = ({ data, textOnly }) => {
+const RadioSelectWrapper: FC<IRadioSelectWrapper> = ({ data, textOnly }) => {
   const [stringData, maxRows] = dataToString(data, textOnly);
   return (
     <Box

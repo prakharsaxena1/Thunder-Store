@@ -7,9 +7,10 @@ interface RouterLinkProps {
   title: string;
   href?: string;
   type?: 'Menu' | 'Link' | 'Popup';
-  onClick?: any;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   icon?: React.ReactNode;
-  refference?: any;
+  refference?: ((instance: HTMLButtonElement | null) => void)
+  | React.RefObject<HTMLButtonElement> | null | undefined;
 }
 
 const NavBtn: FC<RouterLinkProps> = ({

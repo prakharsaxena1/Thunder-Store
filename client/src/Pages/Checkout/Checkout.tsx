@@ -10,18 +10,20 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import { useAppSelector } from '../../redux/hooks';
 import { userSelector } from '../../redux/slices/user/user.selector';
+import { IAddress } from '../../redux/apis/User/user.interface';
+import { IPayment } from './checkout.interface';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 const Checkout: FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [ID, setID] = useState('');
-  const [address, setAddress] = useState({
+  const [address, setAddress] = useState<IAddress>({
     name: '',
     address: '',
     city: '',
     state: '',
-    pin: '',
+    pin: 0,
     country: '',
   });
   const [payment, setPayment] = useState({
@@ -32,11 +34,11 @@ const Checkout: FC = () => {
   });
   const userData = useAppSelector(userSelector);
 
-  const addressHandler = (obj: any) => {
+  const addressHandler = (obj: IAddress) => {
     setAddress(obj);
   };
 
-  const paymentHandler = (obj: any) => {
+  const paymentHandler = (obj: IPayment) => {
     setPayment(obj);
   };
 

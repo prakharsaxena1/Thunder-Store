@@ -5,7 +5,14 @@ import {
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 
-const PopupModal: FC<any> = ({
+interface IPopupModal {
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  title: string;
+  children: React.ReactNode | React.ReactNode[];
+}
+
+const PopupModal: FC<IPopupModal> = ({
   showModal, setShowModal, title, children,
 }) => {
   return ReactDOM.createPortal(

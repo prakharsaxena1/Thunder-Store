@@ -5,7 +5,11 @@ const imgStyles = {
   maxWidth: '100%',
 };
 
-const ImageDisplay: FC<any> = ({ image }) => {
+interface ImageDisplayProps {
+  image: string;
+}
+
+const ImageDisplay: FC<ImageDisplayProps> = ({ image }) => {
   return (
     <div
       style={{

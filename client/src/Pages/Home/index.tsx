@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import ImageSwiper from '../../Components/ImageSwiper';
 import ProjectWorking from './ProjectWorking';
+import { CoverCarouselItemProps } from '../../Components/ImageSwiper/ImageSwiper.interface';
 
-const items = [
+const items: CoverCarouselItemProps[] = [
   {
     image: '/imgs/gadgetGames.svg',
     text: 'Gadgets, games, and more!',

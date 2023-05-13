@@ -6,8 +6,9 @@ import {
 import PopupModal from '../PopupModal';
 import ReviewApis from '../../redux/apis/Review/review.api';
 import Loader from '../Loader';
+import { IReviewPopup } from './review.interface';
 
-const ReviewPopup: FC<any> = ({
+const ReviewPopup: FC<IReviewPopup> = ({
   showModal, setShowModal, id, data,
 }) => {
   const [rating, setRating] = useState(0);

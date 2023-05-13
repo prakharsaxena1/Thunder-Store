@@ -71,11 +71,6 @@ const Login: FC = () => {
       <Divider />
       <Box sx={{ mt: 2 }}>
         <Typography variant="body2" align="center" component="p">
-          Forgot password? Click&nbsp;
-          <Link to="/reset-password">here</Link>
-          &nbsp;to reset
-        </Typography>
-        <Typography variant="body2" align="center" component="p">
           New here?&nbsp;
           <Link to="/register">Register</Link>
           &nbsp;an account

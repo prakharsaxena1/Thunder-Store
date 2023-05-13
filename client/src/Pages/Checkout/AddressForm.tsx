@@ -10,12 +10,14 @@ import Loader from '../../Components/Loader';
 import ObjStrWrapper from '../../Components/ObjStrWrapper';
 import PopupModal from '../../Components/PopupModal';
 import AddressWrapper from '../../Components/AddressWrapper';
+import { IAddressForm } from './checkout.interface';
+import { IAddress, IAddressReturn } from '../../redux/apis/User/user.interface';
 
-const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
+const AddressForm: FC<IAddressForm> = ({ addressHandler, handleNext }) => {
   const [show, setShow] = useState(false);
   const [showError, setShowError] = useState(false);
   const [addressValue, setAddressValue] = useState('');
-  const [dataList, setDataList] = useState<any[]>([]);
+  const [dataList, setDataList] = useState<IAddressReturn[]>([]);
   const [addressTrigger, { isLoading, isFetching }] = UserApis.useLazyGetAddressesQuery();
   const [addAddressTrigger, { isLoading: addLoading }] = UserApis.useAddAddressMutation();
 
@@ -40,10 +42,10 @@ const AddressForm: FC<any> = ({ addressHandler, handleNext }) => {
       });
   }, []);
 
-  const actionHandler = (data: any) => {
+  const actionHandler = (data: IAddress) => {
     addAddressTrigger(data)
-      .unwrap().then(() => {
-        setDataList((prev: any) => [...prev, data]);
+      .unwrap().then((res) => {
+        setDataList(res.data);
       });
     setShow(false);
   };
