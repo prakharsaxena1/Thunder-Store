@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Middleware } from '@reduxjs/toolkit';
 import baseApi from './apis/baseQuery';
 import RootReducers from './RootReducers';
 
-const middleware: any[] = [];
+const middleware: Middleware[] = [];
 middleware.push(baseApi.middleware);
 
 export const store = configureStore({

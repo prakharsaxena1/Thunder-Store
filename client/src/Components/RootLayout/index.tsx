@@ -14,6 +14,13 @@ const newTabOpenUrl = (url: string) => {
 };
 
 const RootLayout: FC = () => {
+  // const location = useLocation();
+
+  // useEffect(() => {
+  //   // Your function to be executed every time a different route is opened
+  //   console.log(`The route has changed to ${location.pathname}`);
+  // }, [location]);
+
   return (
     <div
       style={{

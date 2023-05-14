@@ -2,6 +2,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
 const genKeyPair = require('../bin/generateKeys.js');
+const time = 24 * 60 * 60 * 1000; // 24 hours
 
 const createKeysIfNotExist = () => {
     const privKeyPath = path.join('bin', 'id_rsa_priv.pem')
@@ -13,7 +14,7 @@ const createKeysIfNotExist = () => {
 
 const issueJWT = (user) => {
     const PRIV_KEY = fs.readFileSync(path.join('bin', 'id_rsa_priv.pem'), 'utf8');
-    const expiresIn = 24 * 60 * 60 * 1000;
+    const expiresIn = time;
     const payload = { sub: user._id, iat: Date.now() };
     const token = jsonwebtoken.sign(payload, PRIV_KEY, { expiresIn: expiresIn, algorithm: 'RS256' });
     return { token, expiresIn }
@@ -29,7 +30,7 @@ const issueRefreshToken = async (token) => {
             throw new Error('Token has expired');
         }
         const newPayload = { sub: decoded.sub, iat: Date.now() };
-        const newJwt = jsonwebtoken.sign(newPayload, PRIV_KEY, { expiresIn: 24 * 60 * 60 * 1000, algorithm: 'RS256' });
+        const newJwt = jsonwebtoken.sign(newPayload, PRIV_KEY, { expiresIn: time, algorithm: 'RS256' });
         return { isAuth: true, token: `Bearer ${newJwt}` };
     } catch (err) {
         console.log(err.message);
@@ -39,7 +40,7 @@ const issueRefreshToken = async (token) => {
 
 const setCookieResponse = (res, token) => {
     res.cookie('authorization', token, {
-        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        expires: new Date(Date.now() + time),
         path: '/',
         secure: true,
         sameSite: 'none',

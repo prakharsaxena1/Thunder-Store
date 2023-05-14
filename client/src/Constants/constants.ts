@@ -1,5 +1,7 @@
 // Request urls
 export const urls = {
+  login: '/login',
+  register: '/register',
   home: '/app',
   search: '/search',
   product: '/product',
@@ -42,13 +44,6 @@ export const apiUrls = {
     address: '/user/address',
     cart: '/user/cart',
   },
-};
-
-export const uiUrls = {
-  home: '/app',
-  search: '/search',
-  product: '/product',
-  orders: '/orders',
 };
 
 export const profileURL = 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg';

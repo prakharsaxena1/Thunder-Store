@@ -91,10 +91,12 @@ const ProfileDropdown: FC<IProfileDropdownProps> = ({
                     <Divider />
                     <MenuItem onClick={() => {
                       const cart = getFromLS('cart', []);
-                      CartTrigger({
-                        productId: cart.map((item: any) => item.productID),
-                        operation: 'add',
-                      });
+                      if (cart.length !== 0) {
+                        CartTrigger({
+                          productId: cart.map((item: any) => item.productID),
+                          operation: 'add',
+                        });
+                      }
                       LogoutTrigger(null).unwrap().then(() => {
                         dispatch(logoutUser());
                         dispatch(emptyCart());

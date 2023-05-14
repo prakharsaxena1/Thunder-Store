@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 import React, { FC } from 'react';
 import {
   Stack, Typography, Button, Divider, Box,

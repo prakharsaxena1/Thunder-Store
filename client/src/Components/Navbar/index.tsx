@@ -6,8 +6,8 @@ import PopupModal from '../PopupModal';
 import NavbarMenuItems from './NavbarMenuItems';
 import Checkout from '../../Pages/Checkout/Checkout';
 import SearchBar from './SearchBar';
+import Cart from '../../Pages/Cart/Cart';
 
-const Cart = React.lazy(() => import('../../Pages/Cart/Cart'));
 const Navbar: FC = () => {
   const [showCart, setShowCart] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);

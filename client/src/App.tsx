@@ -7,7 +7,7 @@ import { setUserDetails } from './redux/slices/user/userSlice';
 import AccountApis from './redux/apis/Account/account.api';
 import { setCartItems } from './redux/slices/cart/cartSlice';
 import Loader from './Components/Loader';
-import { clearLS, getFromLS } from './utils/helper';
+import { clearLS, getFromLS, writeLS } from './utils/helper';
 
 // Components
 const RootLayout = React.lazy(() => import('./Components/RootLayout'));
@@ -55,6 +55,8 @@ const App = () => {
               email: loggedInUser.email,
               profilePhoto: loggedInUser.profilePhoto,
             }));
+            loggedInUser.token = res.token;
+            writeLS('user', loggedInUser);
           } else {
             clearLS();
           }
