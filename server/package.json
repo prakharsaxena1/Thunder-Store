@@ -11,7 +11,7 @@
     "server": "bin/www"
   },
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Prakhar Saxena",
