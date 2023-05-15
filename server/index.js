@@ -10,11 +10,12 @@ import routes from './routes/index.js';
 const app = express();
 
 // Middlewares
-app.use(cors({
-    origin: ['https://thunder-store.vercel.app/', 'http://localhost:3000'], // Allow requests from this origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
-    credentials: true,// Pass credentials (only for HTTP methods that need them)
-}));
+// app.use(cors({
+//     origin: ['https://thunder-store.vercel.app/', 'http://localhost:3000'], // Allow requests from this origin
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
+//     credentials: true,// Pass credentials (only for HTTP methods that need them)
+// }));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
