@@ -1,7 +1,7 @@
 // Dependencies
 import express from "express";
 import passport from "passport";
-import reviewController from '../controllers/review.controller.mjs';
+import reviewController from '../controllers/review.controller.js';
 const router = express.Router();
 const authMiddleware = passport.authenticate('jwt', { session: false });
 

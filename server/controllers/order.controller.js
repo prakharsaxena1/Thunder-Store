@@ -1,5 +1,5 @@
-import Order from '../models/Order.model.mjs';
-import Product from '../models/Product.model.mjs';
+import Order from '../models/Order.model.js';
+import Product from '../models/Product.model.js';
 
 const addOrder = async (req, res) => {
   if (req.body.products.length > 0 && req.body.totalAmount > 0) {

@@ -6,4 +6,4 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 // Loads the test.env file
-dotenv.config({ path: __dirname + '/test.env' });
+dotenv.config({ path: __dirname + '/.env' });

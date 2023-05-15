@@ -1,5 +1,5 @@
-import './config.mjs';
-import app from '../app.mjs';
+import './config.js';
+import app from '../index.js';
 // Sets the port for the server to run at
 const PORT = process.env.PORT || 8000;
 

@@ -1,5 +1,5 @@
 import passportJWT from 'passport-jwt';
-import User from '../models/User.model.mjs';
+import User from '../models/User.model.js';
 
 const JwtStrategy = passportJWT.Strategy;
 const cookieExtractor = (req) => {

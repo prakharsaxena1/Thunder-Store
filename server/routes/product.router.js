@@ -1,6 +1,6 @@
 // Dependencies
 import express from "express";
-import productController from '../controllers/product.controller.mjs';
+import productController from '../controllers/product.controller.js';
 const router = express.Router();
 
 // Routes

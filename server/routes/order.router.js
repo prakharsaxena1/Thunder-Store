@@ -1,7 +1,7 @@
 // Dependencies
 import express from "express";
 import passport from "passport";
-import orderController from '../controllers/order.controller.mjs';
+import orderController from '../controllers/order.controller.js';
 const router = express.Router();
 const authMiddleware = passport.authenticate('jwt', { session: false });
 

@@ -1,11 +1,11 @@
 import express from "express";
-import "./db/connection.mjs";
+import "./db/connection.js";
 import morgan from "morgan";
 import cookieParser from 'cookie-parser';
 import passport from "passport";
 import cors from "cors";
-import passportJS from './auth/passport.mjs';
-import routes from './routes/index.mjs';
+import passportJS from './auth/passport.js';
+import routes from './routes/index.js';
 
 const app = express();
 

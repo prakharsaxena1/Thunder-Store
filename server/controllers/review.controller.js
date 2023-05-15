@@ -1,5 +1,5 @@
-import Review from '../models/Review.model.mjs';
-import Product from '../models/Product.model.mjs';
+import Review from '../models/Review.model.js';
+import Product from '../models/Product.model.js';
 
 const userPopulate = {
   path: 'userID',

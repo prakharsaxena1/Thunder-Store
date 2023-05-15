@@ -1,8 +1,8 @@
 import express from 'express';
-import user from "./user.router.mjs";
-import product from "./product.router.mjs";
-import review from "./review.router.mjs";
-import order from "./order.router.mjs";
+import user from "./user.router.js";
+import product from "./product.router.js";
+import review from "./review.router.js";
+import order from "./order.router.js";
 const router = express.Router();
 
 router.use('/api/user', user);

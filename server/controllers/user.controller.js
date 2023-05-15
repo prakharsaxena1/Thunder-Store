@@ -1,7 +1,7 @@
-import User from '../models/User.model.mjs';
-import Review from '../models/Review.model.mjs';
-import Product from '../models/Product.model.mjs';
-import auth from '../auth/auth.mjs';
+import User from '../models/User.model.js';
+import Review from '../models/Review.model.js';
+import Product from '../models/Product.model.js';
+import auth from '../auth/auth.js';
 
 const userLogin = async (req, res) => {
     try {
