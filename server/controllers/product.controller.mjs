@@ -1,4 +1,4 @@
-const Product = require('../models/Product.model');
+import Product from '../models/Product.model.mjs';
 
 const getProducts = async (req, res) => {
   try {
@@ -32,19 +32,7 @@ const getProductWithID = async (req, res) => {
   }
 };
 
-// const getTopSellingFromCategory = async (req, res) => {
-//   const { category } = req.params;
-//   try {
-//     const productsArray = await Product.find({ category: category });
-//     return res.status(200).json({
-//       products: productsArray, total: productsArray.length,
-//     });
-//   } catch (err) {
-//     return res.status(403).json({ success: false, message: 'Internal server error' });
-//   }
-// };
-
-module.exports = {
+export default {
   getProducts,
   getProductWithID,
-}
+};

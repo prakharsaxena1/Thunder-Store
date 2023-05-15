@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 mongoose.set('strictQuery', true);
 
 const addressSchema = new mongoose.Schema({
@@ -20,5 +21,4 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
-module.exports = User;
+export default mongoose.model("User", userSchema);

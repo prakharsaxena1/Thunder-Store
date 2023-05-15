@@ -1,8 +1,8 @@
 // Dependencies
-const express = require("express");
-const passport = require("passport");
+import express from "express";
+import passport from "passport";
+import userController from '../controllers/user.controller.mjs';
 const router = express.Router();
-const userController = require('../controllers/user.controller');
 const authMiddleware = passport.authenticate('jwt', { session: false });
 
 // Routes
@@ -21,4 +21,4 @@ router.route('/cart')
   .put(authMiddleware, userController.updateCart)
 
 // Exports
-module.exports = router;
+export default router;

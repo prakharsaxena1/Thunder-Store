@@ -1,12 +1,7 @@
-const path = require('path');
-const fs = require('fs');
-const JwtStrategy = require('passport-jwt').Strategy;
-const User = require('../models/user.model');
-const { createKeysIfNotExist } = require('./auth');
+import passportJWT from 'passport-jwt';
+import User from '../models/User.model.mjs';
 
-createKeysIfNotExist();
-const PUB_KEY = fs.readFileSync(path.join('bin', 'id_rsa_pub.pem'), 'utf8');
-
+const JwtStrategy = passportJWT.Strategy;
 const cookieExtractor = (req) => {
     try {
         const token = req?.cookies['authorization']?.split(' ')[1];
@@ -18,7 +13,7 @@ const cookieExtractor = (req) => {
 
 const options = {
     jwtFromRequest: cookieExtractor,
-    secretOrKey: PUB_KEY,
+    secretOrKey: process.env.PUB_KEY,
     algorithms: ['RS256']
 };
 
@@ -36,6 +31,8 @@ const verifyCallback = async (jwt_payload, done) => {
 
 const strategy = new JwtStrategy(options, verifyCallback);
 
-module.exports = (passport) => {
+const passportFunction = (passport) => {
     passport.use(strategy);
 }
+
+export default passportFunction;

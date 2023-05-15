@@ -1,5 +1,5 @@
-const Review = require('../models/Review.model');
-const Product = require('../models/Product.model');
+import Review from '../models/Review.model.mjs';
+import Product from '../models/Product.model.mjs';
 
 const userPopulate = {
   path: 'userID',
@@ -106,7 +106,7 @@ const deleteReviewWithID = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   getReviews,
   addReview,
   getReviewWithID,

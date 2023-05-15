@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 mongoose.set('strictQuery', true);
 
 const productSchema = new mongoose.Schema({
@@ -16,4 +16,4 @@ const productSchema = new mongoose.Schema({
     keywords: [{ type: String, required: true }],
 });
 
-module.exports = mongoose.model('Product', productSchema);
+export default mongoose.model('Product', productSchema);

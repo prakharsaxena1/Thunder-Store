@@ -1,5 +1,5 @@
-const Order = require('../models/Order.model');
-const Product = require('../models/Product.model');
+import Order from '../models/Order.model.mjs';
+import Product from '../models/Product.model.mjs';
 
 const addOrder = async (req, res) => {
   if (req.body.products.length > 0 && req.body.totalAmount > 0) {
@@ -45,7 +45,7 @@ const getOrdersByUser = async (req, res) => {
   return res.status(200).json({ success: true, orders });
 };
 
-module.exports = {
+export default {
   addOrder,
   getOrdersByUser,
 };

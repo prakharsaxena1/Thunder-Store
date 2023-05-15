@@ -17,4 +17,4 @@ const genKeyPair = () => {
     fs.writeFileSync(__dirname + '/id_rsa_priv.pem', keyPair.privateKey);
 }
 
-module.exports = genKeyPair;
+export default genKeyPair;

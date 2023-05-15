@@ -1,7 +1,7 @@
-const User = require('../models/user.model');
-const Review = require('../models/Review.model');
-const Product = require('../models/Product.model');
-const auth = require('../auth/auth');
+import User from '../models/User.model.mjs';
+import Review from '../models/Review.model.mjs';
+import Product from '../models/Product.model.mjs';
+import auth from '../auth/auth.mjs';
 
 const userLogin = async (req, res) => {
     try {
@@ -32,6 +32,7 @@ const userLogin = async (req, res) => {
         }
         return res.status(400).json({ success: false, message: 'Invalid credentials' });
     } catch (err) {
+        console.log(err);
         res.status(400).json({ success: false, message: 'Invalid credentials' }) 
     }
 }
@@ -164,7 +165,7 @@ const updateCart = async (req, res) => {
     }
 };
 
-module.exports = {
+export default {
     userLogin,
     userRegister,
     userLogout,

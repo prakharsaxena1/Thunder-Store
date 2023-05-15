@@ -1,8 +1,8 @@
 // Dependencies
-const express = require("express");
-const passport = require("passport");
+import express from "express";
+import passport from "passport";
+import reviewController from '../controllers/review.controller.mjs';
 const router = express.Router();
-const reviewController = require('../controllers/review.controller');
 const authMiddleware = passport.authenticate('jwt', { session: false });
 
 // Routes
@@ -15,4 +15,4 @@ router.route('/:reviewId')
   .delete(authMiddleware, reviewController.deleteReviewWithID); // Delete single review
 
 // Exports
-module.exports = router;
+export default router;
