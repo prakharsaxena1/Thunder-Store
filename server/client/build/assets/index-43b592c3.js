@@ -1,1 +1,0 @@
-import{a as t}from"./index-c532219d.js";const i={maxHeight:"100%",maxWidth:"100%"},a=({image:e})=>t("div",{style:{height:"180px",display:"flex",alignItems:"center",padding:"0 0.2rem"},children:t("img",{src:e,alt:"first",style:i})});export{a as I};

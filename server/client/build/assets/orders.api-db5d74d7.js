@@ -1,1 +1,0 @@
-import{q as d,t as e}from"./index-c532219d.js";const t=d.injectEndpoints({endpoints:r=>({addOrder:r.mutation({query:s=>({url:e.orders.order,method:"POST",body:s}),invalidatesTags:["order"]}),getOrdersByUser:r.query({query:()=>({url:e.orders.order}),providesTags:["order"]})})});export{t as O};
