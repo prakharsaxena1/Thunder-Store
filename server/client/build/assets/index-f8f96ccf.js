@@ -1,0 +1,1 @@
+import{b as a,d as o,a as e,O as s,N as u}from"./index-c532219d.js";import{u as n}from"./user.selector-3f16c101.js";const p=()=>{const t=a(n),{enqueueSnackbar:r}=o();return t.id?e(s,{}):(r("Login required",{variant:"info",preventDuplicate:!0}),e(u,{to:"/login"}))};export{p as default};

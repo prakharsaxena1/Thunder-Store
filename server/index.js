@@ -11,7 +11,7 @@ const app = express();
 
 // Middlewares
 app.use(cors({
-    origin: ['https://thunder-store.vercel.app/', 'http://localhost:3000'], // Allow requests from this origin
+    origin: ['https://thunder-store.vercel.app', 'https://thunder-store-api.vercel.app'], // Allow requests from this origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
     credentials: true,// Pass credentials (only for HTTP methods that need them)
 }));
@@ -31,16 +31,16 @@ if (process.env.NODE_ENV !== 'production') {
 // Routes
 app.use(routes);
 
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static(path.resolve(__dirname, 'client', 'build')));
-//     app.get("/", (req, res) => {
-//         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'), function (err) {
-//             if (err) {
-//                 res.status(500).send(err)
-//             }
-//         });
-//     });
-// }
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+    app.get("/", (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'), function (err) {
+            if (err) {
+                res.status(500).send(err)
+            }
+        });
+    });
+}
 
 
 // Invalid request handler

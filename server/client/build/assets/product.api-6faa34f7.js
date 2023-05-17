@@ -1,0 +1,1 @@
+import{q as e,t as o}from"./index-c532219d.js";const p=e.injectEndpoints({endpoints:t=>({getProducts:t.query({query:({searchQuery:r})=>({url:`${o.products.product}?search=${r}`,method:"GET"})}),getProductWithID:t.query({query:({id:r})=>({url:`${o.products.product}/${r}`,method:"GET"}),providesTags:["productReview"]})})});export{p as P};
