@@ -5,7 +5,7 @@ const baseApi = createApi({
   tagTypes: ['address', 'order', 'review', 'productReview'],
   baseQuery: fetchBaseQuery({
     mode: 'cors',
-    baseUrl: 'https://thunder-store-api.vercel.app/api/',
+    baseUrl: 'http://localhost:4000/api/',
     credentials: 'include',
   }),
   endpoints: () => ({}),
