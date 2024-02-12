@@ -17,3 +17,6 @@ Thunder Store is an eCommerce project built with MERN stack, utilizing technolog
 - Material UI: React UI framework for designing responsive, user-friendly interfaces
 - RTK Toolkit: Redux-based state management library that simplifies the process of writing Redux code
 
+#### Demo Account
+email: demo@thunderstore.com
+Password: demo
