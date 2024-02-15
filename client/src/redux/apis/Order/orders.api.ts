@@ -15,7 +15,7 @@ export const OrderApis = baseApi.injectEndpoints({
         method: 'POST',
         body: params,
       }),
-      invalidatesTags: ['order'],
+      invalidatesTags: ['order', 'productReview'],
     }),
     getOrdersByUser: build.query<GetOrderResponse, null>({
       query: () => ({

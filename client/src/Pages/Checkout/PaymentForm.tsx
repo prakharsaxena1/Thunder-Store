@@ -2,10 +2,14 @@ import React, { FC, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 import { IPaymentForm } from './checkout.interface';
+import { useAppSelector } from '../../redux/hooks';
+import { userSelector } from '../../redux/slices/user/user.selector';
 
 const PaymentForm: FC<IPaymentForm> = ({ paymentHandler, handleBack, handleNext }) => {
+  const userData = useAppSelector(userSelector);
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [expiry, setExpiry] = useState('');
@@ -34,9 +38,19 @@ const PaymentForm: FC<IPaymentForm> = ({ paymentHandler, handleBack, handleNext 
     }
   };
 
+  const fillDemoDetails = () => {
+    setName('Prakhar Saxena');
+    setNumber('1212121212121212');
+    setExpiry('12/26');
+    setCvv('1212');
+  };
+
   return (
     <>
-      <Typography variant="h6" gutterBottom>Payment method</Typography>
+      <Stack direction="row" spacing={4} alignItems="center">
+        <Typography variant="h6" gutterBottom>Payment method</Typography>
+        {userData.username === 'Demo' && <Button size="small" onClick={fillDemoDetails}>Demo fill</Button>}
+      </Stack>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <TextField

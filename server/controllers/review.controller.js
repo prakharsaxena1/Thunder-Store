@@ -97,11 +97,12 @@ const deleteReviewWithID = async (req, res) => {
       productData.rating.rate -= review.rating;
       productData.rating.count -= 1;
       await productData.save();
-      await review.remove();
+      await review.deleteOne();
       return res.sendStatus(204);
     }
     return res.status(401).json({ success: false, message: 'Invalid user' });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };

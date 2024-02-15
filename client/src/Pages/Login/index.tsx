@@ -19,6 +19,29 @@ const Login: FC = () => {
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [loginTrigger, { isLoading }] = AccountApis.useLoginMutation();
+
+  const doDemoLogin = () => {
+    loginTrigger({ email: 'demo@thunderstore.com', password: 'demo' })
+      .unwrap().then((res) => {
+        if (res.success) {
+          navigate('/', { replace: true });
+          const userDetails = {
+            id: res.data.id,
+            username: res.data.username,
+            email: res.data.email,
+            profilePhoto: res.data.profilePhoto || profileURL,
+          };
+          dispatch(setUserDetails(userDetails));
+          dispatch(setCartItems(res.data.cart));
+          writeLS('user', { ...userDetails, token: res.token });
+          return enqueueSnackbar(res.message, { variant: 'success', preventDuplicate: true });
+        }
+        return enqueueSnackbar(res.message, { variant: 'error', preventDuplicate: true });
+      }).catch(() => {
+        return enqueueSnackbar('Provided wrong credentials', { variant: 'error', preventDuplicate: true });
+      });
+  };
+
   const attemptLogin = () => {
     if (email && pass) {
       loginTrigger({ email: email.trim(), password: pass.trim() })
@@ -61,13 +84,20 @@ const Login: FC = () => {
           onChange={(e) => { setPass(e.target.value); }}
         />
       </Stack>
-      <Button
-        variant="contained"
-        sx={{ width: '200px', mx: 'auto', my: 3 }}
-        onClick={attemptLogin}
-      >
-        Login
-      </Button>
+      <Stack direction="row" justifyContent="center" spacing={2} sx={{ m: 1 }}>
+        <Button
+          variant="contained"
+          onClick={doDemoLogin}
+        >
+          Demo Login
+        </Button>
+        <Button
+          variant="contained"
+          onClick={attemptLogin}
+        >
+          Login
+        </Button>
+      </Stack>
       <Divider />
       <Box sx={{ mt: 2 }}>
         <Typography variant="body2" align="center" component="p">

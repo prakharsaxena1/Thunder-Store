@@ -39,7 +39,7 @@ const NavbarMenuItems: FC<INavbarMenuItemsProps> = ({ setShowCart }) => {
               type="Menu"
               title={userData.username}
               refference={anchorRef}
-              icon={<AccountCircleIcon />}
+              icon={<AccountCircleIcon sx={{ fontSize: '1rem' }} />}
               onClick={handleToggle}
             />
             <ProfileDropdown

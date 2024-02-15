@@ -50,7 +50,7 @@ const CarouselItem: FC<CarouselItemProps> = ({ image }) => (
 const ImageSwiper: FC<ImageSwiperProps> = ({ items, swiperType }) => {
   if (swiperType === 'cover') {
     return (
-      <Carousel>
+      <Carousel interval={10000}>
         {
           (items as CoverCarouselItemProps[]).map((item, i: number) => (
             <CoverCarouselItem
