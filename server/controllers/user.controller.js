@@ -33,7 +33,7 @@ const userLogin = async (req, res) => {
         return res.status(400).json({ success: false, message: 'Invalid credentials' });
     } catch (err) {
         console.log(err);
-        res.status(400).json({ success: false, message: 'Invalid credentials' }) 
+        res.status(400).json({ success: false, message: 'Invalid credentials' })
     }
 }
 
@@ -155,6 +155,8 @@ const updateCart = async (req, res) => {
             } else {
                 cart.push(req.body.productId);
             }
+        } else if (req.body.operation === 'removeAll') {
+            cart = cart.filter(item => item.productId === req.body.productId);
         }
         user.cart = cart;
         await user.save();

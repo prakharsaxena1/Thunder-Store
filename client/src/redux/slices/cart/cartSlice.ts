@@ -30,9 +30,7 @@ const cartItemLS = (item: CartI, action = 'add', id = null) => {
   if (action === 'add') {
     cartItems.push(item);
   } else {
-    const objWithIdIndex = cartItems.findIndex(
-      (obj: CartI) => obj.productID === id,
-    );
+    const objWithIdIndex = cartItems.findIndex((obj: CartI) => obj.productID === id);
     if (objWithIdIndex > -1) {
       cartItems.splice(objWithIdIndex, 1);
     }
@@ -89,6 +87,15 @@ const cartSlice = createSlice({
       state.cartItemCount -= 1;
       state.cartValue -= getPrice(action.payload.price, action.payload.discount);
     },
+    removeAllQuantity: (state, action) => {
+      const item = state.cart.find((cartItem) => cartItem.productID === action.payload.productID);
+      const itemCount = state.cartId[action.payload.productID];
+      state.cartValue -= (itemCount * (getPrice(item?.price ?? 0, item?.discount ?? 0)));
+      state.cartItemCount -= itemCount;
+      state.cart = state.cart.filter((cartItem) => cartItem.productID !== action.payload.productID);
+      delete state.cartId[action.payload.productID];
+      writeLS('cart', state.cart);
+    },
     emptyCart: () => {
       writeLS('cart', []);
       return initialState;
@@ -101,6 +108,7 @@ export const {
   addItemToCart,
   incrementQuantity,
   decrementQuantity,
+  removeAllQuantity,
   emptyCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

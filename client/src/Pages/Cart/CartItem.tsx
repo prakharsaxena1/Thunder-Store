@@ -5,10 +5,13 @@ import {
 } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './cart.module.css';
 import { cartSelector } from '../../redux/slices/cart/cart.selector';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { CartI, decrementQuantity, incrementQuantity } from '../../redux/slices/cart/cartSlice';
+import {
+  CartI, decrementQuantity, incrementQuantity, removeAllQuantity,
+} from '../../redux/slices/cart/cartSlice';
 import { getPrice } from '../../utils/helper';
 import UserApis from '../../redux/apis/User/user.api';
 import TitleBrandDisplay from '../../Components/Product/TitleBrandDisplay';
@@ -42,9 +45,18 @@ const CartItem: FC<ICartItem> = ({ item }) => {
     }
     dispatch(decrementQuantity(item));
   };
+  const handleRemoveAllQty = () => {
+    if (userData.id) {
+      CartTrigger({
+        productId: item.productID,
+        operation: 'removeAll',
+      });
+    }
+    dispatch(removeAllQuantity(item));
+  };
   return (
     <Fade in={Boolean(cartData.cartId[item.productID])}>
-      <Paper sx={{ p: 1, m: 1 }}>
+      <Paper sx={{ p: 1, m: 1, position: 'relative' }}>
         <Grid container spacing={2} alignItems="center" justifyContent="center">
           <Grid item sm={3} md={2} lg={2}>
             <ImageDisplay image={item.image} />
@@ -80,6 +92,12 @@ const CartItem: FC<ICartItem> = ({ item }) => {
                 disabled={cartData.cartId[item.productID] + 1 > item.stock}
               >
                 <AddCircleOutlineIcon />
+              </IconButton>
+              <IconButton
+                style={{ position: 'absolute', top: 10, right: 10 }}
+                onClick={handleRemoveAllQty}
+              >
+                <DeleteIcon />
               </IconButton>
             </div>
           </Grid>

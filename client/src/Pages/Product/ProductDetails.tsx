@@ -78,7 +78,7 @@ const ProductDetails: FC<IProductDetails> = ({ product }) => {
                 Add to cart
               </Button>
             </Stack>
-            <Typography variant="body1">{product.description}</Typography>
+            <Typography variant="body1" sx={{ marginTop: '1.5rem' }}>{product.description}</Typography>
           </Stack>
         </Grid>
       </Grid>
