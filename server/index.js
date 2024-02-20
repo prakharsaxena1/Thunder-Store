@@ -34,7 +34,6 @@ app.use(routes);
 if (process.env.NODE_ENV === "production") {
     // @ts-ignore
     app.use(express.static(path.resolve(__dirname, 'client', 'build')));
-    // @ts-ignore
     app.get("/", (req, res) => {
         // @ts-ignore
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'), function (err) {
