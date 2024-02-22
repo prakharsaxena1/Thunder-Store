@@ -40,7 +40,7 @@ const router = createBrowserRouter(
   ),
 );
 
-const App = () => {
+const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const [RefreshToken] = AccountApis.useRefreshTokenMutation();
   useEffect(() => {
