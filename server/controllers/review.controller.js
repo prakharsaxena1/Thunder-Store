@@ -102,7 +102,6 @@ const deleteReviewWithID = async (req, res) => {
     }
     return res.status(401).json({ success: false, message: 'Invalid user' });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };

@@ -32,7 +32,6 @@ const userLogin = async (req, res) => {
         }
         return res.status(400).json({ success: false, message: 'Invalid credentials' });
     } catch (err) {
-        console.log(err);
         res.status(400).json({ success: false, message: 'Invalid credentials' })
     }
 }
@@ -62,8 +61,11 @@ const userRegister = async (req, res) => {
 }
 
 const userLogout = (req, res) => {
-    res.clearCookie('authorization');
-    res.status(200).json({ success: true, message: 'Successful logout' });
+    if (req.user.username) {
+        res.clearCookie('authorization');
+        return res.status(200).json({ success: true, message: 'Successful logout' });
+    }
+    return res.status(401).json({ success: false, message: 'unauthorised' });
 }
 
 const deleteUser = async (req, res) => {
@@ -80,8 +82,9 @@ const deleteUser = async (req, res) => {
                 review.remove();
             }
             await User.findByIdAndDelete(id);
+            return res.status(200).json({ success: true, message: 'Account deleted' });
         }
-        return res.status(200).json({ success: true, message: 'Account deleted' });
+        return res.status(400).json({ success: false, message: 'Account not found' });
     } catch (err) {
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
@@ -91,8 +94,10 @@ const refreshUser = async (req, res) => {
     const data = await auth.issueRefreshToken(req.body.token);
     if (data.isAuth) {
         res = auth.setCookieResponse(res, data.token);
+        return res.status(200).json({ ...data, success: true });
+    } else {
+        return res.status(401).json({ ...data, success: false });
     }
-    return res.status(200).json({ ...data, success: true });
 }
 
 const deleteAddress = async (req, res) => {
@@ -101,7 +106,6 @@ const deleteAddress = async (req, res) => {
         await User.findByIdAndUpdate(req.user._id, { $pull: { address: { _id: addressID } } }, { new: true });
         return res.sendStatus(204);
     } catch (err) {
-        console.log(err.message);
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
@@ -162,7 +166,6 @@ const updateCart = async (req, res) => {
         await user.save();
         return res.status(200).json({ success: true, data: [...user.cart] });
     } catch (err) {
-        console.log(err);
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };

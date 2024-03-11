@@ -45,7 +45,7 @@ app.use(routes);
 
 // Invalid request handler
 app.use('*', (req, res) => {
-    res.json({ message: `INVALID REQUEST AT: ${req.originalUrl}` });
+    res.status(401).json({ message: `INVALID REQUEST AT: ${req.originalUrl}` });
 });
 
 export default app;

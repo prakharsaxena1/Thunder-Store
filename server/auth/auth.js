@@ -9,8 +9,8 @@ const issueJWT = (user) => {
 };
 
 export const issueRefreshToken = async (token) => {
-    token = token.split(" ")[1];
     try {
+        token = token.split(" ")[1];
         const decoded = jsonwebtoken.verify(token, process.env.PUB_KEY, { algorithm: 'RS256' });
         if (decoded.exp < Date.now()) {
             throw new Error('Token has expired');
