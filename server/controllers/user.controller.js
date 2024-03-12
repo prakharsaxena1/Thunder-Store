@@ -103,6 +103,9 @@ const refreshUser = async (req, res) => {
 const deleteAddress = async (req, res) => {
     try {
         const addressID = req.body.addressID;
+        if (!addressID) {
+            return res.status(400).json({ success: false, message: 'Required fields missing' });
+        }
         await User.findByIdAndUpdate(req.user._id, { $pull: { address: { _id: addressID } } }, { new: true });
         return res.sendStatus(204);
     } catch (err) {
@@ -116,14 +119,11 @@ const addAddress = async (req, res) => {
         if (!user) {
             return res.status(400).json({ success: false, message: 'Invalid user' });
         }
-        user.address.push({
-            name: req.body.name,
-            address: req.body.address,
-            city: req.body.city,
-            state: req.body.state,
-            country: req.body.country,
-            pin: req.body.pin,
-        });
+        const { name, address, city, state, country, pin } = req.body;
+        if (!name || !address || !city || !state || !country || !pin) {
+            return res.status(400).json({ success: false, message: 'Required fields missing' });
+        }
+        user.address.push({ name, address, city, state, country, pin });
         await user.save();
         return res.status(201).json({ success: true, data: [...user.address] });
     } catch (err) {
