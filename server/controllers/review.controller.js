@@ -64,6 +64,9 @@ const getReviewWithID = async (req, res) => {
 
 const editReviewWithID = async (req, res) => {
   try {
+    if ((req.body.rating > 5 || req.body.rating < 0) || !req.body.title || !req.body.description) {
+      return res.status(400).json({ success: false, message: 'Bad parameters provided' });
+    }
     const { reviewId } = req.params;
     const review = await Review.findById(reviewId)
       .select('-createdAt -__v')

@@ -30,15 +30,20 @@ const ReviewDetails: FC<IReviewDetails> = ({ reviews }) => {
   const [sortedReviews, setSortedReviews] = useState<IReview[]>([]);
   const userData = useAppSelector(userSelector);
   useEffect(() => {
-    if (reviews && userData.id) {
-      const userReview = reviews.find((item) => item.userID._id === userData.id);
-      const filteredReviews = reviews.filter((item) => item.userID._id !== userData.id);
-      if (userReview !== null && userReview !== undefined) {
-        setSortedReviews([userReview, ...filteredReviews]);
+    if (reviews) {
+      if (userData.id !== '') {
+        const userReview = reviews.find((item) => item.userID._id === userData.id);
+        const filteredReviews = reviews.filter((item) => item.userID._id !== userData.id);
+        if (userReview !== null && userReview !== undefined) {
+          setSortedReviews([userReview, ...filteredReviews]);
+        } else {
+          setSortedReviews([...filteredReviews]);
+        }
+        setCanReview(true);
       } else {
-        setSortedReviews([...filteredReviews]);
+        setCanReview(false);
+        setSortedReviews([...reviews]);
       }
-      setCanReview(userReview === undefined);
     }
   }, [reviews]);
 
