@@ -36,7 +36,7 @@ const AddressForm: FC<IAddressForm> = ({ addressHandler, handleNext }) => {
   };
 
   useEffect(() => {
-    addressTrigger(null, true)
+    addressTrigger(null)
       .unwrap().then((res) => {
         setDataList([...res.data!]);
       });
