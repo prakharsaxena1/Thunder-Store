@@ -49,7 +49,7 @@ const PaymentForm: FC<IPaymentForm> = ({ paymentHandler, handleBack, handleNext 
     <>
       <Stack direction="row" spacing={4} alignItems="center">
         <Typography variant="h6" gutterBottom>Payment method</Typography>
-        {userData.username === 'Demo' && <Button size="small" onClick={fillDemoDetails}>Demo fill</Button>}
+        {userData.username === 'demo' && <Button size="small" onClick={fillDemoDetails}>Demo fill</Button>}
       </Stack>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>

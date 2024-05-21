@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" modified="2024-02-22T19:36:18.924Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="E4lHPt8hW-sxxoF4GMzw" version="23.1.5" type="device">
+  <diagram name="Page-1" id="xjzimsUG80n5sjgEKbFI">
+    <mxGraphModel dx="1832" dy="826" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;" edge="1" parent="1" source="IOYEN9-VhP5ohAzQjY__-1" target="IOYEN9-VhP5ohAzQjY__-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;" edge="1" parent="1" source="IOYEN9-VhP5ohAzQjY__-1" target="IOYEN9-VhP5ohAzQjY__-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;" edge="1" parent="1" source="IOYEN9-VhP5ohAzQjY__-1" target="IOYEN9-VhP5ohAzQjY__-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;" edge="1" parent="1" source="IOYEN9-VhP5ohAzQjY__-1" target="IOYEN9-VhP5ohAzQjY__-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-1" value="&lt;h1&gt;Thunder Store backend APIs&lt;/h1&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;" vertex="1" parent="1">
+          <mxGeometry x="260" y="40" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-2" value="User" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="120" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-3" value="Product" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="240" y="120" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-4" value="Review" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="570" y="120" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-5" value="Order" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="830" y="120" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-10" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;" edge="1" parent="1" target="IOYEN9-VhP5ohAzQjY__-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-10" y="600" as="sourcePoint" />
+            <mxPoint x="440" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-11" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;" edge="1" parent="1" target="IOYEN9-VhP5ohAzQjY__-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="600" as="sourcePoint" />
+            <mxPoint x="260" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-12" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;" edge="1" parent="1" target="IOYEN9-VhP5ohAzQjY__-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="600" as="sourcePoint" />
+            <mxPoint x="590" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IOYEN9-VhP5ohAzQjY__-13" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;fontFamily=Comic Sans MS;" edge="1" parent="1" target="IOYEN9-VhP5ohAzQjY__-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="600" as="sourcePoint" />
+            <mxPoint x="810" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

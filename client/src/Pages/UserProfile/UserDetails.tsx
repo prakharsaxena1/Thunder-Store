@@ -69,9 +69,9 @@ const UserDetails: FC = () => {
         <AccordionDetails>
           <Stack direction="row" justifyContent="space-between">
             <Typography variant="body1">Delete account:</Typography>
-            <Button variant="contained" color="error" onClick={() => setPopupOpen(true)} disabled={userData.username === 'Demo'}>Delete account</Button>
+            <Button variant="contained" color="error" onClick={() => setPopupOpen(true)} disabled={userData.username === 'demo'}>Delete account</Button>
           </Stack>
-          {userData.username === 'Demo' && <Typography variant="caption">Cannot delete demo account</Typography>}
+          {userData.username === 'demo' && <Typography variant="caption">Cannot delete demo account</Typography>}
         </AccordionDetails>
       </Accordion>
       {popupOpen && (

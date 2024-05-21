@@ -39,7 +39,12 @@ const userLogin = async (req, res) => {
 const userRegister = async (req, res) => {
     try {
         if (req.body.username && req.body.email && req.body.password) {
-            const user = await User.create({ username: req.body.username, email: req.body.email, password: req.body.password });
+            console.log(req.body);
+            const user = await User.create({
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password,
+            });
             res = auth.setAuthCookie(res, user);
             return res.status(201).json({
                 success: true,
@@ -56,6 +61,7 @@ const userRegister = async (req, res) => {
         }
         return res.status(401).json({ success: false, message: 'Credentials missing' });
     } catch (err) {
+        console.log(err);
         res.status(400).json({ success: false, message: 'Failed to register account' });
     }
 }
@@ -71,6 +77,8 @@ const userLogout = (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const { id } = req.body;
+        console.log(req.user._id);
+        console.log(id);
         if (id) {
             // Delete all reviews
             const reviewsByUser = await Review.find({ userID: id });
