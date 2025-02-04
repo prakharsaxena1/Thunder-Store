@@ -68,7 +68,7 @@ const AddressForm: FC<IAddressForm> = ({ addressHandler, handleNext }) => {
           ))}
         </RadioGroup>
         {showError && <Typography variant="caption" display="block" gutterBottom color="red">Select an address or add new to proceed further</Typography>}
-        <Button onClick={() => setShow(true)}>Add address</Button>
+        <Button sx={{ m: 'auto' }} onClick={() => setShow(true)}>Add address</Button>
       </FormControl>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="contained" onClick={gotoNext} sx={{ mt: 3, ml: 1 }}>Next</Button>
